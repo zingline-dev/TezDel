@@ -48,9 +48,9 @@ export default function Home() {
             <h2 style={{ fontSize: '3rem', fontWeight: '800', marginBottom: '1rem' }}>Why TezDel?</h2>
             <div style={{ width: '80px', height: '4px', background: 'var(--color-primary)', margin: '0 auto' }}></div>
           </div>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(4, 1fr)', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
             gap: '2.5rem',
             width: '100%'
           }}>
@@ -110,30 +110,30 @@ export default function Home() {
       {/* Why We're Different Section */}
       <section style={{ padding: 'var(--space-xl) 0', background: 'var(--color-bg-white)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '5rem', alignItems: 'center' }}>
-            <div style={{ background: 'linear-gradient(135deg, #FFF5F2 0%, #FFFBF9 100%)', padding: '4rem', borderRadius: 'var(--radius-lg)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '5rem', alignItems: 'stretch' }}>
+            <div style={{ background: 'linear-gradient(135deg, #FFF5F2 0%, #FFFBF9 100%)', padding: 'clamp(2rem, 4vw, 3rem)', borderRadius: 'var(--radius-lg)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
               <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', background: 'rgba(255, 61, 0, 0.05)', borderRadius: '50%' }}></div>
-              <h2 style={{ fontSize: '3rem', fontWeight: '800', marginBottom: '2rem', color: 'var(--color-text-main)', lineHeight: '1.1' }}>Why We’re Different</h2>
-              <p style={{ fontSize: '1.2rem', color: 'var(--color-text-muted)', lineHeight: '1.8', marginBottom: '2.5rem' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', fontWeight: '800', marginBottom: '1.5rem', color: 'var(--color-text-main)', lineHeight: '1.1' }}>Why We’re Different</h2>
+              <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.7', marginBottom: '2rem' }}>
                 Unlike national delivery apps, TezDel is built specifically for Bhubaneswar. We don’t rely on dark stores or warehouse-heavy operations. We empower local restaurants, home chefs, and neighbourhood kiranas to serve their own communities faster and better.
               </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <CheckCircle size={24} color="var(--color-accent)" />
+                  <CheckCircle size={22} color="var(--color-accent)" />
                   <span style={{ fontWeight: '600' }}>Hyperlocal Community Focus</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <CheckCircle size={24} color="var(--color-accent)" />
+                  <CheckCircle size={22} color="var(--color-accent)" />
                   <span style={{ fontWeight: '600' }}>Zero Commissions for Partners</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <CheckCircle size={24} color="var(--color-accent)" />
+                  <CheckCircle size={22} color="var(--color-accent)" />
                   <span style={{ fontWeight: '600' }}>ONDC Infrastructure Empowerment</span>
                 </div>
               </div>
             </div>
-            <div>
-              <img src="https://images.unsplash.com/photo-1594841607043-bc29d7274475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Local Odia Food" style={{ width: '100%', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)' }} />
+            <div style={{ position: 'relative', height: '100%', minHeight: '320px' }}>
+              <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1000&q=80" alt="Local Odia Food" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)' }} />
             </div>
           </div>
         </div>
@@ -148,33 +148,8 @@ export default function Home() {
             <p style={{ fontSize: '1.25rem', opacity: 0.8, marginBottom: '3.5rem', lineHeight: '1.6' }}>Discover the soul of Bhubaneswar through our network of home chefs. Traditional recipes, fresh ingredients, and the warmth of home.</p>
             <Link to="/home-chefs" className="btn btn-primary" style={{ padding: '1.2rem 3.5rem', fontSize: '1.1rem' }}>Meet Our Home Chefs</Link>
           </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', marginTop: '6rem' }}>
-            <div className="glass-dark" style={{ padding: '3rem', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
-              <div style={{ width: '100px', height: '100px', margin: '0 auto 2rem', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--color-primary)' }}>
-                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Chef" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Homemade Authenticity</h4>
-              <p style={{ opacity: 0.7 }}>Traditional recipes passed down through generations, cooked with love in local Bhubaneswar kitchens.</p>
-            </div>
-            <div className="glass-dark" style={{ padding: '3rem', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
-              <div style={{ width: '100px', height: '100px', margin: '0 auto 2rem', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--color-primary)' }}>
-                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Meal" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Daily Odia Meals</h4>
-              <p style={{ opacity: 0.7 }}>Fresh Dalma, Saga Bhaja, and Pakhala served daily. Healthy, hygienic, and heart-warming.</p>
-            </div>
-            <div className="glass-dark" style={{ padding: '3rem', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
-              <div style={{ width: '100px', height: '100px', margin: '0 auto 2rem', borderRadius: '50%', overflow: 'hidden', border: '3px solid var(--color-primary)' }}>
-                <img src="https://images.unsplash.com/photo-1589113124855-603194091921?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Tradition" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-              <h4 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Chef Stories</h4>
-              <p style={{ opacity: 0.7 }}>Empowering women and home cooks to build their own culinary brands and financial independence.</p>
-            </div>
-          </div>
         </div>
       </section>
-
 
       {/* Community Numbers */}
       <section style={{ padding: '8rem 0', background: 'var(--color-bg-white)' }}>
