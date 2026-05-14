@@ -68,4 +68,4 @@ npm run dev
 
 ---
 
-*© 2024-2026 TezDel™ Hyperlocal Ecosystem. All rights reserved.*
+*By continuing past this page, you agree to our Terms of Service, Cookie Policy, Privacy Policy and Content Policies. All trademarks are properties of their respective owners. © TezDel™ Ltd 2026. All rights reserved.*
