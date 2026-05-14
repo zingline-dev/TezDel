@@ -1,4 +1,4 @@
-import { Search, MapPin, Smartphone, ChevronRight, Zap, CheckCircle, ShoppingBag, Utensils, Home as HomeIcon, Package, Coffee, Calendar, ArrowRight } from 'lucide-react';
+import { Search, MapPin, ChevronRight, Zap, CheckCircle, ShoppingBag, Utensils, Home as HomeIcon, Package, Coffee, Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
