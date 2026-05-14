@@ -39,15 +39,6 @@ export default function Footer() {
                   </ul>
                </div>
                <div className="footer-col">
-                  <h4>FOR PARTNERS</h4>
-                  <ul>
-                     <li><Link to="/partners">Partner With Us</Link></li>
-                     <li><Link to="/partners">Restaurant Dashboard</Link></li>
-                     <li><Link to="/partners">Kirana Portal</Link></li>
-                     <li><Link to="/partners">Captain App</Link></li>
-                  </ul>
-               </div>
-               <div className="footer-col">
                   <h4>LEGAL</h4>
                   <ul>
                      <li><Link to="/legal">Privacy Policy</Link></li>

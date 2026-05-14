@@ -1,0 +1,252 @@
+/* =============================================
+   RESPONSIVE SYSTEM — TezDel Partners
+   Breakpoints:
+   - xs: < 480px (phones)
+   - sm: < 768px (large phones / small tablets)
+   - md: < 1024px (tablets)
+   - lg: >= 1024px (desktop)
+   ============================================= */
+
+/* Base — prevent horizontal overflow */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ---- Responsive Grid Utilities ---- */
+.rg-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.rg-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.rg-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.rg-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 2rem;
+}
+
+/* ---- Responsive Text ---- */
+.r-h1 { font-size: clamp(2.2rem, 5vw, 5.5rem); }
+.r-h2 { font-size: clamp(1.8rem, 3.5vw, 3.2rem); }
+.r-h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+
+/* ---- Section Padding ---- */
+.section-xl { padding: 9rem 0; }
+.section-lg { padding: 6rem 0; }
+.section-md { padding: 4rem 0; }
+
+/* =============================================
+   TABLET: ≤ 1024px
+   ============================================= */
+@media (max-width: 1024px) {
+  .section-xl { padding: 6rem 0; }
+  .section-lg { padding: 4rem 0; }
+
+  .rg-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Navbar */
+  .nav-desktop-links {
+    display: none !important;
+  }
+
+  /* Hero stats bar */
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+    padding: 1.5rem !important;
+  }
+
+  .hero-stats-bar > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+    padding: 1rem !important;
+  }
+
+  .hero-stats-bar > div:nth-child(odd) {
+    border-right: 1px solid rgba(255,255,255,0.1) !important;
+  }
+
+  /* 2-col grids → 1 col */
+  .two-col-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+    direction: ltr !important;
+  }
+
+  /* Partner program section */
+  .program-text { direction: ltr !important; }
+
+  /* ONDC grid */
+  .ondc-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+
+  /* Footer grid */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Form grid */
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =============================================
+   MOBILE: ≤ 768px
+   ============================================= */
+@media (max-width: 768px) {
+  .section-xl { padding: 4rem 0; }
+  .section-lg { padding: 3rem 0; }
+
+  .container {
+    padding: 0 1.2rem !important;
+  }
+
+  .rg-2, .rg-3, .rg-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Navbar */
+  .nav-mobile-cta {
+    padding: 0.6rem 1.2rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Hero */
+  .hero-headline {
+    font-size: clamp(2rem, 8vw, 3.5rem) !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .hero-cta-group a {
+    width: 100% !important;
+    max-width: 360px !important;
+    text-align: center !important;
+  }
+
+  /* Stats bar */
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .hero-stats-bar > div {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+  }
+
+  .hero-stats-bar > div:nth-child(odd) {
+    border-right: 1px solid rgba(255,255,255,0.1) !important;
+  }
+
+  .hero-stats-bar > div:last-child {
+    border-bottom: none !important;
+  }
+
+  /* Program image */
+  .program-image {
+    height: 280px !important;
+  }
+
+  /* Why Partner benefit grid */
+  .benefits-2col {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Final CTA form */
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ONDC platform list */
+  .ondc-platform-card {
+    padding: 0.8rem 1rem !important;
+  }
+
+  /* Testimonials */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Partner type pills */
+  .partner-type-pills {
+    justify-content: flex-start !important;
+    overflow-x: auto !important;
+    padding-bottom: 0.5rem !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none !important;
+  }
+
+  /* Trust section 2-col */
+  .trust-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+
+  /* Trust stat cards */
+  .trust-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* FAQ */
+  .faq-item button {
+    padding: 1.5rem !important;
+  }
+
+  /* Navbar brand */
+  .nav-brand {
+    font-size: 1.5rem !important;
+  }
+}
+
+/* =============================================
+   SMALL PHONES: ≤ 480px
+   ============================================= */
+@media (max-width: 480px) {
+  .hero-stats-bar {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .hero-cta-group a {
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+  }
+
+  .final-cta-form {
+    padding: 2rem 1.5rem !important;
+  }
+
+  .program-image {
+    height: 240px !important;
+  }
+}

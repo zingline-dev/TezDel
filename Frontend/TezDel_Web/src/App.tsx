@@ -9,7 +9,6 @@ import About from './pages/About';
 import Food from './pages/Food';
 import Grocery from './pages/Grocery';
 import HomeChefs from './pages/HomeChefs';
-import Partners from './pages/Partners';
 import Careers from './pages/Careers';
 import Investor from './pages/Investor';
 import Contact from './pages/Contact';
@@ -30,7 +29,6 @@ function App() {
             <Route path="/food" element={<Food />} />
             <Route path="/grocery" element={<Grocery />} />
             <Route path="/home-chefs" element={<HomeChefs />} />
-            <Route path="/partners" element={<Partners />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/investor" element={<Investor />} />
             <Route path="/contact" element={<Contact />} />

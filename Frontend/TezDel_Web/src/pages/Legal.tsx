@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, FileText, RefreshCw, Truck, Lock, Scale, ChevronRight } from 'lucide-react';
+import { Shield, FileText, RefreshCw, Truck, Lock, ChevronRight } from 'lucide-react';
 
 export default function Legal() {
   const [activeTab, setActiveTab] = useState('privacy');
@@ -8,8 +8,7 @@ export default function Legal() {
     { id: 'privacy', title: 'Privacy Policy', icon: <Lock size={20} /> },
     { id: 'terms', title: 'Terms & Conditions', icon: <FileText size={20} /> },
     { id: 'refund', title: 'Refund & Cancellation', icon: <RefreshCw size={20} /> },
-    { id: 'delivery', title: 'Delivery Policy', icon: <Truck size={20} /> },
-    { id: 'partner', title: 'Partner Agreement', icon: <Scale size={20} /> }
+    { id: 'delivery', title: 'Delivery Policy', icon: <Truck size={20} /> }
   ];
 
   const content: Record<string, React.ReactNode> = {
@@ -83,19 +82,6 @@ export default function Legal() {
 
         <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--color-secondary)', marginTop: '2.5rem', marginBottom: '1rem' }}>2. Verification</h3>
         <p>Deliveries are handled by verified Neighbourhood Captains. High-value orders may require a Secure OTP for verification at the doorstep.</p>
-      </div>
-    ),
-    partner: (
-      <div>
-        <h2 style={{ fontSize: '2.5rem', fontWeight: '900', color: 'var(--color-secondary)', marginBottom: '1.5rem' }}>Partner Agreement</h2>
-        <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', marginBottom: '2rem' }}>The Zero-Commission Advantage</p>
-        <p>This agreement governs the relationship between TezDel and its Merchant Partners (Restaurants, Home Chefs, and Kirana Stores).</p>
-        
-        <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--color-secondary)', marginTop: '2.5rem', marginBottom: '1rem' }}>1. Pricing Model</h3>
-        <p>TezDel operates on a flat monthly subscription model (currently ₹999/month for restaurants). We charge **Zero Commission** on individual orders, allowing partners to retain 100% of their revenue.</p>
-
-        <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--color-secondary)', marginTop: '2.5rem', marginBottom: '1rem' }}>2. Quality Standards</h3>
-        <p>Partners agree to maintain high hygiene and quality standards. Home Chefs must maintain FSSAI registration. TezDel reserves the right to audit kitchens for hygiene compliance.</p>
       </div>
     )
   };

@@ -1,4 +1,4 @@
-import { Mail, MapPin, MessageSquare, Globe, ShieldAlert, FileText, Send, Clock } from 'lucide-react';
+import { Mail, MapPin, MessageSquare, Globe, ShieldAlert, FileText, Send, Clock, ChevronRight } from 'lucide-react';
 
 export default function Contact() {
   return (
@@ -49,7 +49,6 @@ export default function Contact() {
                     <label style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--color-secondary)' }}>Department</label>
                     <select style={{ padding: '1.25rem', borderRadius: 'var(--radius-sm)', border: '1px solid #eee', outline: 'none', background: 'var(--color-bg-light)', fontSize: '1rem', appearance: 'none' }}>
                        <option>Customer Support</option>
-                       <option>Partner Onboarding</option>
                        <option>Investor Relations</option>
                        <option>Media & Press</option>
                        <option>Careers</option>
@@ -166,5 +165,3 @@ export default function Contact() {
     </div>
   );
 }
-
-import { ChevronRight } from 'lucide-react';

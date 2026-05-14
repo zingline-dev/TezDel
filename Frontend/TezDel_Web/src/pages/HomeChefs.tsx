@@ -1,5 +1,4 @@
-import { Utensils, Heart, Star, PlayCircle, Users, CheckCircle, ShieldCheck, Flame } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Utensils, Heart, Star, PlayCircle, ShieldCheck, Flame } from 'lucide-react';
 
 export default function HomeChefs() {
   const chefs = [
@@ -30,7 +29,6 @@ export default function HomeChefs() {
           </p>
           <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
             <button className="btn btn-primary" style={{ padding: '1.2rem 3.5rem', fontSize: '1.1rem' }}>Order Homemade Now</button>
-            <Link to="/partners" className="btn glass" style={{ padding: '1.2rem 3.5rem', fontSize: '1.1rem', color: 'white', fontWeight: '700' }}>Become a Home Chef</Link>
           </div>
         </div>
       </section>
@@ -112,36 +110,6 @@ export default function HomeChefs() {
                  <p style={{ fontSize: '1rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>{item.desc}</p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Become a Chef CTA */}
-      <section style={{ padding: '8rem 0' }}>
-        <div className="container">
-          <div className="glass" style={{ background: 'var(--color-secondary)', borderRadius: 'var(--radius-lg)', padding: '5rem', color: 'white', display: 'flex', alignItems: 'center', gap: '6rem', flexWrap: 'wrap', position: 'relative', overflow: 'hidden' }}>
-             <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: '100%', background: 'linear-gradient(90deg, transparent 0%, rgba(255, 61, 0, 0.1) 100%)', zIndex: 0 }}></div>
-             <div style={{ flex: '1', minWidth: '400px', position: 'relative', zIndex: 1 }}>
-                <h2 style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '2rem', lineHeight: '1.1' }}>Turn your Kitchen into a <span style={{ color: 'var(--color-primary)' }}>Business</span>.</h2>
-                <p style={{ fontSize: '1.4rem', opacity: 0.8, lineHeight: '1.7', marginBottom: '3.5rem' }}>
-                  Join Bhubaneswar's fastest growing community of home chefs. We provide the logistics, you provide the talent. Empower your home, celebrate your culture.
-                </p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '4rem' }}>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1.1rem', fontWeight: '700' }}><CheckCircle size={24} color="var(--color-primary)" /> Set Your Own Prices</div>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1.1rem', fontWeight: '700' }}><CheckCircle size={24} color="var(--color-primary)" /> Flexible Schedule</div>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1.1rem', fontWeight: '700' }}><CheckCircle size={24} color="var(--color-primary)" /> Weekly Payouts</div>
-                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '1.1rem', fontWeight: '700' }}><CheckCircle size={24} color="var(--color-primary)" /> Marketing Support</div>
-                </div>
-                <Link to="/partners" className="btn btn-primary" style={{ padding: '1.5rem 4rem', fontSize: '1.2rem' }}>Apply as Home Chef</Link>
-             </div>
-             <div style={{ flex: '0.7', minWidth: '350px', position: 'relative', zIndex: 1 }}>
-                <div className="glass" style={{ background: 'rgba(255,255,255,0.05)', padding: '3rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
-                   <Users size={64} color="var(--color-primary)" style={{ marginBottom: '2rem' }} />
-                   <div style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '0.5rem' }}>250+</div>
-                   <h4 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', fontWeight: '700' }}>Active Home Chefs</h4>
-                   <p style={{ opacity: 0.7, fontSize: '1.1rem', lineHeight: '1.6' }}>Already serving authentic heritage to thousands of families across Bhubaneswar.</p>
-                </div>
-             </div>
           </div>
         </div>
       </section>

@@ -1,4 +1,4 @@
-import { Search, MapPin, ChevronRight, Zap, CheckCircle, ShoppingBag, Utensils, Home as HomeIcon, Package, Coffee, Calendar, ArrowRight } from 'lucide-react';
+import { Search, MapPin, ChevronRight, Zap, CheckCircle, ShoppingBag, Utensils, Home as HomeIcon, Package, Coffee, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -25,7 +25,6 @@ export default function Home() {
 
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '3.5rem' }}>
             <Link to="/food" className="btn btn-primary" style={{ padding: '1.2rem 3rem', fontSize: '1.1rem' }}>Order Now</Link>
-            <Link to="/partners" className="btn btn-secondary glass" style={{ padding: '1.2rem 3rem', fontSize: '1.1rem', color: 'white' }}>Partner With Us</Link>
           </div>
 
           <div className="search-container glass" style={{ maxWidth: '900px', margin: '0 auto', height: '64px', borderRadius: 'var(--radius-md)' }}>
@@ -176,65 +175,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Restaurant Partner Section */}
-      <section style={{ padding: 'var(--space-xl) 0', background: 'var(--color-bg-white)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '6rem', alignItems: 'center' }}>
-            <div>
-              <div style={{ color: 'var(--color-primary)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '1rem' }}>Partner Ecosystem</div>
-              <h2 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.1' }}>Stop Paying 30% Commissions</h2>
-              <p style={{ fontSize: '1.25rem', color: 'var(--color-text-muted)', lineHeight: '1.8', marginBottom: '3rem' }}>
-                TezDel charges restaurants a simple <span style={{ color: 'var(--color-primary)', fontWeight: '700' }}>flat monthly subscription</span> instead of taking a cut from every order. Increase your margins and grow your local brand with Bhubaneswar’s own network.
-              </p>
-              <div style={{ display: 'flex', gap: '1.5rem' }}>
-                <Link to="/partners" className="btn btn-primary" style={{ padding: '1.2rem 2.5rem' }}>Become a Partner</Link>
-                <Link to="/contact" className="btn btn-secondary" style={{ padding: '1.2rem 2.5rem', border: '1px solid #ddd' }}>View Pricing</Link>
-              </div>
-            </div>
-            <div style={{ background: 'var(--color-bg-light)', padding: '4rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(0,0,0,0.05)' }}>
-              <h3 style={{ fontSize: '2rem', fontWeight: '800', marginBottom: '1.5rem' }}>Your Neighbourhood Store, Now Online</h3>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', marginBottom: '2.5rem', lineHeight: '1.6' }}>We empower local kiranas to become digital dark stores, serving their colony faster than any national app. No setup costs, just growth.</p>
-              <ul style={{ listStyle: 'none', padding: 0, marginBottom: '2.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{ width: '8px', height: '8px', background: 'var(--color-primary)', borderRadius: '50%' }}></div>
-                  <span style={{ fontWeight: '500' }}>Increase local sales by 40%</span>
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{ width: '8px', height: '8px', background: 'var(--color-primary)', borderRadius: '50%' }}></div>
-                  <span style={{ fontWeight: '500' }}>Digital ordering via WhatsApp & App</span>
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  <div style={{ width: '8px', height: '8px', background: 'var(--color-primary)', borderRadius: '50%' }}></div>
-                  <span style={{ fontWeight: '500' }}>Instant hyperlocal delivery fleet</span>
-                </li>
-              </ul>
-              <Link to="/partners" style={{ color: 'var(--color-primary)', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem' }}>
-                Join as Kirana Partner <ArrowRight size={20} />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Community Numbers */}
       <section style={{ padding: '8rem 0', background: 'var(--color-bg-white)' }}>
         <div className="container">
           <div className="glass" style={{ padding: '6rem 4rem', borderRadius: 'var(--radius-lg)', background: 'var(--color-secondary)', color: 'white', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'center' }}>
             <div>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>12k+</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Active Users</div>
+              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>₹0</div>
+              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Commission Fees</div>
             </div>
             <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', borderRight: '1px solid rgba(255,255,255,0.1)' }}>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>250+</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Home Chefs</div>
+              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>100%</div>
+              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Bhubaneswar Focus</div>
             </div>
             <div>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>800+</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Restaurants</div>
+              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Fast</div>
+              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Local Delivery</div>
             </div>
             <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)' }}>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>15+</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Bhubaneswar Zones</div>
+              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>ONDC</div>
+              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Network Ready</div>
             </div>
           </div>
         </div>
