@@ -41,34 +41,35 @@ export default function FloatingNav() {
         {navItems.map((item) => {
           const isActive = location.pathname === item.path;
           return (
-            <Link key={item.path} to={item.path} style={{ position: 'relative' }}>
+            <Link key={item.path} to={item.path} style={{ position: 'relative', padding: '0.5rem 1rem' }}>
+              {isActive && (
+                <motion.div
+                  layoutId="active-pill"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: 'rgba(255, 61, 0, 0.15)',
+                    borderRadius: 'var(--radius-full)',
+                    zIndex: 0
+                  }}
+                  transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
+                />
+              )}
               <motion.div
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.9 }}
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   gap: '4px',
-                  color: isActive ? 'var(--color-primary)' : 'rgba(255,255,255,0.6)'
+                  color: isActive ? 'var(--color-primary)' : 'rgba(255,255,255,0.6)',
+                  position: 'relative',
+                  zIndex: 1
                 }}
               >
                 <item.icon size={20} strokeWidth={isActive ? 2.5 : 2} />
                 <span style={{ fontSize: '10px', fontWeight: isActive ? '700' : '500' }}>{item.label}</span>
-                
-                {isActive && (
-                  <motion.div
-                    layoutId="active-nav-dot"
-                    style={{
-                      position: 'absolute',
-                      bottom: '-6px',
-                      width: '4px',
-                      height: '4px',
-                      borderRadius: '50%',
-                      backgroundColor: 'var(--color-primary)'
-                    }}
-                  />
-                )}
               </motion.div>
             </Link>
           );

@@ -119,13 +119,20 @@
 
 .hero-v3-search {
   background: #fff;
-  border-radius: 14px;
-  padding: 6px 6px 6px 16px;
+  border-radius: 20px;
+  padding: 8px 8px 8px 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  gap: 12px;
+  box-shadow: var(--shadow-premium);
   margin-bottom: 24px;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.hero-v3-search.focused {
+  box-shadow: 0 0 0 4px rgba(255, 61, 0, 0.15), var(--shadow-premium);
+  border-color: var(--color-primary);
 }
 
 .hero-v3-search input {
@@ -355,21 +362,28 @@
 }
 
 .cat-card-v3 {
-  border-radius: 20px;
-  padding: 28px 20px;
+  border-radius: 28px;
+  padding: 40px 24px;
   cursor: pointer;
-  transition: all 0.25s;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   text-align: center;
-  border: 1.5px solid transparent;
+  border: 1px solid transparent;
   position: relative;
   overflow: hidden;
   text-decoration: none;
   display: block;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .cat-card-v3:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px) rotateX(4deg) rotateY(-4deg);
+  box-shadow: 0 30px 60px -12px rgba(0,0,0,0.15), 0 18px 36px -18px rgba(0,0,0,0.1);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.cat-card-v3:hover .cat-icon-v3 {
+  transform: translateZ(30px) scale(1.1);
 }
 
 .cat-food {
@@ -628,15 +642,23 @@
 .why-card-v3 {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 20px;
-  padding: 28px;
-  transition: all 0.25s;
+  border-radius: 24px;
+  padding: 32px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
 }
 
 .why-card-v3:hover {
-  background: rgba(255, 61, 0, 0.1);
-  border-color: rgba(255, 61, 0, 0.25);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 61, 0, 0.4);
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 40px 80px -20px rgba(0,0,0,0.5);
+}
+
+.why-card-v3:hover .why-icon-v3 {
+  transform: translateZ(20px) scale(1.1);
+  background: var(--color-primary);
+  color: #fff;
 }
 
 .why-icon-v3 {

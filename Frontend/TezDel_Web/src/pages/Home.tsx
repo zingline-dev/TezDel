@@ -12,6 +12,19 @@ const fadeInUp = {
   transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
 };
 
+const wordReveal = {
+  initial: { opacity: 0, y: 10 },
+  animate: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.05 * i,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  })
+};
+
 const staggerContainer = {
   animate: {
     transition: {
@@ -88,17 +101,30 @@ export default function Home() {
             
             <motion.h1 
               className="hero-v3-title"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+              initial="initial"
+              animate="animate"
             >
-              Bhubaneswar's<br />Food Delivered<br />
+              {"Bhubaneswar's Food Delivered".split(' ').map((word, i) => (
+                <motion.span
+                  key={i}
+                  custom={i}
+                  variants={wordReveal}
+                  style={{ display: 'inline-block', marginRight: '0.3em' }}
+                >
+                  {word}
+                </motion.span>
+              ))}
+              <br />
               <motion.span 
                 className="hero-v3-accent"
-                initial={{ backgroundPosition: '0% 50%' }}
-                animate={{ backgroundPosition: '100% 50%' }}
-                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-                style={{ background: 'linear-gradient(90deg, var(--color-primary), #FF7547, var(--color-primary))', backgroundSize: '200% auto', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+                initial={{ opacity: 0, scale: 0.9, backgroundPosition: '0% 50%' }}
+                animate={{ opacity: 1, scale: 1, backgroundPosition: '100% 50%' }}
+                transition={{ 
+                  opacity: { delay: 1, duration: 0.8 },
+                  scale: { delay: 1, duration: 0.8 },
+                  backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" }
+                }}
+                style={{ background: 'linear-gradient(90deg, var(--color-primary), #FF7547, var(--color-primary))', backgroundSize: '200% auto', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', display: 'inline-block' }}
               >
                 In 20 Minutes.
               </motion.span>
@@ -162,8 +188,18 @@ export default function Home() {
             <motion.div 
               className="hero-v3-card"
               initial={{ opacity: 0, rotateY: 20, x: 50 }}
-              animate={{ opacity: 1, rotateY: 0, x: 0 }}
-              transition={{ delay: 0.4, duration: 1 }}
+              animate={{ 
+                opacity: 1, 
+                rotateY: [20, 15, 20],
+                y: [0, -20, 0],
+                x: 0 
+              }}
+              transition={{ 
+                opacity: { delay: 0.4, duration: 1 },
+                x: { delay: 0.4, duration: 1 },
+                rotateY: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+                y: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+              }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="hero-v3-food-grid">
@@ -201,6 +237,41 @@ export default function Home() {
                   <span>Your neighbourhood captain is on the way</span>
                 </div>
               </motion.div>
+
+              {/* Living Platform Decor */}
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                style={{ position: 'absolute', top: '-20px', left: '10%', color: 'var(--color-primary)', filter: 'drop-shadow(0 0 10px rgba(255,61,0,0.5))' }}
+              >
+                <MapPin size={24} fill="currentColor" />
+              </motion.div>
+              
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.7, 0.3]
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+                style={{ position: 'absolute', bottom: '40px', right: '-10px', color: '#10B981', filter: 'drop-shadow(0 0 10px rgba(16,185,129,0.5))' }}
+              >
+                <MapPin size={20} fill="currentColor" />
+              </motion.div>
+
+              <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: -1, pointerEvents: 'none' }}>
+                <motion.path
+                  d="M 50,50 Q 150,0 250,50 T 450,50"
+                  fill="none"
+                  stroke="rgba(255,61,0,0.2)"
+                  strokeWidth="2"
+                  strokeDasharray="10 10"
+                  animate={{ strokeDashoffset: [0, -100] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                />
+              </svg>
             </motion.div>
           </div>
         </div>
@@ -238,16 +309,19 @@ export default function Home() {
                   <div className="cat-badge-v3">{cat.badge}</div>
                   <motion.span 
                     className="cat-icon-v3"
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                    animate={{ y: [0, -8, 0], rotate: [0, -5, 5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
                   >
                     {cat.icon}
                   </motion.span>
                   <h3 className="cat-name-v3">{cat.name}</h3>
                   <p className="cat-desc-v3">{cat.desc}</p>
-                  <div className="cat-arrow">
+                  <motion.div 
+                    className="cat-arrow"
+                    whileHover={{ x: 5 }}
+                  >
                     <ArrowRight size={20} />
-                  </div>
+                  </motion.div>
                 </Link>
               </motion.div>
             ))}
