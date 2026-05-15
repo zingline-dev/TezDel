@@ -1,3 +1,37 @@
+/* Navbar Logo V3 */
+.nav-logo-v3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-mark-v3 {
+  width: 36px;
+  height: 36px;
+  background: var(--color-primary);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark-v3 span {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: #fff;
+  letter-spacing: -1px;
+}
+
+.nav-logo-text-v3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
 /* Navbar & Header */
 .header {
   position: absolute;

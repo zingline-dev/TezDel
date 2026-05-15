@@ -1,326 +1,409 @@
-import { Search, MapPin, ChevronRight, Zap, CheckCircle, ShoppingBag, Utensils, Home as HomeIcon, Package, Coffee, Calendar } from 'lucide-react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Search } from 'lucide-react';
 
 export default function Home() {
-  const categories = [
-    { title: 'Food Delivery', desc: 'Zero commission from local restaurants.', path: '/food', icon: <Utensils /> },
-    { title: 'Grocery Delivery', desc: 'Kirana-powered 20-min delivery.', path: '/grocery', icon: <ShoppingBag /> },
-    { title: 'Home Chef Meals', desc: 'Authentic homemade Odia food.', path: '/home-chefs', icon: <HomeIcon /> },
-    { title: 'Daily Essentials', desc: 'Milk, bread & morning needs.', path: '/grocery', icon: <Coffee /> },
-    { title: 'Corporate Lunch', desc: 'Bulk meals for Infocity offices.', path: '/contact', icon: <Package /> },
-    { title: 'Festival Specials', desc: 'Raja, Puja & Rath Yatra tiffins.', path: '/home-chefs', icon: <Calendar /> },
+  const [activeZone, setActiveZone] = useState('Patia');
+  const [searchValue, setSearchValue] = useState('');
+
+  const chips = ['🍛 Odia Thali', '🥗 Dalma', '🧅 Grocery', '🍰 Chenna Poda', '🛵 Quick Delivery'];
+
+  const zones = [
+    { name: 'Patia', status: 'live' },
+    { name: 'Nayapalli', status: 'live' },
+    { name: 'Saheed Nagar', status: 'soon' },
+    { name: 'Khandagiri', status: 'soon' },
+    { name: 'Infocity', status: 'coming' },
+    { name: 'Chandrasekharpur', status: 'coming' },
+    { name: 'Bapuji Nagar', status: 'coming' },
+    { name: 'IRC Village', status: 'coming' },
+  ];
+
+  const chefs = [
+    { name: 'Priya Mohanty', loc: 'Patia, Bhubaneswar', rating: '4.9', orders: '230', dishes: ['Dalma Thali', 'Pakhala', 'Besara'], bg: 'linear-gradient(135deg,#FF8A65,#FF5722)', emoji: '🍛' },
+    { name: 'Sunita Nayak', loc: 'Nayapalli, Bhubaneswar', rating: '4.8', orders: '185', dishes: ['Macha Besara', 'Santula', 'Dahi Baigana'], bg: 'linear-gradient(135deg,#F9A825,#F57F17)', emoji: '🥘' },
+    { name: 'Mamata Das', loc: 'Saheed Nagar, Bhubaneswar', rating: '5.0', orders: '312', dishes: ['Chenna Poda', 'Rasabali', 'Malpua'], bg: 'linear-gradient(135deg,#26C6DA,#00838F)', emoji: '🍮' },
+  ];
+
+  const whyCards = [
+    { icon: '⚡', title: '20-Minute Delivery Promise', desc: 'Short delivery radii, captains who live in your zone, and pre-positioned kirana partners mean your order arrives fast — guaranteed.' },
+    { icon: '🏠', title: 'Authentic Odia Home Cooking', desc: 'The only platform where you can order real pakhala, dalma, and chenna poda cooked by verified home chefs from your neighbourhood.' },
+    { icon: '🤝', title: 'Neighbourhood Captains', desc: 'Your delivery captain is someone who lives in your colony — not a stranger. They know your building, your floor, and your name.' },
+    { icon: '🏪', title: 'Kirana Store Network', desc: 'We partner with your local kirana stores — not corporate dark stores. Your grocery comes from a shop that knows your preferences.' },
+    { icon: '📡', title: 'ONDC Powered', desc: "Built on India's Open Network for Digital Commerce from day one. More reach, more transparency, more trust — for everyone." },
+    { icon: '🌱', title: 'Zero Commission Model', desc: 'Restaurants pay ₹999/month flat — no 25% commission cuts. Savings passed to you through better food quality and fair prices.' },
   ];
 
   return (
-    <div className="home-v2">
-      {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-bg-img" style={{ backgroundImage: 'linear-gradient(rgba(15, 23, 42, 0.6), rgba(15, 23, 42, 0.8)), url(https://images.pexels.com/photos/37152225/pexels-photo-37152225.jpeg?auto=compress&cs=tinysrgb&w=1920)' }}></div>
-        <div className="hero-container">
-          <h1 className="hero-logo-large text-gradient" style={{ fontSize: '5rem', marginBottom: '0.5rem' }}>TezDel</h1>
-          <h2 style={{ fontSize: '2.5rem', color: 'white', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.2' }}>Bhubaneswar’s Own Hyperlocal Delivery Network</h2>
-          <p style={{ fontSize: '1.25rem', color: 'white', opacity: 0.9, maxWidth: '700px', margin: '0 auto 2.5rem', lineHeight: '1.6' }}>
-            Fast groceries, authentic Odia food, trusted local delivery — powered by neighbourhood chefs, kiranas, and community captains.
-          </p>
+    <div className="home-v3">
 
-          <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '3.5rem' }}>
-            <Link to="/food" className="btn btn-primary" style={{ padding: '1.2rem 3rem', fontSize: '1.1rem' }}>Order Now</Link>
-          </div>
+      {/* ── HERO ── */}
+      <section className="hero-v3" aria-label="Hero — Order food in 20 minutes">
+        <div
+          className="hero-v3-bg"
+          style={{ backgroundImage: 'linear-gradient(rgba(13,7,6,0.72), rgba(13,7,6,0.88)), url(https://images.pexels.com/photos/37152225/pexels-photo-37152225.jpeg?auto=compress&cs=tinysrgb&w=1920)' }}
+          aria-hidden="true"
+        />
+        <div className="hero-v3-glow" aria-hidden="true" />
+        <div className="hero-v3-dots" aria-hidden="true" />
 
-          <div className="search-container glass" style={{ maxWidth: '900px', margin: '0 auto', height: '64px', borderRadius: 'var(--radius-md)' }}>
-            <div className="location-box" style={{ borderRight: '1px solid rgba(0,0,0,0.1)' }}>
-              <MapPin size={22} color="var(--color-primary)" />
-              <input type="text" placeholder="Patia, Bhubaneswar" className="search-input" defaultValue="Bhubaneswar" />
+        <div className="hero-v3-inner">
+          {/* Left */}
+          <div className="hero-v3-left">
+            <div className="hero-v3-tag">
+              <div className="hero-v3-tag-dot" aria-hidden="true" />
+              <span>Live in Bhubaneswar</span>
             </div>
-            <div className="search-box">
-              <Search size={22} color="var(--color-text-muted)" />
-              <input type="text" placeholder="Search for Pakhala, Dalma or a restaurant" className="search-input" />
+            <h1 className="hero-v3-title">
+              Bhubaneswar's<br />Food Delivered<br />
+              <span className="hero-v3-accent">In 20 Minutes.</span>
+            </h1>
+            <p className="hero-v3-sub">
+              Authentic Odia home cooking, local restaurants, and kirana groceries — delivered fast by your neighbourhood captain. Zero hidden fees. 100% local.
+            </p>
+            <div className="hero-v3-search" role="search">
+              <Search size={18} color="#aaa" />
+              <input
+                type="text"
+                id="hero-search"
+                placeholder="Search for dalma, biryani, groceries..."
+                value={searchValue}
+                onChange={e => setSearchValue(e.target.value)}
+                aria-label="Search food and restaurants"
+              />
+              <button className="hero-v3-search-btn" type="button">Search</button>
             </div>
-            <button className="btn btn-primary" style={{ height: '100%', borderRadius: '0 var(--radius-md) var(--radius-md) 0', padding: '0 2rem' }}>Search</button>
+            <div className="hero-v3-chips" role="list" aria-label="Popular searches">
+              {chips.map(chip => (
+                <span
+                  key={chip}
+                  className="hero-v3-chip"
+                  role="listitem"
+                  tabIndex={0}
+                  onClick={() => setSearchValue(chip.replace(/[^\w\s]/g, '').trim())}
+                  onKeyDown={e => e.key === 'Enter' && setSearchValue(chip.replace(/[^\w\s]/g, '').trim())}
+                >
+                  {chip}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Why TezDel Section */}
-      <section style={{ padding: 'var(--space-xl) 0 var(--space-md)', background: 'var(--color-bg-white)' }}>
-        <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-            <h2 style={{ fontSize: '3rem', fontWeight: '800', marginBottom: '1rem' }}>Why TezDel?</h2>
-            <div style={{ width: '80px', height: '4px', background: 'var(--color-primary)', margin: '0 auto' }}></div>
-          </div>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '2.5rem',
-            width: '100%'
-          }}>
-            {[
-              { icon: <Zap size={32} />, title: '20-Minute Delivery', desc: 'Lightning fast hyperlocal routing.' },
-              { icon: <CheckCircle size={32} />, title: 'Zero Commission', desc: 'Fair business for local restaurants.' },
-              { icon: <HomeIcon size={32} />, title: 'Home-Cooked Odia Meals', desc: 'Authentic taste from local homes.' },
-              { icon: <Package size={32} />, title: 'Kirana-Powered', desc: 'Your neighbourhood store, now online.' }
-            ].map((item, i) => (
-              <div key={i} className="glass" style={{ textAlign: 'center', padding: '3.5rem 2rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(0,0,0,0.05)', transition: 'transform 0.3s ease' }}>
-                <div style={{ marginBottom: '1.5rem', color: 'var(--color-primary)', display: 'flex', justifyContent: 'center' }}>{item.icon}</div>
-                <h4 style={{ fontSize: '1.35rem', fontWeight: '700', marginBottom: '1rem' }}>{item.title}</h4>
-                <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.5' }}>{item.desc}</p>
+          {/* Right visual card */}
+          <div className="hero-v3-visual" aria-hidden="true">
+            <div className="hero-v3-card">
+              <div className="hero-v3-food-grid">
+                {[
+                  { emoji: '🍛', name: 'Dalma Thali', price: '₹120' },
+                  { emoji: '🍲', name: 'Pakhala', price: '₹90' },
+                  { emoji: '🍮', name: 'Chenna Poda', price: '₹60' },
+                  { emoji: '🥬', name: 'Besara', price: '₹110' },
+                ].map(item => (
+                  <div key={item.name} className="hero-v3-food-item">
+                    <span className="hero-v3-food-emoji">{item.emoji}</span>
+                    <div className="hero-v3-food-name">{item.name}</div>
+                    <div className="hero-v3-food-price">{item.price}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+              <div className="hero-v3-delivery-badge">
+                <div className="hero-v3-db-icon">⚡</div>
+                <div className="hero-v3-db-text">
+                  <strong>Arriving in 18 minutes</strong>
+                  <span>Your neighbourhood captain is on the way</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Categories Grid */}
-      <section style={{ padding: 'var(--space-md) 0 var(--space-xl)', background: 'var(--color-bg-light)' }}>
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '4rem' }}>
-            <div>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '0.5rem' }}>Explore Our Categories</h2>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem' }}>Everything you need, delivered in minutes.</p>
+      {/* ── STATS BAND ── */}
+      <div className="stats-band-v3" role="region" aria-label="Key metrics">
+        <div className="stats-band-v3-inner">
+          {[
+            { value: '20 min', label: 'Average Delivery' },
+            { value: '₹0', label: 'Commission to Restaurants' },
+            { value: '500+', label: 'Restaurant Partners' },
+            { value: 'ONDC', label: 'Ready Network' },
+          ].map(stat => (
+            <div key={stat.label} className="stat-item-v3">
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
             </div>
-            <Link to="/food" style={{ color: 'var(--color-primary)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              View all services <ChevronRight size={20} />
+          ))}
+        </div>
+      </div>
+
+      {/* ── CATEGORIES ── */}
+      <section className="cats-v3" id="categories" aria-labelledby="cat-heading">
+        <div className="container">
+          <div className="section-head-v3">
+            <p className="section-label-v3">What would you like?</p>
+            <h2 className="section-title-v3" id="cat-heading">Everything Your<br />Neighbourhood Needs</h2>
+            <p className="section-sub-v3">From home-cooked Odia meals to fresh kirana groceries — TezDel is your single window to Bhubaneswar's best local offerings.</p>
+          </div>
+          <div className="cat-grid-v3" role="list">
+            <Link to="/food" className="cat-card-v3 cat-food" role="listitem" tabIndex={0}>
+              <div className="cat-badge-v3">500+ Restaurants</div>
+              <span className="cat-icon-v3" aria-hidden="true">🍽️</span>
+              <h3 className="cat-name-v3">Restaurant Food</h3>
+              <p className="cat-desc-v3">Biryani, pizza, Odia thali and more from the best local restaurants in your zone</p>
+            </Link>
+            <Link to="/grocery" className="cat-card-v3 cat-grocery" role="listitem" tabIndex={0}>
+              <div className="cat-badge-v3" style={{ background: '#1B8A60' }}>Kirana Network</div>
+              <span className="cat-icon-v3" aria-hidden="true">🛒</span>
+              <h3 className="cat-name-v3">Kirana Grocery</h3>
+              <p className="cat-desc-v3">Fresh vegetables, daily essentials and groceries from trusted neighbourhood kirana stores</p>
+            </Link>
+            <Link to="/home-chefs" className="cat-card-v3 cat-chef" role="listitem" tabIndex={0}>
+              <div className="cat-badge-v3" style={{ background: '#D4A017' }}>Odia Specials</div>
+              <span className="cat-icon-v3" aria-hidden="true">👩‍🍳</span>
+              <h3 className="cat-name-v3">Home Chef Meals</h3>
+              <p className="cat-desc-v3">Authentic Odia food cooked by local home chefs — dalma, pakhala, besara & more</p>
+            </Link>
+            <Link to="/contact" className="cat-card-v3 cat-corp" role="listitem" tabIndex={0}>
+              <div className="cat-badge-v3" style={{ background: '#4F46E5' }}>Office Meals</div>
+              <span className="cat-icon-v3" aria-hidden="true">🏢</span>
+              <h3 className="cat-name-v3">Corporate Catering</h3>
+              <p className="cat-desc-v3">Daily office lunches, team meals, and event catering for IT companies and offices</p>
             </Link>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
-            {categories.map(cat => (
-              <Link key={cat.title} to={cat.path} className="service-card" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '2rem', background: 'white' }}>
-                <div style={{
-                  width: '64px',
-                  height: '64px',
-                  borderRadius: '16px',
-                  background: 'rgba(255, 61, 0, 0.1)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'var(--color-primary)'
-                }}>
-                  {cat.icon}
-                </div>
-                <div>
-                  <h3 style={{ fontSize: '1.35rem', fontWeight: '700', color: 'var(--color-text-main)', marginBottom: '0.25rem' }}>{cat.title}</h3>
-                  <p style={{ fontSize: '1rem', color: 'var(--color-text-muted)' }}>{cat.desc}</p>
-                </div>
-              </Link>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS ── */}
+      <section className="how-v3" aria-labelledby="how-heading">
+        <div className="container">
+          <div className="section-head-v3" style={{ textAlign: 'center' }}>
+            <p className="section-label-v3">Simple as 1-2-3</p>
+            <h2 className="section-title-v3" id="how-heading">How TezDel Works</h2>
+            <p className="section-sub-v3" style={{ margin: '0 auto' }}>Place an order in seconds and your neighbourhood captain brings it to your door — fast.</p>
+          </div>
+          <div className="steps-v3" role="list">
+            {[
+              { num: '1', color: 'var(--color-primary)', title: 'Browse & Order', desc: 'Open TezDel, search for your favourite restaurant, home chef, or grocery item. Add to cart and checkout in seconds.' },
+              { num: '2', color: 'var(--color-secondary)', title: 'Captain Assigned', desc: 'Your neighbourhood captain — someone who lives in your area — picks up your order and heads straight to you.' },
+              { num: '3', color: '#1B8A60', title: 'Delivered in 20 Min', desc: 'Track your order live. Your captain arrives at your door in 20 minutes or less. Freshly made, locally sourced.' },
+            ].map(step => (
+              <article key={step.num} className="step-v3" role="listitem">
+                <div className="step-num-v3" style={{ background: step.color }} aria-hidden="true">{step.num}</div>
+                <h3 className="step-title-v3">{step.title}</h3>
+                <p className="step-desc-v3">{step.desc}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why We're Different Section */}
-      <section style={{ padding: 'var(--space-xl) 0', background: 'var(--color-bg-white)' }}>
+      {/* ── HOME CHEF ── */}
+      <section className="homechef-v3" id="homechef" aria-labelledby="chef-heading">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '5rem', alignItems: 'stretch' }}>
-            <div style={{ background: 'linear-gradient(135deg, #FFF5F2 0%, #FFFBF9 100%)', padding: 'clamp(2rem, 4vw, 3rem)', borderRadius: 'var(--radius-lg)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
-              <div style={{ position: 'absolute', top: '-50px', right: '-50px', width: '200px', height: '200px', background: 'rgba(255, 61, 0, 0.05)', borderRadius: '50%' }}></div>
-              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', fontWeight: '800', marginBottom: '1.5rem', color: 'var(--color-text-main)', lineHeight: '1.1' }}>Why We’re Different</h2>
-              <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', lineHeight: '1.7', marginBottom: '2rem' }}>
-                Unlike national delivery apps, TezDel is built specifically for Bhubaneswar. We don’t rely on dark stores or warehouse-heavy operations. We empower local restaurants, home chefs, and neighbourhood kiranas to serve their own communities faster and better.
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <CheckCircle size={22} color="var(--color-accent)" />
-                  <span style={{ fontWeight: '600' }}>Hyperlocal Community Focus</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <CheckCircle size={22} color="var(--color-accent)" />
-                  <span style={{ fontWeight: '600' }}>Zero Commissions for Partners</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <CheckCircle size={22} color="var(--color-accent)" />
-                  <span style={{ fontWeight: '600' }}>ONDC Infrastructure Empowerment</span>
-                </div>
-              </div>
-            </div>
-            <div style={{ position: 'relative', height: '100%', minHeight: '320px' }}>
-              <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1000&q=80" alt="Local Odia Food" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)' }} />
-            </div>
+          <div className="chef-intro-v3">
+            <p className="section-label-v3">Exclusive to TezDel</p>
+            <h2 className="section-title-v3" id="chef-heading">Real Odia Food.<br />Home Cooked.</h2>
+            <p className="section-sub-v3">Our verified home chefs cook the authentic Odia food you crave every day — pakhala, dalma, macha besara, chenna poda. Order by 12 PM for lunch, 5 PM for dinner.</p>
           </div>
-        </div>
-      </section>
-
-      {/* Home Chef Highlight */}
-      <section style={{ padding: 'var(--space-xl) 0', background: 'var(--color-secondary)', color: 'white', overflow: 'hidden', position: 'relative' }}>
-        <div style={{ position: 'absolute', top: 0, right: 0, width: '40%', height: '100%', background: 'linear-gradient(90deg, rgba(15, 23, 42, 0) 0%, rgba(255, 61, 0, 0.1) 100%)' }}></div>
-        <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-            <h2 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '1.5rem', lineHeight: '1.1' }}>Real Odia Food. Cooked by Real Homes.</h2>
-            <p style={{ fontSize: '1.25rem', opacity: 0.8, marginBottom: '3.5rem', lineHeight: '1.6' }}>Discover the soul of Bhubaneswar through our network of home chefs. Traditional recipes, fresh ingredients, and the warmth of home.</p>
-            <Link to="/home-chefs" className="btn btn-primary" style={{ padding: '1.2rem 3.5rem', fontSize: '1.1rem' }}>Meet Our Home Chefs</Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Community Numbers */}
-      <section style={{ padding: '8rem 0', background: 'var(--color-bg-white)' }}>
-        <div className="container">
-          <div className="glass" style={{ padding: '6rem 4rem', borderRadius: 'var(--radius-lg)', background: 'var(--color-secondary)', color: 'white', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2rem', textAlign: 'center' }}>
-            <div>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>₹0</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Commission Fees</div>
-            </div>
-            <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)', borderRight: '1px solid rgba(255,255,255,0.1)' }}>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>100%</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Bhubaneswar Focus</div>
-            </div>
-            <div>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>Fast</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Local Delivery</div>
-            </div>
-            <div style={{ borderLeft: '1px solid rgba(255,255,255,0.1)' }}>
-              <div style={{ fontSize: '3.5rem', fontWeight: '900', color: 'var(--color-primary)', marginBottom: '0.5rem' }}>ONDC</div>
-              <div style={{ fontSize: '1.1rem', opacity: 0.8, fontWeight: '700' }}>Network Ready</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* App Download CTA - Zomato Style */}
-      <section style={{ padding: '3rem 0', background: '#FFF5F6' }}>
-        <div className="container">
-          <div className="glass" style={{
-            background: 'white',
-            borderRadius: '32px',
-            padding: '2.5rem 4%',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem',
-            alignItems: 'center',
-            boxShadow: '0 15px 45px rgba(255, 61, 0, 0.05)',
-            position: 'relative',
-            overflow: 'hidden',
-            border: 'none'
-          }}>
-            {/* Background decorative circles */}
-            <div style={{ position: 'absolute', right: '-10%', bottom: '-10%', width: '400px', height: '400px', background: 'rgba(255, 61, 0, 0.03)', borderRadius: '50%', zIndex: 0 }}></div>
-            <div style={{ position: 'absolute', right: '5%', top: '10%', width: '200px', height: '200px', background: 'rgba(255, 61, 0, 0.02)', borderRadius: '50%', zIndex: 0 }}></div>
-
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 style={{ fontSize: '3rem', fontWeight: '900', color: 'var(--color-secondary)', marginBottom: '1rem', lineHeight: '1.1' }}>
-                Download the <br />app now!
-              </h2>
-              <p style={{ fontSize: '1.1rem', color: '#4F4F4F', marginBottom: '2.5rem', maxWidth: '400px', lineHeight: '1.5' }}>
-                Experience seamless online ordering only on the TezDel app
-              </p>
-
-              <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-                <a href="#" style={{ display: 'block' }}>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
-                    alt="Get it on Google Play"
-                    style={{ height: '38px', borderRadius: '6px' }}
-                  />
-                </a>
-                <a href="#" style={{ display: 'block' }}>
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg"
-                    alt="Download on the App Store"
-                    style={{ height: '38px', borderRadius: '6px' }}
-                  />
-                </a>
-              </div>
-            </div>
-
-            <div style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center' }}>
-              {/* iPhone 17 Pro Max Mockup - Cosmic Orange */}
-              <div style={{
-                position: 'relative',
-                width: '260px',
-                height: '520px',
-                background: 'linear-gradient(135deg, #FF5722 0%, #E64A19 50%, #BF360C 100%)',
-                borderRadius: '60px',
-                padding: '8px',
-                boxShadow: '0 50px 100px rgba(255, 87, 34, 0.2), 0 0 0 2px rgba(255, 87, 34, 0.4)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.5s ease'
-              }}>
-                {/* Cosmic Orange Metallic Accents */}
-                <div style={{ position: 'absolute', top: '10px', left: '10px', right: '10px', bottom: '10px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '54px', pointerEvents: 'none' }}></div>
-
-                {/* Ultra-Slim Side Buttons */}
-                <div style={{ position: 'absolute', left: '-2px', top: '110px', width: '3px', height: '35px', background: '#BF360C', borderRadius: '2px 0 0 2px', border: '1px solid #FF5722' }}></div>
-                <div style={{ position: 'absolute', left: '-2px', top: '165px', width: '3px', height: '65px', background: '#BF360C', borderRadius: '2px 0 0 2px', border: '1px solid #FF5722' }}></div>
-                <div style={{ position: 'absolute', left: '-2px', top: '235px', width: '3px', height: '65px', background: '#BF360C', borderRadius: '2px 0 0 2px', border: '1px solid #FF5722' }}></div>
-                <div style={{ position: 'absolute', right: '-2px', top: '200px', width: '3px', height: '100px', background: '#BF360C', borderRadius: '0 2px 2px 0', border: '1px solid #FF5722' }}></div>
-
-                <div style={{
-                  width: '100%',
-                  height: '100%',
-                  background: 'white',
-                  borderRadius: '52px',
-                  overflow: 'hidden',
-                  position: 'relative',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  textAlign: 'center',
-                  boxShadow: 'inset 0 0 10px rgba(0,0,0,0.1)'
-                }}>
-                  {/* Ultra-Thin Dynamic Island 2.0 */}
-                  <div style={{
-                    position: 'absolute',
-                    top: '10px',
-                    width: '90px',
-                    height: '24px',
-                    background: 'black',
-                    borderRadius: '12px',
-                    zIndex: 10,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '8px'
-                  }}>
-                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#222' }}></div>
-                    <div style={{ width: '12px', height: '4px', borderRadius: '2px', background: '#111' }}></div>
+          <div className="chef-grid-v3" role="list">
+            {chefs.map(chef => (
+              <article key={chef.name} className="chef-card-v3" role="listitem">
+                <div className="chef-img-v3" style={{ background: chef.bg }}>
+                  <span style={{ fontSize: '3.5rem' }}>{chef.emoji}</span>
+                  <span className="chef-img-badge-v3">⭐ {chef.rating}</span>
+                </div>
+                <div className="chef-body-v3">
+                  <h3 className="chef-name-v3">{chef.name}</h3>
+                  <p className="chef-loc-v3">📍 {chef.loc}</p>
+                  <div className="chef-dishes-v3">
+                    {chef.dishes.map(d => <span key={d} className="dish-tag-v3">{d}</span>)}
                   </div>
+                  <div className="chef-footer-v3">
+                    <span className="chef-rating-v3">⭐ {chef.rating} · {chef.orders} orders</span>
+                    <button className="chef-order-btn-v3" type="button">Order Now</button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="homechef-cta-v3">
+            <p>Are you a home cook who loves making Odia food? Join our home chef network.</p>
+            <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem' }}>Become a Home Chef</Link>
+          </div>
+        </div>
+      </section>
 
-                  <div style={{ padding: '1rem' }}>
-                    <div style={{
-                      color: 'var(--color-primary)',
-                      fontWeight: '900',
-                      fontSize: '0.65rem',
-                      letterSpacing: '1.5px',
-                      marginBottom: '0.5rem',
-                      background: 'rgba(255, 61, 0, 0.05)',
-                      padding: '2px 8px',
-                      borderRadius: '20px',
-                      display: 'inline-block'
-                    }}>NEXT-GEN DELIVERY</div>
+      {/* ── WHY TEZDEL ── */}
+      <section className="why-v3" aria-labelledby="why-heading">
+        <div className="container">
+          <div className="section-head-v3">
+            <p className="section-label-v3" style={{ color: 'var(--color-primary)' }}>Why we're different</p>
+            <h2 className="section-title-v3 why-v3-title" id="why-heading">Not Just Another<br />Delivery App</h2>
+            <p className="section-sub-v3 why-v3-sub">TezDel is built from the ground up for Bhubaneswar — not a metro app pasted over a Tier-2 city.</p>
+          </div>
+          <div className="why-grid-v3" role="list">
+            {whyCards.map(card => (
+              <article key={card.title} className="why-card-v3" role="listitem">
+                <div className="why-icon-v3" aria-hidden="true">{card.icon}</div>
+                <h3 className="why-title-v3">{card.title}</h3>
+                <p className="why-desc-v3">{card.desc}</p>
+              </article>
+            ))}
+          </div>
 
-                    <p style={{ fontSize: '0.9rem', fontWeight: '800', color: '#111', marginBottom: '1.2rem', lineHeight: '1.4' }}>
-                      Scan to unlock <br />Bhubaneswar's best
-                    </p>
+          {/* Competitor Table */}
+          <div className="why-vs-v3" role="region" aria-label="TezDel vs competitors">
+            <h3 className="vs-title-v3">TezDel vs The Big Players</h3>
+            <div style={{ overflowX: 'auto' }}>
+              <table className="vs-table-v3" aria-label="Feature comparison table">
+                <thead>
+                  <tr>
+                    <th scope="col">Platform</th>
+                    <th scope="col">Commission</th>
+                    <th scope="col">Odia Food</th>
+                    <th scope="col">Home Chefs</th>
+                    <th scope="col">Kirana Model</th>
+                    <th scope="col">ONDC</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="vs-tezdel-row">
+                    <td><strong>TezDel ★</strong></td>
+                    <td>₹999/mo flat</td>
+                    <td><span className="badge-yes">Core Identity</span></td>
+                    <td><span className="badge-yes">Core Model</span></td>
+                    <td><span className="badge-yes">Core Model</span></td>
+                    <td><span className="badge-yes">Day 1</span></td>
+                  </tr>
+                  <tr>
+                    <td>Zomato</td>
+                    <td>22–30%</td>
+                    <td><span className="badge-partial">Partial</span></td>
+                    <td><span className="badge-no">None</span></td>
+                    <td><span className="badge-no">None</span></td>
+                    <td><span className="badge-no">Opposed</span></td>
+                  </tr>
+                  <tr>
+                    <td>Swiggy</td>
+                    <td>22–30%</td>
+                    <td><span className="badge-partial">Partial</span></td>
+                    <td><span className="badge-no">None</span></td>
+                    <td><span className="badge-no">None</span></td>
+                    <td><span className="badge-no">Limited</span></td>
+                  </tr>
+                  <tr>
+                    <td>Blinkit</td>
+                    <td>High</td>
+                    <td><span className="badge-no">None</span></td>
+                    <td><span className="badge-no">None</span></td>
+                    <td><span className="badge-no">Dark stores only</span></td>
+                    <td><span className="badge-no">None</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                    {/* Premium QR Code Container */}
-                    <div style={{
-                      width: '140px',
-                      height: '140px',
-                      padding: '0.8rem',
-                      border: '2px solid #FF572220',
-                      borderRadius: '16px',
-                      background: 'white',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      boxShadow: '0 8px 15px rgba(255, 87, 34, 0.1)',
-                      position: 'relative'
-                    }}>
-                      <div style={{ width: '100%', height: '100%', position: 'relative' }}>
-                        {/* Cosmic Orange QR corners */}
-                        <div style={{ position: 'absolute', top: 0, left: 0, width: '28px', height: '28px', background: 'var(--color-primary)', borderRadius: '3px' }}></div>
-                        <div style={{ position: 'absolute', top: 0, right: 0, width: '28px', height: '28px', background: 'var(--color-primary)', borderRadius: '3px' }}></div>
-                        <div style={{ position: 'absolute', bottom: 0, left: 0, width: '28px', height: '28px', background: 'var(--color-primary)', borderRadius: '3px' }}></div>
-                        <div style={{ position: 'absolute', top: '8px', left: '8px', width: '12px', height: '12px', background: 'white', borderRadius: '2px' }}></div>
-                        <div style={{ position: 'absolute', top: '8px', right: '8px', width: '12px', height: '12px', background: 'white', borderRadius: '2px' }}></div>
-                        <div style={{ position: 'absolute', bottom: '8px', left: '8px', width: '12px', height: '12px', background: 'white', borderRadius: '2px' }}></div>
-                        <div style={{ position: 'absolute', top: '40px', left: '40px', width: '60px', height: '60px', background: 'repeating-conic-gradient(#333 0% 25%, transparent 0% 50%) 0% 0% / 8px 8px', opacity: 0.8 }}></div>
+      {/* ── TEZPASS ── */}
+      <section className="tezpass-v3" aria-labelledby="tezpass-heading">
+        <div className="container">
+          <div className="tezpass-v3-inner">
+            <div>
+              <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Membership</p>
+              <h2 className="section-title-v3 tezpass-v3-title" id="tezpass-heading">TezPass —<br />Unlimited Free Delivery</h2>
+              <p className="tezpass-v3-p">Subscribe once and enjoy unlimited free deliveries, exclusive discounts on Odia home chef specials, priority order processing, and access to TezPass-only deals every week.</p>
+              <a href="#download" className="btn-outline-white-v3">Get TezPass</a>
+            </div>
+            <div className="tezpass-card-v3">
+              <div className="tezpass-price-v3">₹149</div>
+              <div className="tezpass-period-v3">per month — cancel anytime</div>
+              <ul className="tezpass-benefits-v3" role="list">
+                {[
+                  'Unlimited free deliveries every month',
+                  'Priority queue — skip the busy-hour wait',
+                  '10% off every home chef order',
+                  'Exclusive TezPass weekly deals',
+                  'Early access to new restaurant partners',
+                  'Festival special menus 3 days in advance',
+                ].map(b => <li key={b}>{b}</li>)}
+              </ul>
+              <button className="btn btn-primary" type="button" style={{ width: '100%', padding: '1rem', fontSize: '1rem', borderRadius: '12px' }}>
+                Start TezPass Today
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ZONES ── */}
+      <section className="zones-v3" id="zones" aria-labelledby="zones-heading">
+        <div className="container">
+          <div className="section-head-v3">
+            <p className="section-label-v3">Coverage</p>
+            <h2 className="section-title-v3" id="zones-heading">Delivering Across<br />Bhubaneswar</h2>
+            <p className="section-sub-v3">We're live in key zones and expanding fast. Check if we deliver in your area.</p>
+          </div>
+          <div className="zone-grid-v3" role="list">
+            {zones.map(zone => (
+              <div
+                key={zone.name}
+                role="listitem"
+                tabIndex={zone.status !== 'coming' ? 0 : undefined}
+                className={`zone-chip-v3 ${activeZone === zone.name ? 'active' : ''} ${zone.status === 'coming' ? 'coming-soon' : ''}`}
+                onClick={() => zone.status !== 'coming' && setActiveZone(zone.name)}
+                onKeyDown={e => e.key === 'Enter' && zone.status !== 'coming' && setActiveZone(zone.name)}
+              >
+                <span>{zone.name}</span>
+                <small>{zone.status === 'live' ? '✓ Live' : zone.status === 'soon' ? 'Launching soon' : 'Coming soon'}</small>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── APP DOWNLOAD ── */}
+      <section className="app-v3" id="download" aria-labelledby="app-heading">
+        <div className="container">
+          <div className="app-v3-inner">
+            <div>
+              <p className="section-label-v3">Get the App</p>
+              <h2 className="section-title-v3" id="app-heading">Order Bhubaneswar's<br />Best Food — Anywhere</h2>
+              <p style={{ color: 'var(--color-text-muted)', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.7' }}>
+                Download TezDel and get ₹100 off your first order. Available on Android — iOS coming soon.
+              </p>
+              <div className="app-badge-row-v3">
+                <a href="#" aria-label="Download TezDel on Google Play Store">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style={{ height: '44px' }} />
+                </a>
+                <a href="#" aria-label="Download TezDel on Apple App Store">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" style={{ height: '44px' }} />
+                </a>
+              </div>
+              <div className="ondc-badge-v3">📡 <span>ONDC Certified Seller App</span></div>
+            </div>
+
+            {/* Phone Mockup */}
+            <div className="app-mockup-outer-v3">
+              <div className="app-mockup-v3" aria-label="TezDel app screen preview" role="img">
+                <div className="app-notch-v3" aria-hidden="true" />
+                <div className="app-screen-v3">
+                  <div className="app-screen-header-v3">
+                    <span>TezDel</span>
+                    <p>📍 Patia, BHB</p>
+                  </div>
+                  <div className="app-mini-items-v3">
+                    {[
+                      { emoji: '🍛', text: "Priya's Dalma Thali · ₹120" },
+                      { emoji: '🥬', text: 'Fresh Vegetables · Kirana' },
+                      { emoji: '🍮', text: 'Chenna Poda · ₹60' },
+                      { emoji: '🛵', text: 'Captain Rajan · 12 min away' },
+                    ].map(item => (
+                      <div key={item.text} className="app-mini-item-v3">
+                        <span>{item.emoji}</span>
+                        <span>{item.text}</span>
                       </div>
-                    </div>
-
-                    <div style={{ marginTop: '1.5rem', fontSize: '0.65rem', color: '#999', fontWeight: '600' }}>TEZDEL VERSION 4.0.2</div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -328,6 +411,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
     </div>
   );
 }

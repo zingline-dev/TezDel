@@ -60,6 +60,22 @@ npm run dev
 
 ---
 
+## 📈 Recent Progress & Fixes (Latest Updates)
+
+### TezDel Web (Consumer)
+- **Navigation Overlap Fix:** Added a global `.page-container` CSS class with a dynamic padding offset (`padding-top: 90px;`) to prevent the fixed glassmorphism navbar from overlapping the top content (Search Bars, Headers) on all internal pages (Food, Grocery, Investor, etc.).
+- **Homepage Layout Refinements:**
+  - Perfected the CSS Grid alignment on the "Why We're Different" section by switching to `alignItems: 'stretch'`, ensuring the text box and adjacent image share a perfectly symmetric height.
+  - Removed outdated layout elements (e.g., broken "Chef Stories" cards) and tightened the overall vertical rhythm of the homepage.
+  - Replaced broken, zoomed-in placeholder images with high-quality, wide-angle Unsplash assets (Indian Cuisine/Biryani) that naturally fit the `object-fit: cover` containers.
+- **Codebase Cleanliness:** Standardized ES Module import structures (e.g., moved Lucide-React icons to the top of `Contact.tsx`) and ran CSS auto-formatting.
+
+### TezDel Partners
+- Established the core architectural separation of the Partner Portal into its own dedicated frontend (`TezDel_Partners`).
+- Integrated responsive fluid typography (`clamp()`) and auto-fitting CSS grids for a seamless mobile-to-desktop onboarding experience.
+
+---
+
 ## 🌟 Core Philosophy
 
 1. **Zero Commission:** We do not charge predatory 25-30% commissions. We empower local businesses to keep their profits.

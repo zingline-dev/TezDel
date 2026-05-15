@@ -16,6 +16,7 @@ import Legal from './pages/Legal';
 
 import './index.css';
 import './App.css';
+import './home-v3.css';
 
 function App() {
   return (

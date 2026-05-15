@@ -46,18 +46,13 @@ export default function Navbar() {
         />
       )}
       <div className="container nav" style={{ position: 'relative', zIndex: 100 }}>
-        <Link to="/" className="logo-title" style={{
-          fontSize: '2rem',
-          fontWeight: '900',
-          color: scrolledStyle ? 'var(--color-primary)' : 'white',
-          textDecoration: 'none',
-          transition: 'all 0.3s ease',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '4px'
-        }}>
-          TezDel
-          <span style={{ width: '8px', height: '8px', background: 'var(--color-primary)', borderRadius: '50%', display: scrolledStyle ? 'block' : 'none' }}></span>
+        <Link to="/" className="nav-logo-v3" aria-label="TezDel Home">
+          <div className="nav-logo-mark-v3">
+            <span>Tz</span>
+          </div>
+          <span className="nav-logo-text-v3" style={{ color: scrolledStyle ? 'var(--color-text-main)' : '#fff' }}>
+            Tez<em style={{ color: 'var(--color-primary)', fontStyle: 'normal' }}>Del</em>
+          </span>
         </Link>
 
         <nav className={`nav-links ${isMobileMenuOpen ? 'mobile-open' : ''}`}>
