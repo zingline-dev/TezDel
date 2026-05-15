@@ -239,9 +239,11 @@
 .about-team-icon-v3 { font-size: 40px; display: block; margin: 0 auto 14px; }
 
 /* ── FOOD / GROCERY SEARCH BOXES ── */
-.food-location-box-v3 { display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 12px 18px; cursor: pointer; flex-shrink: 0; }
-.food-location-box-v3 span { font-size: 20px; }
-.food-search-box-v3 { display: flex; gap: 10px; align-items: center; background: #fff; border-radius: 12px; padding: 12px 18px; flex: 1; min-width: 280px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+.food-location-box-v3 { display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); border-radius: 14px; padding: 16px 24px; cursor: pointer; flex-shrink: 0; transition: all 0.2s; }
+.food-location-box-v3:hover { background: rgba(255,255,255,0.18); border-color: rgba(255,255,255,0.4); }
+.food-location-box-v3 span { font-size: 24px; }
+.food-search-box-v3 { display: flex; gap: 12px; align-items: center; background: #fff; border-radius: 14px; padding: 16px 24px; flex: 1; min-width: 320px; box-shadow: 0 8px 32px rgba(0,0,0,0.25); transition: all 0.2s; }
+.food-search-box-v3:focus-within { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
 
 /* ── FOOD CATEGORY CHIPS ── */
 .food-cat-chip-v3 { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 16px 12px; border-radius: 16px; background: #FFF9F5; border: 1.5px solid #F0E8E4; transition: all 0.2s; width: 100%; }

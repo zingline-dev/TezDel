@@ -24,19 +24,19 @@ export default function Grocery() {
         <div className="page-header-v3-glow" aria-hidden="true" />
         <div className="page-header-v3-dots" aria-hidden="true" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '1100px', margin: '0 auto' }}>
             <div className="food-location-box-v3">
               <span>📍</span>
               <div>
-                <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.5)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.5px' }}>Delivering to</div>
-                <div style={{ fontWeight: 700, color: '#fff', fontSize: '14px' }}>Patia, Bhubaneswar</div>
+                <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '2px' }}>Delivering to</div>
+                <div style={{ fontWeight: 700, color: '#fff', fontSize: '16px' }}>Patia, Bhubaneswar</div>
               </div>
             </div>
             <div className="food-search-box-v3">
-              <span>🔍</span>
-              <input type="text" placeholder="Search for vegetables, milk, groceries..." style={{ border: 'none', outline: 'none', background: 'transparent', flex: 1, fontSize: '14px', color: '#333' }} />
+              <span style={{ fontSize: '20px' }}>🔍</span>
+              <input type="text" placeholder="Search for vegetables, milk, groceries..." style={{ border: 'none', outline: 'none', background: 'transparent', flex: 1, fontSize: '16px', color: '#333', fontWeight: 500 }} />
             </div>
-            <button className="btn btn-primary" style={{ padding: '12px 28px', borderRadius: '12px', whiteSpace: 'nowrap' }}>Search</button>
+            <button className="btn btn-primary" style={{ padding: '0 40px', borderRadius: '14px', fontSize: '16px', fontWeight: 700, whiteSpace: 'nowrap' }}>Search</button>
           </div>
         </div>
       </section>
