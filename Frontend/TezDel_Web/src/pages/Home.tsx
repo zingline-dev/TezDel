@@ -1,414 +1,400 @@
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search } from 'lucide-react';
+import { Search, MapPin, Zap, Home as HomeIcon, ShoppingBag, TrendingUp, Star, ArrowRight } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import iphoneMock from '../assets/iphone_17_mock.png';
+import UnderDevelopmentModal from '../components/UnderDevelopmentModal';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 export default function Home() {
-  const [activeZone, setActiveZone] = useState('Patia');
   const [searchValue, setSearchValue] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+  const [isDevModalOpen, setIsDevModalOpen] = useState(false);
+  const { scrollY } = useScroll();
+  
+  const heroOpacity = useTransform(scrollY, [0, 300], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 300], [1, 1.1]);
 
   const chips = ['🍛 Odia Thali', '🥗 Dalma', '🧅 Grocery', '🍰 Chenna Poda', '🛵 Quick Delivery'];
 
-  const zones = [
-    { name: 'Patia', status: 'live' },
-    { name: 'Nayapalli', status: 'live' },
-    { name: 'Saheed Nagar', status: 'soon' },
-    { name: 'Khandagiri', status: 'soon' },
-    { name: 'Infocity', status: 'coming' },
-    { name: 'Chandrasekharpur', status: 'coming' },
-    { name: 'Bapuji Nagar', status: 'coming' },
-    { name: 'IRC Village', status: 'coming' },
-  ];
-
-  const chefs = [
-    { name: 'Priya Mohanty', loc: 'Patia, Bhubaneswar', rating: '4.9', orders: '230', dishes: ['Dalma Thali', 'Pakhala', 'Besara'], bg: 'linear-gradient(135deg,#FF8A65,#FF5722)', emoji: '🍛' },
-    { name: 'Sunita Nayak', loc: 'Nayapalli, Bhubaneswar', rating: '4.8', orders: '185', dishes: ['Macha Besara', 'Santula', 'Dahi Baigana'], bg: 'linear-gradient(135deg,#F9A825,#F57F17)', emoji: '🥘' },
-    { name: 'Mamata Das', loc: 'Saheed Nagar, Bhubaneswar', rating: '5.0', orders: '312', dishes: ['Chenna Poda', 'Rasabali', 'Malpua'], bg: 'linear-gradient(135deg,#26C6DA,#00838F)', emoji: '🍮' },
-  ];
-
-  const whyCards = [
-    { icon: '⚡', title: '20-Minute Delivery Promise', desc: 'Short delivery radii, captains who live in your zone, and pre-positioned kirana partners mean your order arrives fast — guaranteed.' },
-    { icon: '🏠', title: 'Authentic Odia Home Cooking', desc: 'The only platform where you can order real pakhala, dalma, and chenna poda cooked by verified home chefs from your neighbourhood.' },
-    { icon: '🤝', title: 'Neighbourhood Captains', desc: 'Your delivery captain is someone who lives in your colony — not a stranger. They know your building, your floor, and your name.' },
-    { icon: '🏪', title: 'Kirana Store Network', desc: 'We partner with your local kirana stores — not corporate dark stores. Your grocery comes from a shop that knows your preferences.' },
-    { icon: '📡', title: 'ONDC Powered', desc: "Built on India's Open Network for Digital Commerce from day one. More reach, more transparency, more trust — for everyone." },
-    { icon: '🌱', title: 'Zero Commission Model', desc: 'Restaurants pay ₹999/month flat — no 25% commission cuts. Savings passed to you through better food quality and fair prices.' },
-  ];
-
   return (
     <div className="home-v3">
+      <UnderDevelopmentModal isOpen={isDevModalOpen} onClose={() => setIsDevModalOpen(false)} />
+      {/* ── AMBIENT BACKGROUND ── */}
+      <div className="ambient-background" style={{ position: 'fixed', inset: 0, zIndex: -1, overflow: 'hidden' }}>
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.2, 1],
+            rotate: [0, 90, 0],
+            x: [0, 100, 0],
+            y: [0, 50, 0]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          style={{ position: 'absolute', top: '-10%', left: '-10%', width: '40%', height: '40%', background: 'radial-gradient(circle, rgba(255,61,0,0.1) 0%, transparent 70%)', filter: 'blur(60px)' }}
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            rotate: [0, -90, 0],
+            x: [0, -100, 0],
+            y: [0, -50, 0]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          style={{ position: 'absolute', bottom: '10%', right: '10%', width: '30%', height: '30%', background: 'radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%)', filter: 'blur(60px)' }}
+        />
+      </div>
 
       {/* ── HERO ── */}
-      <section className="hero-v3" aria-label="Hero — Order food in 20 minutes">
-        <div
+      <section className="hero-v3">
+        <motion.div
           className="hero-v3-bg"
-          style={{ backgroundImage: 'linear-gradient(rgba(13,7,6,0.72), rgba(13,7,6,0.88)), url(https://images.pexels.com/photos/37152225/pexels-photo-37152225.jpeg?auto=compress&cs=tinysrgb&w=1920)' }}
-          aria-hidden="true"
+          style={{ 
+            backgroundImage: 'linear-gradient(rgba(13,7,6,0.72), rgba(13,7,6,0.88)), url(https://images.pexels.com/photos/37152225/pexels-photo-37152225.jpeg?auto=compress&cs=tinysrgb&w=1920)',
+            opacity: heroOpacity,
+            scale: heroScale
+          }}
         />
-        <div className="hero-v3-glow" aria-hidden="true" />
-        <div className="hero-v3-dots" aria-hidden="true" />
-
+        <div className="hero-v3-glow" />
+        
         <div className="hero-v3-inner">
-          {/* Left */}
           <div className="hero-v3-left">
-            <div className="hero-v3-tag">
-              <div className="hero-v3-tag-dot" aria-hidden="true" />
+            <motion.div 
+              className="hero-v3-tag"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <motion.div 
+                className="hero-v3-tag-dot"
+                animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
               <span>Live in Bhubaneswar</span>
-            </div>
-            <h1 className="hero-v3-title">
+            </motion.div>
+            
+            <motion.h1 
+              className="hero-v3-title"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
               Bhubaneswar's<br />Food Delivered<br />
-              <span className="hero-v3-accent">In 20 Minutes.</span>
-            </h1>
-            <p className="hero-v3-sub">
-              Authentic Odia home cooking, local restaurants, and kirana groceries — delivered fast by your neighbourhood captain. Zero hidden fees. 100% local.
-            </p>
-            <div className="hero-v3-search" role="search">
-              <Search size={18} color="#aaa" />
+              <motion.span 
+                className="hero-v3-accent"
+                initial={{ backgroundPosition: '0% 50%' }}
+                animate={{ backgroundPosition: '100% 50%' }}
+                transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+                style={{ background: 'linear-gradient(90deg, var(--color-primary), #FF7547, var(--color-primary))', backgroundSize: '200% auto', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+              >
+                In 20 Minutes.
+              </motion.span>
+            </motion.h1>
+
+            <motion.p 
+              className="hero-v3-sub"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              Authentic Odia home cooking, local restaurants, and kirana groceries — delivered fast by your neighbourhood captain.
+            </motion.p>
+
+            <motion.div 
+              className={`hero-v3-search ${isSearchFocused ? 'focused' : ''}`}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6 }}
+              whileHover={{ scale: 1.01 }}
+            >
+              <Search size={18} color={isSearchFocused ? 'var(--color-primary)' : '#aaa'} />
               <input
                 type="text"
-                id="hero-search"
                 placeholder="Search for dalma, biryani, groceries..."
                 value={searchValue}
                 onChange={e => setSearchValue(e.target.value)}
-                aria-label="Search food and restaurants"
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
               />
-              <button className="hero-v3-search-btn" type="button">Search</button>
-            </div>
-            <div style={{ marginTop: '14px', fontSize: '13px', color: 'rgba(255,255,255,0.45)', display: 'flex', gap: '12px' }}>
-              <span>Try: <strong>Dalma</strong></span>
-              <span>•</span>
-              <span><strong>Odia Thali</strong></span>
-              <span>•</span>
-              <span><strong>Macha Besara</strong></span>
-            </div>
-            <div className="hero-v3-chips" role="list" aria-label="Popular searches">
-              {chips.map(chip => (
-                <span
+              <motion.button 
+                className="hero-v3-search-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Search
+              </motion.button>
+            </motion.div>
+
+            <motion.div 
+              className="hero-v3-chips"
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+            >
+              {chips.map((chip) => (
+                <motion.span
                   key={chip}
                   className="hero-v3-chip"
-                  role="listitem"
-                  tabIndex={0}
-                  onClick={() => setSearchValue(chip.replace(/[^\w\s]/g, '').trim())}
-                  onKeyDown={e => e.key === 'Enter' && setSearchValue(chip.replace(/[^\w\s]/g, '').trim())}
+                  variants={fadeInUp}
+                  whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.2)' }}
+                  onClick={() => setSearchValue(chip.split(' ').slice(1).join(' '))}
                 >
                   {chip}
-                </span>
+                </motion.span>
               ))}
-            </div>
+            </motion.div>
           </div>
 
-          {/* Right visual card */}
-          <div className="hero-v3-visual" aria-hidden="true">
-            <div className="hero-v3-card">
+          <div className="hero-v3-visual">
+            <motion.div 
+              className="hero-v3-card"
+              initial={{ opacity: 0, rotateY: 20, x: 50 }}
+              animate={{ opacity: 1, rotateY: 0, x: 0 }}
+              transition={{ delay: 0.4, duration: 1 }}
+              style={{ transformStyle: 'preserve-3d' }}
+            >
               <div className="hero-v3-food-grid">
                 {[
                   { emoji: '🍛', name: 'Dalma Thali', price: '₹120' },
                   { emoji: '🍲', name: 'Pakhala', price: '₹90' },
                   { emoji: '🍮', name: 'Chenna Poda', price: '₹60' },
                   { emoji: '🥬', name: 'Besara', price: '₹110' },
-                ].map(item => (
-                  <div key={item.name} className="hero-v3-food-item">
+                ].map((item, i) => (
+                  <motion.div 
+                    key={item.name} 
+                    className="hero-v3-food-item"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.8 + (i * 0.1) }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                  >
                     <span className="hero-v3-food-emoji">{item.emoji}</span>
                     <div className="hero-v3-food-name">{item.name}</div>
                     <div className="hero-v3-food-price">{item.price}</div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-              <div className="hero-v3-delivery-badge">
-                <div className="hero-v3-db-icon">⚡</div>
+              <motion.div 
+                className="hero-v3-delivery-badge"
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 1.2 }}
+              >
+                <div className="hero-v3-db-icon">
+                  <Zap size={16} fill="currentColor" />
+                </div>
                 <div className="hero-v3-db-text">
                   <strong>Arriving in 18 minutes</strong>
                   <span>Your neighbourhood captain is on the way</span>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
-
-      {/* ── STATS BAND ── */}
-      <div className="stats-band-v3" role="region" aria-label="Key metrics">
-        <div className="stats-band-v3-inner">
-          {[
-            { value: '20 min', label: 'Average Delivery' },
-            { value: '₹0', label: 'Commission to Restaurants' },
-            { value: '500+', label: 'Restaurant Partners' },
-            { value: 'ONDC', label: 'Ready Network' },
-          ].map(stat => (
-            <div key={stat.label} className="stat-item-v3">
-              <strong>{stat.value}</strong>
-              <span>{stat.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* ── CATEGORIES ── */}
-      <section className="cats-v3" id="categories" aria-labelledby="cat-heading">
+      <section className="cats-v3">
         <div className="container">
-          <div className="section-head-v3">
+          <motion.div 
+            className="section-head-v3"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
             <p className="section-label-v3">What would you like?</p>
-            <h2 className="section-title-v3" id="cat-heading">Everything Your<br />Neighbourhood Needs</h2>
-            <p className="section-sub-v3">From home-cooked Odia meals to fresh kirana groceries — TezDel is your single window to Bhubaneswar's best local offerings.</p>
-          </div>
-          <div className="cat-grid-v3" role="list">
-            <Link to="/food" className="cat-card-v3 cat-food" role="listitem" tabIndex={0}>
-              <div className="cat-badge-v3">500+ Restaurants</div>
-              <span className="cat-icon-v3" aria-hidden="true">🍽️</span>
-              <h3 className="cat-name-v3">Restaurant Food</h3>
-              <p className="cat-desc-v3">Biryani, pizza, Odia thali and more from the best local restaurants in your zone</p>
-            </Link>
-            <Link to="/grocery" className="cat-card-v3 cat-grocery" role="listitem" tabIndex={0}>
-              <div className="cat-badge-v3" style={{ background: '#1B8A60' }}>Kirana Network</div>
-              <span className="cat-icon-v3" aria-hidden="true">🛒</span>
-              <h3 className="cat-name-v3">Kirana Grocery</h3>
-              <p className="cat-desc-v3">Fresh vegetables, daily essentials and groceries from trusted neighbourhood kirana stores</p>
-            </Link>
-            <Link to="/home-chefs" className="cat-card-v3 cat-chef" role="listitem" tabIndex={0}>
-              <div className="cat-badge-v3" style={{ background: '#D4A017' }}>Odia Specials</div>
-              <span className="cat-icon-v3" aria-hidden="true">👩‍🍳</span>
-              <h3 className="cat-name-v3">Home Chef Meals</h3>
-              <p className="cat-desc-v3">Authentic Odia food cooked by local home chefs — dalma, pakhala, besara & more</p>
-            </Link>
-            <Link to="/contact" className="cat-card-v3 cat-corp" role="listitem" tabIndex={0}>
-              <div className="cat-badge-v3" style={{ background: '#4F46E5' }}>Office Meals</div>
-              <span className="cat-icon-v3" aria-hidden="true">🏢</span>
-              <h3 className="cat-name-v3">Corporate Catering</h3>
-              <p className="cat-desc-v3">Daily office lunches, team meals, and event catering for IT companies and offices</p>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ── HOW IT WORKS ── */}
-      <section className="how-v3" aria-labelledby="how-heading">
-        <div className="container">
-          <div className="section-head-v3" style={{ textAlign: 'center' }}>
-            <p className="section-label-v3">Simple as 1-2-3</p>
-            <h2 className="section-title-v3" id="how-heading">How TezDel Works</h2>
-            <p className="section-sub-v3" style={{ margin: '0 auto' }}>Place an order in seconds and your neighbourhood captain brings it to your door — fast.</p>
-          </div>
-          <div className="steps-v3" role="list">
+            <h2 className="section-title-v3">Everything Your<br />Neighbourhood Needs</h2>
+          </motion.div>
+          
+          <motion.div 
+            className="cat-grid-v3"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+          >
             {[
-              { num: '1', color: 'var(--color-primary)', title: 'Browse & Order', desc: 'Open TezDel, search for your favourite restaurant, home chef, or grocery item. Add to cart and checkout in seconds.' },
-              { num: '2', color: 'var(--color-secondary)', title: 'Captain Assigned', desc: 'Your neighbourhood captain — someone who lives in your area — picks up your order and heads straight to you.' },
-              { num: '3', color: '#1B8A60', title: 'Delivered in 20 Min', desc: 'Track your order live. Your captain arrives at your door in 20 minutes or less. Freshly made, locally sourced.' },
-            ].map(step => (
-              <article key={step.num} className="step-v3" role="listitem">
-                <div className="step-num-v3" style={{ background: step.color }} aria-hidden="true">{step.num}</div>
-                <h3 className="step-title-v3">{step.title}</h3>
-                <p className="step-desc-v3">{step.desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── HOME CHEF ── */}
-      <section className="homechef-v3" id="homechef" aria-labelledby="chef-heading">
-        <div className="container">
-          <div className="chef-intro-v3">
-            <p className="section-label-v3">Exclusive to TezDel</p>
-            <h2 className="section-title-v3" id="chef-heading">Real Odia Food.<br />Home Cooked.</h2>
-            <p className="section-sub-v3">Our verified home chefs cook the authentic Odia food you crave every day — pakhala, dalma, macha besara, chenna poda. Order by 12 PM for lunch, 5 PM for dinner.</p>
-          </div>
-          <div className="chef-grid-v3" role="list">
-            {chefs.map(chef => (
-              <article key={chef.name} className="chef-card-v3" role="listitem">
-                <div className="chef-img-v3" style={{ background: chef.bg }}>
-                  <span style={{ fontSize: '3.5rem' }}>{chef.emoji}</span>
-                  <span className="chef-img-badge-v3">⭐ {chef.rating}</span>
-                </div>
-                <div className="chef-body-v3">
-                  <h3 className="chef-name-v3">{chef.name}</h3>
-                  <p className="chef-loc-v3">📍 {chef.loc}</p>
-                  <div className="chef-dishes-v3">
-                    {chef.dishes.map(d => <span key={d} className="dish-tag-v3">{d}</span>)}
+              { path: '/food', class: 'cat-food', icon: '🍽️', name: 'Restaurant Food', badge: '500+ Restaurants', desc: 'Biryani, pizza, Odia thali and more.' },
+              { path: '/grocery', class: 'cat-grocery', icon: '🛒', name: 'Kirana Grocery', badge: 'Kirana Network', desc: 'Fresh vegetables and daily essentials.' },
+              { path: '/home-chefs', class: 'cat-chef', icon: '👩‍🍳', name: 'Home Chef Meals', badge: 'Odia Specials', desc: 'Authentic Odia food cooked by local chefs.' },
+              { path: '/contact', class: 'cat-corp', icon: '🏢', name: 'Corporate Catering', badge: 'Office Meals', desc: 'Daily office lunches and team meals.' }
+            ].map((cat, i) => (
+              <motion.div key={cat.name} variants={fadeInUp}>
+                <Link to={cat.path} className={`cat-card-v3 ${cat.class}`}>
+                  <div className="cat-badge-v3">{cat.badge}</div>
+                  <motion.span 
+                    className="cat-icon-v3"
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                  >
+                    {cat.icon}
+                  </motion.span>
+                  <h3 className="cat-name-v3">{cat.name}</h3>
+                  <p className="cat-desc-v3">{cat.desc}</p>
+                  <div className="cat-arrow">
+                    <ArrowRight size={20} />
                   </div>
-                  <div className="chef-footer-v3">
-                    <span className="chef-rating-v3">⭐ {chef.rating} · {chef.orders} orders</span>
-                    <button className="chef-order-btn-v3" type="button">Order Now</button>
-                  </div>
-                </div>
-              </article>
+                </Link>
+              </motion.div>
             ))}
-          </div>
-          <div className="homechef-cta-v3">
-            <p>Craving that authentic, slow-cooked Odia taste? Experience the magic of our verified home kitchens.</p>
-            <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem' }}>Book your Home Chef !!</Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── WHY TEZDEL ── */}
-      <section className="why-v3" aria-labelledby="why-heading">
+      <section className="why-v3">
         <div className="container">
-          <div className="section-head-v3">
-            <p className="section-label-v3" style={{ color: 'var(--color-primary)' }}>Why we're different</p>
-            <h2 className="section-title-v3 why-v3-title" id="why-heading">Not Just Another<br />Delivery App</h2>
-            <p className="section-sub-v3 why-v3-sub">TezDel is built from the ground up for Bhubaneswar — not a metro app pasted over a Tier-2 city.</p>
-          </div>
-          <div className="why-grid-v3" role="list">
-            {whyCards.map(card => (
-              <article key={card.title} className="why-card-v3" role="listitem">
-                <div className="why-icon-v3" aria-hidden="true">{card.icon}</div>
+          <motion.div 
+            className="section-head-v3"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={fadeInUp}
+          >
+            <p className="section-label-v3">Why we're different</p>
+            <h2 className="section-title-v3">Not Just Another<br />Delivery App</h2>
+          </motion.div>
+          
+          <motion.div 
+            className="why-grid-v3"
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            variants={staggerContainer}
+          >
+            {[
+              { icon: <Zap />, title: '20-Minute Delivery', desc: 'Your captain lives in your zone. They know the shortcuts.' },
+              { icon: <HomeIcon />, title: 'Authentic Odia Food', desc: 'Real home cooking from verified neighbourhood chefs.' },
+              { icon: <MapPin />, title: 'Local Captains', desc: 'Your delivery captain is your neighbour. Trusted & fast.' },
+              { icon: <ShoppingBag />, title: 'Kirana Network', desc: 'Direct from your local trusted shops, not dark stores.' },
+              { icon: <TrendingUp />, title: 'ONDC Powered', desc: 'Built on the open network for maximum transparency.' },
+              { icon: <Star />, title: 'Zero Commission', desc: 'Fair prices for you, better earnings for partners.' }
+            ].map((card) => (
+              <motion.article 
+                key={card.title} 
+                className="why-card-v3"
+                variants={fadeInUp}
+                whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+              >
+                <div className="why-icon-v3">{card.icon}</div>
                 <h3 className="why-title-v3">{card.title}</h3>
                 <p className="why-desc-v3">{card.desc}</p>
-              </article>
+              </motion.article>
             ))}
-          </div>
-
-          {/* Competitor Table */}
-          <div className="why-vs-v3" role="region" aria-label="TezDel vs competitors">
-            <h3 className="vs-title-v3">TezDel vs The Big Players</h3>
-            <div style={{ overflowX: 'auto' }}>
-              <table className="vs-table-v3" aria-label="Feature comparison table">
-                <thead>
-                  <tr>
-                    <th scope="col">Platform</th>
-                    <th scope="col">Commission</th>
-                    <th scope="col">Odia Food</th>
-                    <th scope="col">Home Chefs</th>
-                    <th scope="col">Kirana Model</th>
-                    <th scope="col">ONDC</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="vs-tezdel-row">
-                    <td><strong>TezDel ★</strong></td>
-                    <td>₹999/mo flat</td>
-                    <td><span className="badge-yes">Core Identity</span></td>
-                    <td><span className="badge-yes">Core Model</span></td>
-                    <td><span className="badge-yes">Core Model</span></td>
-                    <td><span className="badge-yes">Day 1</span></td>
-                  </tr>
-                  <tr>
-                    <td>-</td>
-                    <td>22–30%</td>
-                    <td><span className="badge-partial">Partial</span></td>
-                    <td><span className="badge-no">None</span></td>
-                    <td><span className="badge-no">None</span></td>
-                    <td><span className="badge-no">Opposed</span></td>
-                  </tr>
-                  <tr>
-                    <td>-</td>
-                    <td>22–30%</td>
-                    <td><span className="badge-partial">Partial</span></td>
-                    <td><span className="badge-no">None</span></td>
-                    <td><span className="badge-no">None</span></td>
-                    <td><span className="badge-no">Limited</span></td>
-                  </tr>
-                  <tr>
-                    <td>-</td>
-                    <td>High</td>
-                    <td><span className="badge-no">None</span></td>
-                    <td><span className="badge-no">None</span></td>
-                    <td><span className="badge-no">Dark stores only</span></td>
-                    <td><span className="badge-no">None</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── TEZPASS ── */}
-      <section className="tezpass-v3" aria-labelledby="tezpass-heading">
+      <section className="tezpass-v3">
         <div className="container">
-          <div className="tezpass-v3-inner">
+          <motion.div 
+            className="tezpass-v3-inner"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <div>
               <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Membership</p>
-              <h2 className="section-title-v3 tezpass-v3-title" id="tezpass-heading">TezPass —<br />Unlimited Free Delivery</h2>
-              <p className="tezpass-v3-p">Subscribe once and enjoy unlimited free deliveries, exclusive discounts on Odia home chef specials, priority order processing, and access to TezPass-only deals every week.</p>
-              <a href="#download" className="btn-outline-white-v3">Get TezPass</a>
-            </div>
-            <div className="tezpass-card-v3">
-              <div className="tezpass-price-v3">₹149</div>
-              <div className="tezpass-period-v3">per month — cancel anytime</div>
-              <ul className="tezpass-benefits-v3" role="list">
-                {[
-                  'Unlimited free deliveries every month',
-                  'Priority queue — skip the busy-hour wait',
-                  '10% off every home chef order',
-                  'Exclusive TezPass weekly deals',
-                  'Early access to new restaurant partners',
-                  'Festival special menus 3 days in advance',
-                ].map(b => <li key={b}>{b}</li>)}
-              </ul>
-              <button className="btn btn-primary" type="button" style={{ width: '100%', padding: '1rem', fontSize: '1rem', borderRadius: '12px' }}>
-                Start TezPass Today
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── ZONES ── */}
-      <section className="zones-v3" id="zones" aria-labelledby="zones-heading">
-        <div className="container">
-          <div className="section-head-v3">
-            <p className="section-label-v3">Coverage</p>
-            <h2 className="section-title-v3" id="zones-heading">Delivering to 25+ Zones</h2>
-            <p className="section-sub-v3">We are rapidly expanding across Bhubaneswar. Select your zone to explore local favorites.</p>
-            <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--color-text-muted)' }}>
-              <span className="hero-v3-tag-dot" style={{ verticalAlign: 'middle', marginRight: '8px' }}></span>
-              Tap any zone to see estimated delivery times
-            </div>
-          </div>
-          <div className="zone-grid-v3" role="list">
-            {zones.map(zone => (
-              <div
-                key={zone.name}
-                role="listitem"
-                tabIndex={zone.status !== 'coming' ? 0 : undefined}
-                className={`zone-chip-v3 ${activeZone === zone.name ? 'active' : ''} ${zone.status === 'coming' ? 'coming-soon' : ''}`}
-                onClick={() => zone.status !== 'coming' && setActiveZone(zone.name)}
-                onKeyDown={e => e.key === 'Enter' && zone.status !== 'coming' && setActiveZone(zone.name)}
+              <h2 className="section-title-v3">TezPass —<br />Unlimited Free Delivery</h2>
+              <p className="tezpass-v3-p">Join the club for ₹149/month and save big on every order.</p>
+              <motion.button 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="btn-outline-white-v3"
+                style={{ padding: '0.8rem 2rem', borderRadius: '14px', fontWeight: '700' }}
               >
-                <span>{zone.name}</span>
-                <small>{zone.status === 'live' ? '✓ Live' : zone.status === 'soon' ? 'Launching soon' : 'Coming soon'}</small>
-              </div>
-            ))}
-          </div>
+                Get TezPass
+              </motion.button>
+            </div>
+            
+            <motion.div 
+              className="tezpass-card-v3 glass"
+              whileHover={{ rotateY: 5, rotateX: 5 }}
+              style={{ perspective: 1000 }}
+            >
+              <div className="tezpass-price-v3">₹149</div>
+              <div className="tezpass-period-v3">per month</div>
+              <ul className="tezpass-benefits-v3">
+                {['Unlimited free deliveries', 'Priority processing', '10% off home chef orders'].map(b => (
+                  <li key={b}>{b}</li>
+                ))}
+              </ul>
+              <motion.button 
+                className="btn btn-primary"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                style={{ width: '100%', padding: '1rem', borderRadius: '14px', fontWeight: '700', fontSize: '1rem' }}
+              >
+                Start Now
+              </motion.button>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* ── APP DOWNLOAD ── */}
-      <section className="app-v3" id="download" aria-labelledby="app-heading">
+      <section className="app-v3">
         <div className="container">
           <div className="app-v3-inner">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
               <p className="section-label-v3">Get the App</p>
-              <h2 className="section-title-v3" id="app-heading">Order Bhubaneswar's<br />Best Food — Anywhere</h2>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.7' }}>
-                Download TezDel and get ₹100 off your first order.
-              </p>
-              <div className="app-badge-row-v3">
-                <a href="#" aria-label="Download TezDel on Google Play Store">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style={{ height: '44px' }} />
-                </a>
-                <a href="#" aria-label="Download TezDel on Apple App Store">
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="Download on the App Store" style={{ height: '44px' }} />
-                </a>
+              <h2 className="section-title-v3">Order Bhubaneswar's<br />Best Food — Anywhere</h2>
+              <div className="app-badge-row-v3" style={{ marginTop: '2rem' }}>
+                <motion.button 
+                  whileHover={{ scale: 1.05 }} 
+                  onClick={() => setIsDevModalOpen(true)}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                >
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Play Store" style={{ height: '44px' }} />
+                </motion.button>
+                <motion.button 
+                  whileHover={{ scale: 1.05 }} 
+                  onClick={() => setIsDevModalOpen(true)}
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                >
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" style={{ height: '44px' }} />
+                </motion.button>
               </div>
-              <div className="ondc-badge-v3">📡 <span>ONDC Certified Seller App</span></div>
-            </div>
+            </motion.div>
 
-            {/* iPhone 17 Pro Mockup */}
-            <div className="app-mockup-outer-v3">
-              <div className="app-mockup-v3-new">
-                <img
-                  src={iphoneMock}
-                  alt="TeZdel App on iPhone 17 Pro"
-                  className="iphone-17-mock"
-                />
-              </div>
-            </div>
+            <motion.div 
+              className="app-mockup-outer-v3"
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1 }}
+            >
+              <motion.img
+                src={iphoneMock}
+                alt="TeZdel App"
+                className="iphone-17-mock"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </motion.div>
           </div>
         </div>
       </section>
-
     </div>
   );
 }

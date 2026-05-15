@@ -1,8 +1,12 @@
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import SmoothScroll from './components/SmoothScroll';
+import PageTransition from './components/PageTransition';
+import FloatingNav from './components/FloatingNav';
 
 // Pages
 import Home from './pages/Home';
@@ -19,25 +23,37 @@ import './index.css';
 import './App.css';
 import './home-v3.css';
 
+function AnimatedRoutes() {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+        <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+        <Route path="/food" element={<PageTransition><Food /></PageTransition>} />
+        <Route path="/grocery" element={<PageTransition><Grocery /></PageTransition>} />
+        <Route path="/home-chefs" element={<PageTransition><HomeChefs /></PageTransition>} />
+        <Route path="/careers" element={<PageTransition><Careers /></PageTransition>} />
+        <Route path="/investor" element={<PageTransition><Investor /></PageTransition>} />
+        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+        <Route path="/legal" element={<PageTransition><Legal /></PageTransition>} />
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 function App() {
   return (
     <Router>
+      <SmoothScroll />
       <ScrollToTop />
       <div className="app">
         <Navbar />
         <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/food" element={<Food />} />
-            <Route path="/grocery" element={<Grocery />} />
-            <Route path="/home-chefs" element={<HomeChefs />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/investor" element={<Investor />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/legal" element={<Legal />} />
-          </Routes>
+          <AnimatedRoutes />
         </main>
+        <FloatingNav />
         <Footer />
       </div>
     </Router>
