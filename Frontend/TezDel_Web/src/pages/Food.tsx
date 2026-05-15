@@ -1,14 +1,27 @@
 
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Search, MapPin, Zap, Star, Filter, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Skeleton from '../components/Skeleton';
+import UnderDevelopmentModal from '../components/UnderDevelopmentModal';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+  transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+};
+
+const wordReveal = {
+  initial: { opacity: 0, y: 10 },
+  animate: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.05 * i,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
+  })
 };
 
 const staggerContainer = {
@@ -21,9 +34,10 @@ const staggerContainer = {
 
 export default function Food() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isDevModalOpen, setIsDevModalOpen] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 2000);
+    const timer = setTimeout(() => setIsLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -47,6 +61,8 @@ export default function Food() {
 
   return (
     <div className="page-v3">
+      <UnderDevelopmentModal isOpen={isDevModalOpen} onClose={() => setIsDevModalOpen(false)} />
+
       {/* Header */}
       <section className="page-header-v3">
         <div className="page-header-v3-bg" style={{ background: '#0D0706' }} />
@@ -74,17 +90,25 @@ export default function Food() {
       </section>
 
       {/* Categories */}
-      <section className="page-section-v3" style={{ background: 'var(--color-bg-light)', paddingTop: '40px' }}>
+      <section className="page-section-v3" style={{ background: 'var(--color-bg-light)', paddingTop: '60px' }}>
         <div className="container">
           <motion.h2 
-            variants={fadeInUp}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
             className="section-title-v3" 
-            style={{ marginBottom: '28px', textAlign: 'center', fontSize: '1.5rem' }}
+            style={{ marginBottom: '40px', textAlign: 'center', fontSize: '1.75rem' }}
           >
-            What's on your mind?
+            {"What's on your mind?".split(' ').map((word, i) => (
+              <motion.span
+                key={i}
+                custom={i}
+                variants={wordReveal}
+                style={{ display: 'inline-block', marginRight: '0.3em' }}
+              >
+                {word}
+              </motion.span>
+            ))}
           </motion.h2>
           <motion.div 
             variants={staggerContainer}
@@ -92,18 +116,33 @@ export default function Food() {
             whileInView="animate"
             viewport={{ once: true }}
             className="food-chip-grid-v3" 
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))', gap: '12px' }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: '16px' }}
           >
-            {categories.map((cat) => (
+            {categories.map((cat, i) => (
               <motion.div 
                 key={cat.name} 
                 variants={fadeInUp}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="food-cat-chip-v3 glass"
-                style={{ background: '#fff', boxShadow: 'var(--shadow-sm)', padding: '1.5rem 1rem' }}
+                whileHover={{ scale: 1.05, y: -10 }}
+                className="food-cat-chip-v3"
+                style={{ 
+                  background: '#fff', 
+                  boxShadow: 'var(--shadow-premium)', 
+                  padding: '2rem 1rem', 
+                  borderRadius: '24px',
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  border: '1px solid rgba(0,0,0,0.02)',
+                  transformStyle: 'preserve-3d'
+                }}
               >
-                <span style={{ fontSize: '32px', display: 'block', marginBottom: '8px' }}>{cat.icon}</span>
-                <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--color-text-main)' }}>{cat.name}</span>
+                <motion.span 
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
+                  style={{ fontSize: '36px', display: 'block', marginBottom: '10px' }}
+                >
+                  {cat.icon}
+                </motion.span>
+                <span style={{ fontSize: '14px', fontWeight: '800', color: 'var(--color-text-main)' }}>{cat.name}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -111,15 +150,15 @@ export default function Food() {
       </section>
 
       {/* Restaurants */}
-      <section className="page-section-v3" style={{ background: 'var(--color-bg-light)' }}>
+      <section className="page-section-v3" style={{ background: 'var(--color-bg-light)', paddingBottom: '80px' }}>
         <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px' }}>
             <motion.h2 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="section-title-v3" 
-              style={{ fontSize: '24px', marginBottom: 0 }}
+              style={{ fontSize: '28px', marginBottom: 0 }}
             >
               Popular Near You
             </motion.h2>
@@ -127,25 +166,21 @@ export default function Food() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="filter-chip-v3 glass"
-              style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#fff' }}
+              style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#fff', padding: '0.6rem 1.2rem', borderRadius: '12px', fontWeight: '700', fontSize: '14px' }}
             >
               <Filter size={16} /> Filters
             </motion.button>
           </div>
 
-          <div className="restaurant-grid-v3">
+          <div className="restaurant-grid-v3" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
             <AnimatePresence mode="wait">
               {isLoading ? (
                 Array(6).fill(0).map((_, i) => (
-                  <div key={i} className="restaurant-card-v3">
-                    <Skeleton height="200px" borderRadius="20px" />
-                    <div style={{ padding: '1rem' }}>
-                      <Skeleton width="70%" height="24px" />
-                      <Skeleton width="40%" height="16px" className="mt-2" />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '1rem' }}>
-                        <Skeleton width="20%" height="16px" />
-                        <Skeleton width="30%" height="16px" />
-                      </div>
+                  <div key={i} className="restaurant-card-v3 glass" style={{ height: '360px', borderRadius: '28px' }}>
+                    <Skeleton height="220px" borderRadius="28px" />
+                    <div style={{ padding: '1.5rem' }}>
+                      <Skeleton width="70%" height="28px" />
+                      <Skeleton width="40%" height="18px" className="mt-2" />
                     </div>
                   </div>
                 ))
@@ -153,27 +188,48 @@ export default function Food() {
                 restaurants.map((r, i) => (
                   <motion.article 
                     key={r.name} 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    whileHover={{ y: -8 }}
+                    whileHover={{ y: -12 }}
                     className="restaurant-card-v3"
-                    style={{ background: '#fff', borderRadius: '24px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}
+                    style={{ 
+                      background: '#fff', 
+                      borderRadius: '28px', 
+                      overflow: 'hidden', 
+                      boxShadow: 'var(--shadow-premium)',
+                      border: '1px solid rgba(0,0,0,0.02)'
+                    }}
                   >
-                    <div className="restaurant-card-img-v3" style={{ position: 'relative', height: '200px' }}>
-                      <img src={r.img} alt={r.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      <div className="restaurant-card-badge-v3" style={{ position: 'absolute', bottom: '12px', right: '12px', background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)', color: '#fff', padding: '4px 10px', borderRadius: '8px', fontSize: '12px', fontWeight: '600' }}>
-                        <Zap size={12} fill="currentColor" style={{ marginRight: '4px' }} /> {r.time}
+                    <div className="restaurant-card-img-v3" style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
+                      <motion.img 
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.6 }}
+                        src={r.img} 
+                        alt={r.name} 
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                      />
+                      <div className="restaurant-card-badge-v3" style={{ position: 'absolute', bottom: '16px', right: '16px', background: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(8px)', color: '#fff', padding: '6px 12px', borderRadius: '12px', fontSize: '12px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <Zap size={14} fill="currentColor" /> {r.time}
                       </div>
                     </div>
-                    <div className="restaurant-card-body-v3" style={{ padding: '1.25rem' }}>
-                      <h3 style={{ fontSize: '18px', fontWeight: '800', marginBottom: '4px' }}>{r.name}</h3>
-                      <p style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginBottom: '12px' }}>{r.tags}</p>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #f1f5f9', paddingTop: '12px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontWeight: '700', fontSize: '14px', color: '#1B8A60' }}>
-                          <Star size={16} fill="currentColor" /> {r.rating}
+                    <div className="restaurant-card-body-v3" style={{ padding: '1.5rem' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '4px' }}>
+                        <h3 style={{ fontSize: '20px', fontWeight: '800' }}>{r.name}</h3>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: '#1B8A60', color: '#fff', padding: '2px 8px', borderRadius: '8px', fontSize: '12px', fontWeight: '700' }}>
+                          <Star size={12} fill="currentColor" /> {r.rating}
                         </div>
-                        <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--color-text-muted)' }}>{r.price}</span>
+                      </div>
+                      <p style={{ fontSize: '14px', color: 'var(--color-text-muted)', marginBottom: '16px', fontWeight: '500' }}>{r.tags}</p>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #f1f5f9', paddingTop: '16px' }}>
+                        <span style={{ fontSize: '14px', fontWeight: '700', color: 'var(--color-primary)' }}>{r.price}</span>
+                        <motion.button 
+                          whileHover={{ x: 5 }}
+                          style={{ color: 'var(--color-secondary)', fontWeight: '700', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '4px' }}
+                        >
+                          View Menu <ArrowRight size={16} />
+                        </motion.button>
                       </div>
                     </div>
                   </motion.article>
@@ -185,19 +241,52 @@ export default function Food() {
       </section>
 
       {/* TezPass Promo */}
-      <section className="container" style={{ margin: '40px auto' }}>
+      <section className="container" style={{ margin: '60px auto' }}>
         <motion.div 
-          whileHover={{ scale: 1.01 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           className="tezpass-banner-v3 glass"
-          style={{ background: 'linear-gradient(135deg, var(--color-secondary) 0%, #1e293b 100%)', borderRadius: '24px', padding: '2rem', color: '#fff', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}
+          style={{ 
+            background: 'linear-gradient(135deg, var(--color-secondary) 0%, #1e293b 100%)', 
+            borderRadius: '32px', 
+            padding: '3rem', 
+            color: '#fff', 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            flexWrap: 'wrap', 
+            gap: '2rem',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
         >
-          <div>
-            <h3 style={{ fontSize: '24px', fontWeight: '800' }}>Get Unlimited Free Delivery</h3>
-            <p style={{ opacity: 0.8, marginTop: '4px' }}>Join TezPass for ₹149/month and skip all delivery fees.</p>
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <h3 style={{ fontSize: '28px', fontWeight: '800', letterSpacing: '-0.5px' }}>Get Unlimited Free Delivery</h3>
+            <p style={{ opacity: 0.8, marginTop: '8px', fontSize: '1.1rem', maxWidth: '400px' }}>Join TezPass for ₹149/month and skip all delivery fees on every order.</p>
           </div>
-          <Link to="/investor" className="btn btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            Get TezPass <ArrowRight size={18} />
-          </Link>
+          <motion.button 
+            onClick={() => setIsDevModalOpen(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="btn btn-primary" 
+            style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '10px', 
+              padding: '1rem 2rem', 
+              borderRadius: '16px', 
+              fontSize: '1.1rem', 
+              fontWeight: '700',
+              position: 'relative',
+              zIndex: 2 
+            }}
+          >
+            Get TezPass <ArrowRight size={20} />
+          </motion.button>
+          
+          {/* Decorative Glow */}
+          <div style={{ position: 'absolute', top: '-50%', right: '-10%', width: '300px', height: '300px', background: 'var(--color-primary)', filter: 'blur(100px)', opacity: 0.15, zIndex: 1 }} />
         </motion.div>
       </section>
     </div>

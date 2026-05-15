@@ -1,11 +1,41 @@
+
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowRight, TrendingUp, Users, ShieldCheck, Rocket } from 'lucide-react';
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+};
+
+const wordReveal = {
+  initial: { opacity: 0, y: 10 },
+  animate: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.05 * i,
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
+  })
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 export default function Investor() {
   const metrics = [
-    { label: 'Market CAGR', value: '17%', desc: 'Quick commerce growth in Tier-2 cities' },
-    { label: 'Q-Comm Market', value: '$5.38B', desc: 'Projected Indian market 2025' },
-    { label: 'Breakeven', value: '800', desc: 'Daily orders per zone needed' },
-    { label: 'Partner LTV', value: '4.5x', desc: 'Vs national platform average' },
+    { label: 'Market CAGR', value: '17%', desc: 'Quick commerce growth in Tier-2 cities', icon: <TrendingUp size={18} /> },
+    { label: 'Q-Comm Market', value: '$5.38B', desc: 'Projected Indian market 2025', icon: <Rocket size={18} /> },
+    { label: 'Partner LTV', value: '4.5x', desc: 'Vs national platform average', icon: <Users size={18} /> },
+    { label: 'Security', value: '100%', desc: 'Transparent ONDC integration', icon: <ShieldCheck size={18} /> },
   ];
 
   const pillars = [
@@ -25,83 +55,173 @@ export default function Investor() {
         <div className="page-hero-v3-bg" style={{ backgroundImage: 'linear-gradient(rgba(13,7,6,0.78),rgba(13,7,6,0.92)), url(https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1920&q=80)' }} aria-hidden="true" />
         <div className="page-hero-v3-glow" aria-hidden="true" />
         <div className="page-hero-v3-dots" aria-hidden="true" />
-        <div className="container page-hero-v3-content">
-          <div className="page-hero-v3-tag">
+        <div className="container page-hero-v3-content" style={{ position: 'relative', zIndex: 10 }}>
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="page-hero-v3-tag"
+          >
             <span className="page-hero-v3-tag-dot" aria-hidden="true" />
             <span>Investor Relations</span>
-          </div>
-          <h1 className="page-hero-v3-title">Odisha's<br /><span className="page-hero-v3-accent">₹5B Opportunity</span><br />Is Untapped.</h1>
-          <p className="page-hero-v3-sub">TezDel is the first hyperlocal platform built natively for Bhubaneswar — ONDC-ready, zero-commission, and community-rooted. We're raising our seed round.</p>
-          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem', borderRadius: '12px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', fontSize: '1rem', fontWeight: 600 }}>Request Investor Deck →</Link>
+          </motion.div>
+          
+          <motion.h1 
+            initial="initial"
+            animate="animate"
+            className="page-hero-v3-title"
+          >
+            {"Odisha's ₹5B Opportunity Is Untapped.".split(' ').map((word, i) => (
+              <motion.span
+                key={i}
+                custom={i}
+                variants={wordReveal}
+                style={{ display: 'inline-block', marginRight: '0.3em' }}
+              >
+                {word}
+              </motion.span>
+            ))}
+          </motion.h1>
+          
+          <motion.p 
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ delay: 0.8 }}
+            className="page-hero-v3-sub"
+          >
+            TezDel is the first hyperlocal platform built natively for Bhubaneswar — ONDC-ready, zero-commission, and community-rooted. We're raising our seed round.
+          </motion.p>
+          
+          <motion.div
+            variants={fadeInUp}
+            initial="initial"
+            animate="animate"
+            transition={{ delay: 1 }}
+          >
+            <Link to="/contact" className="btn btn-primary" style={{ padding: '1rem 3rem', borderRadius: '16px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', fontSize: '1.1rem', fontWeight: '800', gap: '12px', boxShadow: '0 20px 40px rgba(255, 61, 0, 0.3)' }}>
+              Request Investor Deck <ArrowRight size={20} />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
       {/* Metrics Band */}
-      <div className="stats-band-v3">
+      <div className="stats-band-v3" style={{ position: 'relative', overflow: 'hidden' }}>
         <div className="stats-band-v3-inner">
-          {metrics.map(m => (
-            <div key={m.label} className="stat-item-v3">
-              <strong>{m.value}</strong>
-              <span>{m.label}</span>
-            </div>
+          {metrics.map((m, i) => (
+            <motion.div 
+              key={m.label} 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="stat-item-v3"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'rgba(255,255,255,0.6)', marginBottom: '8px', justifyContent: 'center' }}>
+                {m.icon} <span style={{ fontSize: '12px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '1px' }}>{m.label}</span>
+              </div>
+              <strong style={{ fontSize: '32px' }}>{m.value}</strong>
+            </motion.div>
           ))}
         </div>
+        <motion.div 
+          animate={{ x: ['-100%', '200%'] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+          style={{ position: 'absolute', top: 0, height: '100%', width: '150px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)', skewX: '-20deg' }}
+        />
       </div>
 
       {/* Market Opportunity */}
-      <section className="page-section-v3 page-section-light-v3">
-        <div className="container page-two-col-v3">
+      <section className="page-section-v3" style={{ background: '#fff', padding: '120px 0' }}>
+        <div className="container page-two-col-v3" style={{ gap: '80px' }}>
           <div>
-            <p className="section-label-v3">The Opportunity</p>
-            <h2 className="section-title-v3">India's Q-Commerce<br />Boom Is Bypassing<br />Tier-2 Cities.</h2>
-            <p className="section-sub-v3" style={{ marginBottom: '1.5rem' }}>Zomato and Swiggy are metro-first platforms grafted onto Tier-2 cities as an afterthought. They don't understand local food culture, can't build neighbourhood trust, and charge 25-30% commissions that are slowly killing local restaurants.</p>
-            <p className="section-sub-v3">TezDel is built from the ground up for Bhubaneswar — speaking the local language, serving local food, and empowering local partners. This is a structural advantage that cannot be copied quickly.</p>
+            <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-label-v3">The Opportunity</motion.p>
+            <motion.h2 initial="initial" whileInView="animate" variants={fadeInUp} className="section-title-v3" style={{ fontSize: '2.75rem', marginBottom: '2rem' }}>India's Q-Commerce Boom Is Bypassing Tier-2 Cities.</motion.h2>
+            <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-sub-v3" style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>Zomato and Swiggy are metro-first platforms grafted onto Tier-2 cities as an afterthought. They don't understand local food culture, can't build neighbourhood trust, and charge 25-30% commissions that are slowly killing local restaurants.</motion.p>
+            <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-sub-v3" style={{ fontSize: '1.1rem' }}>TezDel is built from the ground up for Bhubaneswar — speaking the local language, serving local food, and empowering local partners. This is a structural advantage that cannot be copied quickly.</motion.p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {[
               { label: 'Bhubaneswar Population', value: '1M+' },
               { label: 'Restaurants in City', value: '8,000+' },
               { label: 'Kirana Stores', value: '25,000+' },
-              { label: 'Monthly Food Delivery TAM', value: '₹120Cr+' },
-            ].map(item => (
-              <div key={item.label} style={{ background: '#FFF9F5', border: '1px solid #F0E8E4', borderRadius: '14px', padding: '20px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '14px', color: 'var(--color-text-muted)', fontWeight: 500 }}>{item.label}</span>
-                <strong style={{ fontFamily: "'Syne',sans-serif", fontSize: '22px', color: 'var(--color-primary)' }}>{item.value}</strong>
-              </div>
+              { label: 'Monthly TAM', value: '₹120Cr+' },
+            ].map((item, i) => (
+              <motion.div 
+                key={item.label} 
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ x: 10, borderColor: 'var(--color-primary)' }}
+                style={{ background: '#FFF9F5', border: '1px solid rgba(255,61,0,0.1)', borderRadius: '24px', padding: '24px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.3s ease' }}
+              >
+                <span style={{ fontSize: '15px', color: 'var(--color-text-muted)', fontWeight: '700' }}>{item.label}</span>
+                <strong style={{ fontFamily: "'Syne',sans-serif", fontSize: '28px', color: 'var(--color-primary)', letterSpacing: '-1px' }}>{item.value}</strong>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Investment Pillars */}
-      <section className="page-section-v3" style={{ background: '#0D0706' }}>
+      <section className="page-section-v3" style={{ background: '#0D0706', padding: '120px 0' }}>
         <div className="container">
-          <div className="section-head-v3">
-            <p className="section-label-v3">Why Invest</p>
-            <h2 className="section-title-v3" style={{ color: '#fff' }}>Six Structural<br />Advantages</h2>
+          <div className="section-head-v3" style={{ marginBottom: '80px' }}>
+            <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="section-label-v3">Why Invest</motion.p>
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3" style={{ color: '#fff', fontSize: '2.5rem' }}>Six Structural Advantages</motion.h2>
           </div>
-          <div className="why-grid-v3">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="why-grid-v3"
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}
+          >
             {pillars.map(p => (
-              <article key={p.title} className="why-card-v3">
-                <div className="why-icon-v3">{p.icon}</div>
-                <h3 className="why-title-v3">{p.title}</h3>
-                <p className="why-desc-v3">{p.desc}</p>
-              </article>
+              <motion.article 
+                key={p.title} 
+                variants={fadeInUp}
+                whileHover={{ y: -12, background: 'rgba(255,255,255,0.06)' }}
+                className="why-card-v3"
+                style={{ borderRadius: '32px', padding: '2.5rem', border: '1px solid rgba(255,255,255,0.05)', transition: 'all 0.4s cubic-bezier(0.23, 1, 0.32, 1)' }}
+              >
+                <div className="why-icon-v3" style={{ width: '60px', height: '60px', borderRadius: '18px', fontSize: '28px', marginBottom: '1.5rem', background: 'rgba(255,61,0,0.1)' }}>{p.icon}</div>
+                <h3 className="why-title-v3" style={{ fontSize: '20px', fontWeight: '800', marginBottom: '1rem', color: '#fff' }}>{p.title}</h3>
+                <p className="why-desc-v3" style={{ color: 'rgba(255,255,255,0.5)', lineHeight: '1.7', fontSize: '15px' }}>{p.desc}</p>
+              </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="tezpass-v3">
+      <section className="tezpass-v3" style={{ padding: '140px 0' }}>
         <div className="container" style={{ textAlign: 'center' }}>
-          <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Seed Round Open</p>
-          <h2 className="section-title-v3 tezpass-v3-title" style={{ margin: '0 auto 1rem' }}>Interested in<br />Investing in TezDel?</h2>
-          <p className="tezpass-v3-p" style={{ maxWidth: '500px', margin: '0 auto 2rem' }}>We're currently raising our seed round to expand our zone coverage, build our tech platform, and onboard 500 partners in year one.</p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem', borderRadius: '12px', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>Request Pitch Deck</Link>
-            <a href="mailto:invest@tezdel.com" className="btn-outline-white-v3">invest@tezdel.com</a>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Seed Round Open</p>
+            <h2 className="section-title-v3 tezpass-v3-title" style={{ margin: '0 auto 1.5rem', fontSize: '3rem' }}>Interested in Investing in TezDel?</h2>
+            <p className="tezpass-v3-p" style={{ maxWidth: '580px', margin: '0 auto 3.5rem', fontSize: '1.15rem', opacity: 0.9 }}>We're currently raising our seed round to expand our zone coverage, build our tech platform, and onboard 500 partners in year one.</p>
+            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link to="/contact" className="btn btn-primary" style={{ padding: '1.25rem 3.5rem', borderRadius: '20px', textDecoration: 'none', fontWeight: '800', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}>Request Pitch Deck</Link>
+              </motion.div>
+              <motion.a 
+                whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.1)' }} 
+                whileTap={{ scale: 0.95 }}
+                href="mailto:invest@tezdel.com" 
+                className="btn-outline-white-v3"
+                style={{ padding: '1.25rem 3rem', borderRadius: '20px', fontWeight: '800', fontSize: '1.1rem', border: '2px solid #fff' }}
+              >
+                invest@tezdel.com
+              </motion.a>
+            </div>
+          </motion.div>
         </div>
       </section>
 

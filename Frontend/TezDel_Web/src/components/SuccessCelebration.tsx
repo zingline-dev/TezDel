@@ -1,6 +1,8 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, MapPin, Zap } from 'lucide-react';
+import { CheckCircle2, MapPin, Phone, PackageCheck } from 'lucide-react';
+
+const confettiColors = ['#FF3D00', '#10B981', '#3B82F6', '#F59E0B', '#8B5CF6'];
 
 export default function SuccessCelebration({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
@@ -24,123 +26,159 @@ export default function SuccessCelebration({ isOpen, onClose }: { isOpen: boolea
             style={{
               position: 'absolute',
               inset: 0,
-              background: 'rgba(15, 23, 42, 0.9)',
-              backdropFilter: 'blur(8px)'
+              background: 'rgba(15, 23, 42, 0.95)',
+              backdropFilter: 'blur(12px)'
             }}
           />
           
           {/* Modal */}
           <motion.div
-            initial={{ scale: 0.8, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.8, opacity: 0, y: 20 }}
-            transition={{ type: 'spring', damping: 20, stiffness: 300 }}
+            initial={{ scale: 0.5, opacity: 0, rotate: -5 }}
+            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+            exit={{ scale: 0.5, opacity: 0, rotate: 5 }}
+            transition={{ type: 'spring', damping: 20, stiffness: 300, bounce: 0.4 }}
             style={{
               position: 'relative',
               width: '100%',
-              maxWidth: '440px',
+              maxWidth: '480px',
               background: '#fff',
-              borderRadius: '32px',
-              padding: '3rem 2rem',
+              borderRadius: '40px',
+              padding: '4rem 2rem 3rem',
               textAlign: 'center',
-              boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
+              boxShadow: '0 40px 80px rgba(0,0,0,0.6)',
               overflow: 'hidden'
             }}
           >
-            {/* Success Burst Background */}
+            {/* Success Ripple Background */}
             <motion.div
               animate={{ 
-                scale: [1, 1.2, 1],
-                rotate: [0, 90, 180, 270, 360]
+                scale: [1, 2],
+                opacity: [0.1, 0]
               }}
-              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              transition={{ duration: 2, repeat: Infinity }}
               style={{
                 position: 'absolute',
-                top: '-50%',
-                left: '-50%',
-                width: '200%',
-                height: '200%',
-                background: 'radial-gradient(circle, rgba(255,61,0,0.05) 0%, transparent 70%)',
+                top: '15%',
+                left: '50%',
+                width: '120px',
+                height: '120px',
+                background: 'var(--color-accent)',
+                borderRadius: '50%',
+                transform: 'translateX(-50%)',
                 zIndex: 0
               }}
             />
 
+            {/* Confetti Particles */}
+            {isOpen && Array.from({ length: 30 }).map((_, i) => (
+              <motion.div
+                key={i}
+                initial={{ 
+                  top: '40%', 
+                  left: '50%', 
+                  scale: 0,
+                  rotate: 0,
+                  opacity: 1 
+                }}
+                animate={{ 
+                  top: `${Math.random() * 80 + 10}%`,
+                  left: `${Math.random() * 80 + 10}%`,
+                  scale: [0, 1, 0],
+                  rotate: 360,
+                  opacity: 0
+                }}
+                transition={{ 
+                  duration: Math.random() * 2 + 1,
+                  delay: Math.random() * 0.5,
+                  ease: "easeOut"
+                }}
+                style={{
+                  position: 'absolute',
+                  width: '8px',
+                  height: '8px',
+                  background: confettiColors[i % confettiColors.length],
+                  borderRadius: i % 2 === 0 ? '50%' : '2px',
+                  zIndex: 0
+                }}
+              />
+            ))}
+
             <div style={{ position: 'relative', zIndex: 1 }}>
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: 'spring' }}
+                initial={{ scale: 0, rotate: -20 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ 
+                  delay: 0.2, 
+                  type: 'spring', 
+                  bounce: 0.5,
+                  duration: 0.8
+                }}
                 style={{
-                  width: '80px',
-                  height: '80px',
+                  width: '100px',
+                  height: '100px',
                   background: 'var(--color-accent)',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  margin: '0 auto 1.5rem',
+                  margin: '0 auto 2rem',
                   color: '#fff',
-                  boxShadow: '0 10px 20px rgba(16, 185, 129, 0.3)'
+                  boxShadow: '0 20px 40px rgba(16, 185, 129, 0.4)'
                 }}
               >
-                <CheckCircle2 size={40} />
+                <CheckCircle2 size={56} strokeWidth={2.5} />
               </motion.div>
               
-              <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--color-secondary)' }}>Order Placed!</h2>
-              <p style={{ color: 'var(--color-text-muted)', marginTop: '0.5rem', fontSize: '1rem' }}>
-                Your neighbourhood captain is arriving in <span style={{ color: 'var(--color-primary)', fontWeight: '700' }}>18 mins</span>
+              <h2 style={{ fontSize: '2.25rem', fontWeight: '900', color: 'var(--color-secondary)', letterSpacing: '-1px' }}>Boom! Done.</h2>
+              <p style={{ color: 'var(--color-text-muted)', marginTop: '0.75rem', fontSize: '1.1rem', fontWeight: '500' }}>
+                Arriving in <span style={{ color: 'var(--color-primary)', fontWeight: '800' }}>18 minutes</span>
               </p>
               
-              {/* Fake Map Route Drawing */}
-              <div style={{ 
-                height: '100px', 
-                background: '#f8fafc', 
-                borderRadius: '16px', 
-                marginTop: '2rem', 
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                padding: '0 2rem'
-              }}>
-                <MapPin size={20} color="var(--color-text-muted)" />
-                <div style={{ flex: 1, height: '4px', background: '#e2e8f0', margin: '0 1rem', position: 'relative' }}>
+              <div style={{ marginTop: '3rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', textAlign: 'left' }}>
+                <h3 style={{ fontSize: '12px', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '2px', fontWeight: '800' }}>Next Steps</h3>
+                
+                {[
+                  { icon: <PackageCheck size={18} />, title: 'Order Confirmed', sub: 'Restaurant is preparing your food' },
+                  { icon: <MapPin size={18} />, title: 'Assigning Captain', sub: 'Finding the fastest rider near you' },
+                  { icon: <Phone size={18} />, title: 'Live Updates', sub: 'We\'ll notify you when it\'s out for delivery' }
+                ].map((step, i) => (
                   <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: '100%' }}
-                    transition={{ duration: 2, ease: "easeInOut" }}
-                    style={{ height: '100%', background: 'var(--color-primary)', borderRadius: '2px' }}
-                  />
-                  <motion.div
-                    animate={{ scale: [1, 1.5, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                    style={{
-                      position: 'absolute',
-                      right: 0,
-                      top: '-6px',
-                      width: '16px',
-                      height: '16px',
-                      background: 'var(--color-primary)',
-                      borderRadius: '50%',
-                      border: '3px solid #fff'
-                    }}
-                  />
-                </div>
-                <Zap size={20} color="var(--color-primary)" />
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + (i * 0.2) }}
+                    style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}
+                  >
+                    <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: 'rgba(0,0,0,0.03)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-secondary)' }}>
+                      {step.icon}
+                    </div>
+                    <div>
+                      <h4 style={{ fontSize: '15px', fontWeight: '700', color: 'var(--color-secondary)' }}>{step.title}</h4>
+                      <p style={{ fontSize: '13px', color: 'var(--color-text-muted)' }}>{step.sub}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+                whileHover={{ scale: 1.02, background: '#000' }}
+                whileTap={{ scale: 0.98 }}
                 onClick={onClose}
                 style={{
                   width: '100%',
-                  marginTop: '2.5rem',
-                  padding: '1rem',
-                  borderRadius: '16px',
+                  marginTop: '3.5rem',
+                  padding: '1.25rem',
+                  borderRadius: '20px',
                   background: 'var(--color-secondary)',
                   color: '#fff',
-                  fontWeight: '700',
-                  fontSize: '1rem'
+                  fontWeight: '800',
+                  fontSize: '1.1rem',
+                  border: 'none',
+                  cursor: 'pointer',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
                 }}
               >
                 Track Live Status
