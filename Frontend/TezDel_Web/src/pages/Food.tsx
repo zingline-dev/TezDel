@@ -23,13 +23,13 @@ export default function Food() {
     <div className="page-v3">
 
       {/* Header */}
-      <section className="page-header-v3" style={{ minHeight: '260px', display: 'flex', alignItems: 'center', paddingBottom: 0 }}>
+      <section className="page-header-v3" style={{ minHeight: '180px', display: 'flex', alignItems: 'center', paddingBottom: 0 }}>
         <div className="page-header-v3-bg" style={{ background: '#0D0706' }} aria-hidden="true" />
         <div className="page-header-v3-glow" aria-hidden="true" />
         <div className="page-header-v3-dots" aria-hidden="true" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           {/* Search Bar */}
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch', flexWrap: 'wrap', justifyContent: 'center', maxWidth: '1100px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
             <div className="food-location-box-v3">
               <span>📍</span>
               <div>
