@@ -19,12 +19,12 @@ export default function Grocery() {
     <div className="page-v3">
 
       {/* Header */}
-      <section className="page-header-v3" style={{ minHeight: '260px' }}>
+      <section className="page-header-v3" style={{ minHeight: '260px', display: 'flex', alignItems: 'center', paddingBottom: 0 }}>
         <div className="page-header-v3-bg" style={{ background: '#0D0706' }} aria-hidden="true" />
         <div className="page-header-v3-glow" aria-hidden="true" />
         <div className="page-header-v3-dots" aria-hidden="true" />
-        <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '30px' }}>
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
             <div className="food-location-box-v3">
               <span>📍</span>
               <div>
