@@ -26,18 +26,17 @@ export default function Navbar() {
   return (
     <nav 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-background/80 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-5'
+        scrolled ? 'bg-[#060C18]/75 backdrop-blur-xl border-b border-white/7 py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform">
-            <span className="text-white font-black text-xl italic">T</span>
+        <Link href="/" className="flex items-center gap-[10px] group">
+          <div className="w-[36px] h-[36px] bg-[#FF3D00] rounded-[10px] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+            <span className="text-white text-[15px] font-extrabold tracking-[-1px]" style={{ fontFamily: 'var(--font-logo)' }}>Tz</span>
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="text-xl font-black tracking-tighter text-white">TEZDEL</span>
-            <span className="text-[10px] font-bold text-primary tracking-[0.2em]">PARTNERS</span>
-          </div>
+          <span className="text-[20px] font-extrabold text-white transition-colors" style={{ fontFamily: 'var(--font-logo)' }}>
+            Tez<em className="text-[#FF3D00] not-italic">Del</em>
+          </span>
         </Link>
 
         {/* Desktop Nav */}

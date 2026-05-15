@@ -1,13 +1,22 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Sora, Nunito, Syne } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const sora = Sora({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
+
+const nunito = Nunito({
+  variable: "--font-body",
+  subsets: ["latin"],
+});
+
+const syne = Syne({
+  variable: "--font-logo",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -23,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${outfit.variable} antialiased bg-background`}>
+      <body className={`${sora.variable} ${nunito.variable} ${syne.variable} antialiased bg-background`}>
         <Navbar />
         <main className="min-h-screen">
           {children}

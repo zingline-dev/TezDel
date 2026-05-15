@@ -3,22 +3,24 @@ import { Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t border-white/5 pt-20 pb-10">
+    <footer className="bg-[#030711] border-t border-white/5 pt-20 pb-10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
-          <div className="space-y-6">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                <span className="text-white font-black text-xl italic">T</span>
+          <div className="space-y-8">
+            <Link href="/" className="flex items-center gap-[10px] group">
+              <div className="w-[36px] h-[36px] bg-[#FF3D00] rounded-[10px] flex items-center justify-center shrink-0">
+                <span className="text-white text-[15px] font-extrabold tracking-[-1px]" style={{ fontFamily: 'var(--font-logo)' }}>Tz</span>
               </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-xl font-black tracking-tighter text-white">TEZDEL</span>
-                <span className="text-[10px] font-bold text-primary tracking-[0.2em]">PARTNERS</span>
-              </div>
+              <span className="text-[20px] font-extrabold text-white" style={{ fontFamily: 'var(--font-logo)' }}>
+                Tez<em className="text-[#FF3D00] not-italic">Del</em>
+              </span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs leading-relaxed">
-              Odisha's next-generation hyperlocal network. Empowering local businesses to grow beyond physical boundaries.
+              Odisha's next-generation hyperlocal commerce platform. Zero commission. Community first. ONDC-ready. Built for Bhubaneswar.
             </p>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-purple/10 border border-purple/20 text-[10px] font-black text-purple uppercase tracking-widest">
+              🏛️ ONDC-Ready Partner
+            </div>
             <div className="flex items-center gap-4">
               <a href="#" className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-colors">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
