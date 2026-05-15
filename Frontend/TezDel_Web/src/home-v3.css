@@ -199,3 +199,108 @@
   .stats-band-v3-inner { grid-template-columns: repeat(2,1fr); gap: 12px; }
   .stat-item-v3 strong { font-size: 22px; }
 }
+
+/* ════════════════════════════════════════
+   SHARED PAGE STYLES (All inner pages)
+   ════════════════════════════════════════ */
+
+.page-v3 { padding-top: 66px; }
+
+/* ── PAGE HERO (tall dark hero) ── */
+.page-hero-v3 { min-height: 60vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+.page-hero-v3-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; animation: heroZoom 20s ease-in-out infinite alternate; }
+.page-hero-v3-glow { position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(255,61,0,0.15) 0%, transparent 70%); z-index: 1; }
+.page-hero-v3-dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,61,0,0.1) 1px, transparent 1px); background-size: 32px 32px; z-index: 1; }
+.page-hero-v3-content { position: relative; z-index: 2; padding: 80px 0; }
+.page-hero-v3-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,61,0,0.15); border: 1px solid rgba(255,61,0,0.3); padding: 6px 14px; border-radius: 20px; margin-bottom: 20px; }
+.page-hero-v3-tag-dot { display: inline-block; width: 7px; height: 7px; background: var(--color-primary); border-radius: 50%; animation: pulse 2s infinite; flex-shrink: 0; }
+.page-hero-v3-tag span:last-child { font-size: 12px; font-weight: 600; color: var(--color-primary); letter-spacing: 0.5px; text-transform: uppercase; }
+.page-hero-v3-title { font-family: 'Syne', sans-serif; font-size: clamp(32px,4.5vw,58px); font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 18px; }
+.page-hero-v3-accent { color: var(--color-primary); }
+.page-hero-v3-sub { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.7; max-width: 560px; margin-bottom: 32px; }
+
+/* ── PAGE HEADER (shorter — for Food, Grocery) ── */
+.page-header-v3 { min-height: 200px; display: flex; align-items: flex-end; position: relative; overflow: hidden; padding-bottom: 32px; }
+.page-header-v3-bg { position: absolute; inset: 0; background-size: cover; background-position: center; z-index: 0; }
+.page-header-v3-glow { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(255,61,0,0.12) 0%, transparent 70%); z-index: 1; }
+.page-header-v3-dots { position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,61,0,0.08) 1px, transparent 1px); background-size: 32px 32px; z-index: 1; }
+
+/* ── SECTION WRAPPERS ── */
+.page-section-v3 { padding: 80px 0; }
+.page-section-light-v3 { background: #fff; }
+
+/* ── TWO-COLUMN LAYOUT ── */
+.page-two-col-v3 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.page-img-box-v3 { height: 420px; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+
+/* ── ABOUT TEAM CARD ── */
+.about-team-card-v3 { background: #FFF9F5; border: 1.5px solid #F0E8E4; border-radius: 20px; padding: 28px 20px; text-align: center; transition: all 0.25s; }
+.about-team-card-v3:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,0.08); border-color: var(--color-primary); }
+.about-team-icon-v3 { font-size: 40px; display: block; margin: 0 auto 14px; }
+
+/* ── FOOD / GROCERY SEARCH BOXES ── */
+.food-location-box-v3 { display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); border-radius: 12px; padding: 12px 18px; cursor: pointer; flex-shrink: 0; }
+.food-location-box-v3 span { font-size: 20px; }
+.food-search-box-v3 { display: flex; gap: 10px; align-items: center; background: #fff; border-radius: 12px; padding: 12px 18px; flex: 1; min-width: 280px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
+
+/* ── FOOD CATEGORY CHIPS ── */
+.food-cat-chip-v3 { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 16px 20px; border-radius: 16px; background: #FFF9F5; border: 1.5px solid #F0E8E4; transition: all 0.2s; flex-shrink: 0; min-width: 90px; }
+.food-cat-chip-v3:hover { background: #FFF3EE; border-color: var(--color-primary); transform: translateY(-2px); }
+
+/* ── FILTER CHIPS ── */
+.filter-chip-v3 { background: #FFF9F5; border: 1px solid #F0E8E4; border-radius: 20px; padding: 7px 16px; font-size: 13px; font-weight: 600; color: var(--color-text-muted); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.filter-chip-v3:hover { background: #FFF3EE; border-color: var(--color-primary); color: var(--color-primary); }
+
+/* ── RESTAURANT CARDS ── */
+.restaurant-grid-v3 { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 20px; }
+.restaurant-card-v3 { border-radius: 18px; overflow: hidden; border: 1px solid #F0E8E4; background: #fff; transition: all 0.25s; cursor: pointer; }
+.restaurant-card-v3:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); }
+.restaurant-card-img-v3 { position: relative; height: 180px; overflow: hidden; }
+.restaurant-card-img-v3 img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+.restaurant-card-v3:hover .restaurant-card-img-v3 img { transform: scale(1.05); }
+.restaurant-card-badge-v3 { position: absolute; bottom: 10px; left: 10px; background: rgba(0,0,0,0.7); color: #fff; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; backdrop-filter: blur(4px); }
+.restaurant-card-body-v3 { padding: 16px; }
+.restaurant-card-name-v3 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--color-text-main); margin-bottom: 4px; }
+.restaurant-card-tags-v3 { font-size: 12px; color: var(--color-text-muted); margin-bottom: 12px; }
+.restaurant-card-footer-v3 { display: flex; justify-content: space-between; align-items: center; }
+.restaurant-card-rating-v3 { font-size: 13px; font-weight: 700; color: var(--color-text-main); }
+
+/* ── CONTACT FORM ── */
+.contact-field-v3 { display: flex; flex-direction: column; gap: 6px; }
+.contact-field-v3 label { font-size: 13px; font-weight: 600; color: var(--color-text-main); }
+.contact-field-v3 input,
+.contact-field-v3 select,
+.contact-field-v3 textarea { border: 1.5px solid #F0E8E4; border-radius: 10px; padding: 12px 14px; font-size: 14px; font-family: inherit; color: var(--color-text-main); outline: none; transition: border-color 0.2s; background: #FAFAFA; resize: vertical; }
+.contact-field-v3 input:focus,
+.contact-field-v3 select:focus,
+.contact-field-v3 textarea:focus { border-color: var(--color-primary); background: #fff; }
+
+/* ── CAREERS ROLE CARD ── */
+.careers-role-card-v3 { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 16px; padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; gap: 20px; transition: all 0.25s; flex-wrap: wrap; }
+.careers-role-card-v3:hover { background: rgba(255,61,0,0.08); border-color: rgba(255,61,0,0.2); }
+
+/* ── RESPONSIVE (all pages) ── */
+@media (max-width: 900px) {
+  .page-two-col-v3 { grid-template-columns: 1fr; }
+  .page-img-box-v3 { height: 280px; }
+  .page-hero-v3-content { padding: 60px 0 40px; }
+  .restaurant-grid-v3 { grid-template-columns: repeat(auto-fill,minmax(240px,1fr)); }
+}
+
+@media (max-width: 600px) {
+  .page-hero-v3 { min-height: 50vh; }
+  .page-hero-v3-title { font-size: 30px; }
+  .page-hero-v3-sub { font-size: 15px; }
+  .food-search-box-v3 { min-width: 100%; }
+  .restaurant-grid-v3 { grid-template-columns: 1fr; }
+  .careers-role-card-v3 { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 430px) {
+  .page-section-light-v3 { background: var(--color-bg-light); }
+  .about-team-card-v3 { background: rgba(255,61,0,0.05); border-color: rgba(255,61,0,0.15); }
+  .food-cat-chip-v3 { background: rgba(255,61,0,0.06); border-color: rgba(255,61,0,0.15); }
+  .restaurant-card-v3 { background: var(--color-bg-light); }
+  .page-hero-v3-title { font-size: 28px; }
+}
+

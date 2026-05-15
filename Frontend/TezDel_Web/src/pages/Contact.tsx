@@ -1,167 +1,118 @@
-import { Mail, MapPin, MessageSquare, Globe, ShieldAlert, FileText, Send, Clock, ChevronRight } from 'lucide-react';
+import { useState } from 'react';
 
 export default function Contact() {
+  const [form, setForm] = useState({ name: '', email: '', type: 'general', message: '' });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSent(true);
+  };
+
+  const channels = [
+    { icon: '📧', title: 'Email Us', desc: 'hello@tezdel.com', sub: 'We reply within 24 hours' },
+    { icon: '📍', title: 'Our Office', desc: 'Patia, Bhubaneswar', sub: 'Odisha, India — 751024' },
+    { icon: '💬', title: 'WhatsApp', desc: '+91 9XXXXXXXXX', sub: 'Mon–Sat, 9am–7pm IST' },
+    { icon: '📡', title: 'ONDC Enquiries', desc: 'ondc@tezdel.com', sub: 'Seller & buyer app queries' },
+  ];
+
   return (
-    <div className="page-container" style={{ background: 'var(--color-bg-white)' }}>
-      {/* Hero Section */}
-      <section style={{ 
-        background: 'linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%)', 
-        padding: '10rem 0 8rem', 
-        textAlign: 'center',
-        position: 'relative',
-        overflow: 'hidden'
-      }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle, rgba(255, 61, 0, 0.05) 0%, transparent 70%)', zIndex: 0 }}></div>
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-             <div className="glass" style={{ background: 'rgba(255, 61, 0, 0.1)', color: 'var(--color-primary)', padding: '10px 24px', borderRadius: 'var(--radius-full)', fontSize: '0.9rem', fontWeight: '800', border: '1px solid rgba(255, 61, 0, 0.2)' }}>
-                GET IN TOUCH
-             </div>
+    <div className="page-v3">
+
+      {/* Hero */}
+      <section className="page-hero-v3">
+        <div className="page-hero-v3-bg" style={{ backgroundImage: 'linear-gradient(rgba(13,7,6,0.8),rgba(13,7,6,0.92)), url(https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&w=1920&q=80)' }} aria-hidden="true" />
+        <div className="page-hero-v3-glow" aria-hidden="true" />
+        <div className="page-hero-v3-dots" aria-hidden="true" />
+        <div className="container page-hero-v3-content">
+          <div className="page-hero-v3-tag">
+            <span className="page-hero-v3-tag-dot" aria-hidden="true" />
+            <span>Get in Touch</span>
           </div>
-          <h1 style={{ fontSize: '4.5rem', fontWeight: '900', marginBottom: '1.5rem', color: 'var(--color-secondary)', lineHeight: '1.1' }}>
-            We're Always <span style={{ color: 'var(--color-primary)' }}>Connected</span>.
-          </h1>
-          <p style={{ fontSize: '1.4rem', color: 'var(--color-text-muted)', maxWidth: '750px', margin: '0 auto', lineHeight: '1.6' }}>
-            Have a question about an order, partnership, or career? Our team in Bhubaneswar is ready to support you 24/7.
-          </p>
+          <h1 className="page-hero-v3-title">We'd Love to<br /><span className="page-hero-v3-accent">Hear from You.</span></h1>
+          <p className="page-hero-v3-sub">Whether you're a restaurant owner, home chef, kirana store, or just a food lover — reach out and let's build something great together.</p>
         </div>
       </section>
 
-      {/* Main Contact Grid */}
-      <section style={{ padding: '8rem 0' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '6rem' }}>
-            {/* Contact Form */}
-            <div className="glass" style={{ background: 'white', padding: '4rem', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-lg)', border: '1px solid rgba(0,0,0,0.02)' }}>
-              <h3 style={{ fontSize: '2.5rem', fontWeight: '900', marginBottom: '2.5rem', color: 'var(--color-secondary)' }}>Send a Message</h3>
-              <form style={{ display: 'grid', gap: '2rem' }}>
-                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                       <label style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--color-secondary)' }}>Full Name</label>
-                       <input type="text" placeholder="John Doe" style={{ padding: '1.25rem', borderRadius: 'var(--radius-sm)', border: '1px solid #eee', outline: 'none', background: 'var(--color-bg-light)', fontSize: '1rem' }} />
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                       <label style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--color-secondary)' }}>Email Address</label>
-                       <input type="email" placeholder="john@example.com" style={{ padding: '1.25rem', borderRadius: 'var(--radius-sm)', border: '1px solid #eee', outline: 'none', background: 'var(--color-bg-light)', fontSize: '1rem' }} />
-                    </div>
-                 </div>
-                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <label style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--color-secondary)' }}>Department</label>
-                    <select style={{ padding: '1.25rem', borderRadius: 'var(--radius-sm)', border: '1px solid #eee', outline: 'none', background: 'var(--color-bg-light)', fontSize: '1rem', appearance: 'none' }}>
-                       <option>Customer Support</option>
-                       <option>Investor Relations</option>
-                       <option>Media & Press</option>
-                       <option>Careers</option>
-                    </select>
-                 </div>
-                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                    <label style={{ fontWeight: '700', fontSize: '0.9rem', color: 'var(--color-secondary)' }}>Your Message</label>
-                    <textarea placeholder="How can we help you today?" rows={6} style={{ padding: '1.25rem', borderRadius: 'var(--radius-sm)', border: '1px solid #eee', outline: 'none', background: 'var(--color-bg-light)', fontSize: '1rem', resize: 'none' }}></textarea>
-                 </div>
-                 <button className="btn btn-primary" style={{ padding: '1.5rem', fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px' }}>
-                    <Send size={24} /> Send Inquiry
-                 </button>
+      {/* Channels */}
+      <div className="stats-band-v3" style={{ background: '#1C1210' }}>
+        <div className="stats-band-v3-inner" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
+          {channels.map(c => (
+            <div key={c.title} style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '24px', marginBottom: '6px' }}>{c.icon}</div>
+              <strong style={{ display: 'block', color: '#fff', fontSize: '14px', fontWeight: 700, marginBottom: '2px' }}>{c.desc}</strong>
+              <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)' }}>{c.sub}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Form + Info */}
+      <section className="page-section-v3 page-section-light-v3">
+        <div className="container page-two-col-v3" style={{ gap: '60px', alignItems: 'flex-start' }}>
+
+          {/* Form */}
+          <div style={{ background: '#fff', borderRadius: '24px', padding: '40px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1px solid #F0E8E4' }}>
+            <p className="section-label-v3">Send a Message</p>
+            <h2 className="section-title-v3" style={{ fontSize: '28px', marginBottom: '28px' }}>Contact Us</h2>
+            {sent ? (
+              <div style={{ textAlign: 'center', padding: '40px 0' }}>
+                <div style={{ fontSize: '48px', marginBottom: '16px' }}>✅</div>
+                <h3 style={{ fontFamily: "'Syne',sans-serif", fontSize: '20px', marginBottom: '8px' }}>Message Sent!</h3>
+                <p style={{ color: 'var(--color-text-muted)' }}>We'll get back to you within 24 hours.</p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div className="contact-field-v3">
+                  <label>Full Name</label>
+                  <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} required />
+                </div>
+                <div className="contact-field-v3">
+                  <label>Email Address</label>
+                  <input type="email" placeholder="you@example.com" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} required />
+                </div>
+                <div className="contact-field-v3">
+                  <label>I am a...</label>
+                  <select value={form.type} onChange={e => setForm({ ...form, type: e.target.value })}>
+                    <option value="general">General Enquiry</option>
+                    <option value="restaurant">Restaurant Partner</option>
+                    <option value="chef">Home Chef</option>
+                    <option value="kirana">Kirana Store Owner</option>
+                    <option value="captain">Delivery Captain</option>
+                    <option value="investor">Investor</option>
+                    <option value="press">Press / Media</option>
+                  </select>
+                </div>
+                <div className="contact-field-v3">
+                  <label>Message</label>
+                  <textarea placeholder="Tell us how we can help..." rows={5} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} required />
+                </div>
+                <button type="submit" className="btn btn-primary" style={{ padding: '1rem', fontSize: '1rem', borderRadius: '12px', width: '100%' }}>Send Message 📨</button>
               </form>
-            </div>
+            )}
+          </div>
 
-            {/* Contact Info & Socials */}
-            <div>
-               <h3 style={{ fontSize: '2.5rem', fontWeight: '900', marginBottom: '3rem', color: 'var(--color-secondary)' }}>Quick Connect</h3>
-               <div style={{ display: 'grid', gap: '3rem' }}>
-                  <div style={{ display: 'flex', gap: '1.5rem' }}>
-                     <div style={{ background: 'var(--color-bg-light)', width: '64px', height: '64px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)', flexShrink: 0 }}>
-                        <MapPin size={28} />
-                     </div>
-                     <div>
-                        <h4 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '0.5rem' }}>HQ Address</h4>
-                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6', fontSize: '1.1rem' }}>
-                           TezDel Innovation Hub, 4th Floor<br/>
-                           Infocity Square, Patia<br/>
-                           Bhubaneswar, Odisha 751024
-                        </p>
-                     </div>
+          {/* Info */}
+          <div>
+            <p className="section-label-v3">Why Reach Out?</p>
+            <h2 className="section-title-v3">Partner with<br />TezDel Today</h2>
+            <p className="section-sub-v3" style={{ marginBottom: '32px' }}>We're actively onboarding restaurants, home chefs, kirana stores, and delivery captains across Bhubaneswar. If you serve your community with pride, we want to work with you.</p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {channels.map(c => (
+                <div key={c.title} style={{ display: 'flex', gap: '16px', alignItems: 'flex-start', background: '#FFF9F5', border: '1px solid #F0E8E4', borderRadius: '14px', padding: '16px 20px' }}>
+                  <div style={{ fontSize: '24px', flexShrink: 0 }}>{c.icon}</div>
+                  <div>
+                    <strong style={{ display: 'block', fontFamily: "'Syne',sans-serif", fontSize: '14px', marginBottom: '2px' }}>{c.title}</strong>
+                    <span style={{ fontSize: '13px', color: 'var(--color-primary)', fontWeight: 600 }}>{c.desc}</span>
+                    <p style={{ fontSize: '12px', color: 'var(--color-text-muted)', marginTop: '2px' }}>{c.sub}</p>
                   </div>
-                  <div style={{ display: 'flex', gap: '1.5rem' }}>
-                     <div style={{ background: '#DCFCE7', width: '64px', height: '64px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#166534', flexShrink: 0 }}>
-                        <MessageSquare size={28} />
-                     </div>
-                     <div>
-                        <h4 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '0.5rem' }}>WhatsApp Support</h4>
-                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6', fontSize: '1.1rem', marginBottom: '1rem' }}>Instant resolution for active orders and captain support.</p>
-                        <a href="https://wa.me/916741234567" style={{ color: '#166534', fontWeight: '800', fontSize: '1.1rem', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                           Chat Now <ChevronRight size={18} />
-                        </a>
-                     </div>
-                  </div>
-                  <div style={{ display: 'flex', gap: '1.5rem' }}>
-                     <div style={{ background: 'var(--color-bg-light)', width: '64px', height: '64px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)', flexShrink: 0 }}>
-                        <Mail size={28} />
-                     </div>
-                     <div>
-                        <h4 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '0.5rem' }}>Email Support</h4>
-                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6', fontSize: '1.1rem' }}>
-                           General: hello@tezdel.com<br/>
-                           Partners: grow@tezdel.com<br/>
-                           Investors: invest@tezdel.com
-                        </p>
-                     </div>
-                  </div>
-                  <div style={{ display: 'flex', gap: '1.5rem' }}>
-                     <div style={{ background: 'var(--color-bg-light)', width: '64px', height: '64px', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--color-primary)', flexShrink: 0 }}>
-                        <Clock size={28} />
-                     </div>
-                     <div>
-                        <h4 style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '0.5rem' }}>Operational Hours</h4>
-                        <p style={{ color: 'var(--color-text-muted)', lineHeight: '1.6', fontSize: '1.1rem' }}>
-                           Daily: 7:00 AM – 2:00 AM<br/>
-                           Office: 10:00 AM – 7:00 PM (Mon-Sat)
-                        </p>
-                     </div>
-                  </div>
-               </div>
-
-               <div style={{ marginTop: '5rem' }}>
-                  <h4 style={{ fontSize: '1.1rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '1.5rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Connect with us</h4>
-                  <div style={{ display: 'flex', gap: '1rem' }}>
-                     {[Globe, Mail, FileText].map((Icon, i) => (
-                        <div key={i} className="glass hover-lift" style={{ width: '56px', height: '56px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'var(--color-secondary)', color: 'white', cursor: 'pointer' }}>
-                           <Icon size={22} />
-                        </div>
-                     ))}
-                  </div>
-               </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Support Resources */}
-      <section style={{ padding: '8rem 0', background: 'var(--color-bg-light)' }}>
-         <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-               <h2 style={{ fontSize: '3rem', fontWeight: '900', color: 'var(--color-secondary)' }}>Helpful Resources</h2>
-               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.2rem' }}>Quick links to common inquiries and support tools.</p>
-            </div>
-            <div className="grid grid-3">
-               {[
-                  { title: 'Help Center', desc: 'Browse our extensive FAQs and tutorials on how to use the TezDel platform.', icon: <MessageSquare size={24} /> },
-                  { title: 'Safety & Trust', desc: 'Report any safety concerns or suspicious activities directly to our security team.', icon: <ShieldAlert size={24} /> },
-                  { title: 'Press & Media', desc: 'Download our official press kit, brand assets, and high-resolution media resources.', icon: <FileText size={24} /> }
-               ].map((item, idx) => (
-                  <div key={idx} className="glass" style={{ background: 'white', padding: '3.5rem 2.5rem', borderRadius: 'var(--radius-md)', border: '1px solid rgba(0,0,0,0.02)', textAlign: 'center' }}>
-                     <div style={{ background: 'var(--color-bg-light)', width: '64px', height: '64px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem', color: 'var(--color-primary)' }}>
-                        {item.icon}
-                     </div>
-                     <h4 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '1rem' }}>{item.title}</h4>
-                     <p style={{ fontSize: '1rem', color: 'var(--color-text-muted)', lineHeight: '1.6', marginBottom: '2rem' }}>{item.desc}</p>
-                     <button style={{ color: 'var(--color-primary)', fontWeight: '800', background: 'none', border: 'none', display: 'flex', alignItems: 'center', gap: '8px', margin: '0 auto', cursor: 'pointer', fontSize: '1rem' }}>
-                        Learn More <ChevronRight size={18} />
-                     </button>
-                  </div>
-               ))}
-            </div>
-         </div>
-      </section>
     </div>
   );
 }

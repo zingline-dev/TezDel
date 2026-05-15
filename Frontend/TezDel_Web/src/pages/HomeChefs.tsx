@@ -1,118 +1,119 @@
-import { Utensils, Heart, Star, PlayCircle, ShieldCheck, Flame } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function HomeChefs() {
   const chefs = [
-    { name: 'Mrs. Dash', specialty: 'Dalma & Badi Chura', rating: 4.9, orders: '1200+', exp: '25y', img: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' },
-    { name: 'Mrs. Mohapatra', specialty: 'Authentic Pakhala Platter', rating: 4.8, orders: '850+', exp: '30y', img: 'https://images.unsplash.com/photo-1595273670150-db0a3d39074f?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' },
-    { name: 'Mrs. Patnaik', specialty: 'Traditional Macha Besara', rating: 4.7, orders: '540+', exp: '20y', img: 'https://images.unsplash.com/photo-1566433333442-171189bbd9ac?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' },
-    { name: 'Mrs. Sahoo', specialty: 'Chenna Poda & Pitha', rating: 4.9, orders: '2100+', exp: '15y', img: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80' },
+    { name: 'Mrs. Dash', specialty: 'Dalma & Badi Chura', rating: 4.9, orders: '1200+', exp: '25y', dishes: ['Dalma Thali', 'Badi Chura', 'Saga Bhaja'], bg: 'linear-gradient(135deg,#FF8A65,#FF5722)', emoji: '🍛' },
+    { name: 'Mrs. Mohapatra', specialty: 'Authentic Pakhala Platter', rating: 4.8, orders: '850+', exp: '30y', dishes: ['Pakhala', 'Macha Besara', 'Alu Bharta'], bg: 'linear-gradient(135deg,#F9A825,#F57F17)', emoji: '🥘' },
+    { name: 'Mrs. Patnaik', specialty: 'Traditional Macha Besara', rating: 4.7, orders: '540+', exp: '20y', dishes: ['Macha Besara', 'Santula', 'Dahi Baigana'], bg: 'linear-gradient(135deg,#26C6DA,#00838F)', emoji: '🍲' },
+    { name: 'Mrs. Sahoo', specialty: 'Chenna Poda & Pitha', rating: 4.9, orders: '2100+', exp: '15y', dishes: ['Chenna Poda', 'Rasabali', 'Malpua'], bg: 'linear-gradient(135deg,#66BB6A,#388E3C)', emoji: '🍮' },
+  ];
+
+  const howItWorks = [
+    { step: '1', title: 'Browse Chefs', desc: 'Explore verified home chefs near you. See their specialties, ratings, and available dishes.' },
+    { step: '2', title: 'Order by Noon / 5 PM', desc: 'Place your lunch order by 12 PM and dinner by 5 PM. Fresh meals cooked on schedule.' },
+    { step: '3', title: 'Home-Cooked Delivery', desc: 'Your captain picks up your meal freshly cooked and delivers it to your door in minutes.' },
   ];
 
   return (
-    <div className="page-container" style={{ background: 'var(--color-bg-white)' }}>
-      {/* Hero Section */}
-      <section style={{ 
-        background: 'linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url(https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80) center/cover', 
-        padding: '10rem 0', 
-        textAlign: 'center',
-        color: 'white'
-      }}>
-        <div className="container">
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-             <div className="glass" style={{ background: 'rgba(255, 61, 0, 0.2)', color: 'var(--color-primary)', padding: '10px 24px', borderRadius: 'var(--radius-full)', fontSize: '0.9rem', fontWeight: '800', border: '1px solid rgba(255, 61, 0, 0.3)' }}>
-                AUTHENTIC ODIA HOME KITCHENS
-             </div>
+    <div className="page-v3">
+
+      {/* Hero */}
+      <section className="page-hero-v3">
+        <div className="page-hero-v3-bg" style={{ backgroundImage: 'linear-gradient(rgba(13,7,6,0.72),rgba(13,7,6,0.88)), url(https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1920&q=80)' }} aria-hidden="true" />
+        <div className="page-hero-v3-glow" aria-hidden="true" />
+        <div className="page-hero-v3-dots" aria-hidden="true" />
+        <div className="container page-hero-v3-content">
+          <div className="page-hero-v3-tag">
+            <span className="page-hero-v3-tag-dot" aria-hidden="true" />
+            <span>Exclusive to TezDel</span>
           </div>
-          <h1 style={{ fontSize: '4.5rem', fontWeight: '900', marginBottom: '1.5rem', lineHeight: '1.1' }}>Taste the <span style={{ color: 'var(--color-primary)' }}>Heritage</span>.</h1>
-          <p style={{ fontSize: '1.4rem', maxWidth: '850px', margin: '0 auto 3.5rem', opacity: 0.9, lineHeight: '1.6' }}>
-            Real Odia Food. Cooked by mothers and grandmothers in their own kitchens. No commercial kitchens, just pure love and tradition delivered from Bhubaneswar’s finest homes.
-          </p>
-          <div style={{ display: 'flex', gap: '2rem', justifyContent: 'center' }}>
-            <button className="btn btn-primary" style={{ padding: '1.2rem 3.5rem', fontSize: '1.1rem' }}>Order Homemade Now</button>
+          <h1 className="page-hero-v3-title">Real Odia Food.<br /><span className="page-hero-v3-accent">Real Home Kitchens.</span></h1>
+          <p className="page-hero-v3-sub">Order authentic pakhala, dalma, macha besara, and chenna poda — cooked by verified home chefs from your neighbourhood. The food Swiggy doesn't even list.</p>
+          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem', borderRadius: '12px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', fontSize: '1rem', fontWeight: 600 }}>Become a Home Chef →</Link>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <div className="stats-band-v3">
+        <div className="stats-band-v3-inner">
+          {[{ value: '50+', label: 'Verified Home Chefs' }, { value: '4.8★', label: 'Average Rating' }, { value: 'Daily', label: 'Fresh Cooking' }, { value: 'Odia', label: 'Authentic Cuisine' }].map(s => (
+            <div key={s.label} className="stat-item-v3"><strong>{s.value}</strong><span>{s.label}</span></div>
+          ))}
+        </div>
+      </div>
+
+      {/* How it Works */}
+      <section className="page-section-v3 page-section-light-v3">
+        <div className="container">
+          <div className="section-head-v3" style={{ textAlign: 'center' }}>
+            <p className="section-label-v3">Simple Process</p>
+            <h2 className="section-title-v3">How Home Chef Orders Work</h2>
+          </div>
+          <div className="steps-v3">
+            {howItWorks.map(s => (
+              <article key={s.step} className="step-v3">
+                <div className="step-num-v3" style={{ background: 'var(--color-primary)' }}>{s.step}</div>
+                <h3 className="step-title-v3">{s.title}</h3>
+                <p className="step-desc-v3">{s.desc}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Hygiene Promise */}
-      <section style={{ padding: '4rem 0', background: 'var(--color-secondary)', color: 'white' }}>
-         <div className="container">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '2rem' }}>
-               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <ShieldCheck size={32} color="var(--color-primary)" />
-                  <span style={{ fontWeight: '700', fontSize: '1.2rem' }}>FSSAI Registered Kitchens</span>
-               </div>
-               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <ShieldCheck size={32} color="var(--color-primary)" />
-                  <span style={{ fontWeight: '700', fontSize: '1.2rem' }}>Weekly Hygiene Audits</span>
-               </div>
-               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                  <ShieldCheck size={32} color="var(--color-primary)" />
-                  <span style={{ fontWeight: '700', fontSize: '1.2rem' }}>Pure Home-Cooked Ingredients</span>
-               </div>
-            </div>
-         </div>
-      </section>
-
-      {/* Featured Chefs */}
-      <section style={{ padding: '8rem 0' }}>
+      {/* Chef Listings */}
+      <section className="page-section-v3" style={{ background: '#0D0706' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '5rem' }}>
-             <h2 style={{ fontSize: '3rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '1rem' }}>Meet the Masters</h2>
-             <p style={{ color: 'var(--color-text-muted)', fontSize: '1.2rem' }}>The culinary artists bringing Odisha's heritage to your plate.</p>
+          <div className="section-head-v3">
+            <p className="section-label-v3">Our Chefs</p>
+            <h2 className="section-title-v3" style={{ color: '#fff' }}>Meet Your<br />Neighbourhood Cooks</h2>
           </div>
-
-          <div className="grid grid-4">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px,1fr))', gap: '20px' }}>
             {chefs.map(chef => (
-              <div key={chef.name} className="service-card" style={{ padding: '2rem', textAlign: 'center' }}>
-                <div style={{ position: 'relative', width: '120px', height: '120px', margin: '0 auto 2rem' }}>
-                  <img src={chef.img} alt={chef.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', border: '4px solid white', boxShadow: 'var(--shadow-md)' }} />
-                  <div style={{ position: 'absolute', bottom: '0', right: '0', background: 'var(--color-accent)', color: 'white', width: '36px', height: '36px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid white' }}>
-                     <Star size={14} fill="white" />
+              <article key={chef.name} className="chef-card-v3" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                <div className="chef-img-v3" style={{ background: chef.bg }}>
+                  <span style={{ fontSize: '3.5rem' }}>{chef.emoji}</span>
+                  <span className="chef-img-badge-v3">⭐ {chef.rating}</span>
+                </div>
+                <div className="chef-body-v3" style={{ background: 'transparent' }}>
+                  <h3 className="chef-name-v3" style={{ color: '#fff' }}>{chef.name}</h3>
+                  <p className="chef-loc-v3">{chef.specialty} · {chef.exp} experience</p>
+                  <div className="chef-dishes-v3">
+                    {chef.dishes.map(d => <span key={d} className="dish-tag-v3">{d}</span>)}
+                  </div>
+                  <div className="chef-footer-v3">
+                    <span className="chef-rating-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>⭐ {chef.rating} · {chef.orders} orders</span>
+                    <button className="chef-order-btn-v3">Order Now</button>
                   </div>
                 </div>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--color-secondary)', marginBottom: '0.5rem' }}>{chef.name}</h3>
-                <p style={{ color: 'var(--color-primary)', fontWeight: '700', fontSize: '0.95rem', marginBottom: '1.5rem' }}>{chef.specialty}</p>
-                
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', padding: '1.5rem 0', borderTop: '1px solid #f0f0f0', borderBottom: '1px solid #f0f0f0', marginBottom: '2rem' }}>
-                   <div>
-                      <div style={{ fontWeight: '800', fontSize: '1.1rem' }}>{chef.rating}</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', fontWeight: '600' }}>Rating</div>
-                   </div>
-                   <div style={{ borderLeft: '1px solid #f0f0f0', borderRight: '1px solid #f0f0f0' }}>
-                      <div style={{ fontWeight: '800', fontSize: '1.1rem' }}>{chef.orders}</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', fontWeight: '600' }}>Orders</div>
-                   </div>
-                   <div>
-                      <div style={{ fontWeight: '800', fontSize: '1.1rem' }}>{chef.exp}</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', fontWeight: '600' }}>Skills</div>
-                   </div>
-                </div>
-                <button className="btn btn-primary" style={{ width: '100%', padding: '1rem', borderRadius: 'var(--radius-sm)' }}>View Full Menu</button>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Specialty Categories */}
-      <section style={{ padding: '8rem 0', background: 'var(--color-bg-light)' }}>
+      {/* Become a Chef CTA */}
+      <section className="tezpass-v3">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem' }}>
-            {[
-              { title: 'Healthy Thalis', icon: <Heart size={32} />, desc: 'Nutrient-rich daily meal plans with minimal oil and spice.' },
-              { title: 'Traditional Staples', icon: <Flame size={32} />, desc: 'Authentic Dalma, Besara, and Saga Bhaja just like home.' },
-              { title: 'Festival Specials', icon: <Utensils size={32} />, desc: 'Traditional Pithas, Manda, and Kakara for every festive occasion.' },
-              { title: 'Chef Journeys', icon: <PlayCircle size={32} />, desc: 'Explore the stories and heritage behind every recipe.' }
-            ].map(item => (
-              <div key={item.title} className="glass" style={{ background: 'white', padding: '3.5rem 2.5rem', borderRadius: 'var(--radius-lg)', textAlign: 'center', border: '1px solid rgba(0,0,0,0.02)' }}>
-                 <div style={{ color: 'var(--color-primary)', marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>{item.icon}</div>
-                 <h4 style={{ fontSize: '1.5rem', fontWeight: '800', marginBottom: '1.5rem', color: 'var(--color-secondary)' }}>{item.title}</h4>
-                 <p style={{ fontSize: '1rem', color: 'var(--color-text-muted)', lineHeight: '1.6' }}>{item.desc}</p>
-              </div>
-            ))}
+          <div className="tezpass-v3-inner">
+            <div>
+              <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Earn from Home</p>
+              <h2 className="section-title-v3 tezpass-v3-title">Do You Cook Odia Food<br />That People Love?</h2>
+              <p className="tezpass-v3-p">Join our home chef network and turn your kitchen into a business. We handle orders, delivery, and payments — you just cook.</p>
+              <Link to="/contact" className="btn-outline-white-v3">Apply to Join</Link>
+            </div>
+            <div className="tezpass-card-v3">
+              <div className="tezpass-price-v3">₹0</div>
+              <div className="tezpass-period-v3">to join — no upfront cost ever</div>
+              <ul className="tezpass-benefits-v3">
+                {['Zero registration or onboarding fee', 'We handle all deliveries for you', 'Weekly payouts directly to your account', 'Your own profile page on TezDel', 'Marketing & promotional support', 'FSSAI registration guidance'].map(b => <li key={b}>{b}</li>)}
+              </ul>
+              <Link to="/contact" className="btn btn-primary" style={{ width: '100%', padding: '1rem', borderRadius: '12px', textDecoration: 'none', display: 'block', textAlign: 'center', fontWeight: 600 }}>Start Cooking with Us</Link>
+            </div>
           </div>
         </div>
       </section>
+
     </div>
   );
 }
