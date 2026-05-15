@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
+import iphoneMock from '../assets/iphone_17_mock.png';
 
 export default function Home() {
   const [activeZone, setActiveZone] = useState('Patia');
@@ -282,7 +283,7 @@ export default function Home() {
                     <td><span className="badge-yes">Day 1</span></td>
                   </tr>
                   <tr>
-                    <td>Zomato</td>
+                    <td>-</td>
                     <td>22–30%</td>
                     <td><span className="badge-partial">Partial</span></td>
                     <td><span className="badge-no">None</span></td>
@@ -290,7 +291,7 @@ export default function Home() {
                     <td><span className="badge-no">Opposed</span></td>
                   </tr>
                   <tr>
-                    <td>Swiggy</td>
+                    <td>-</td>
                     <td>22–30%</td>
                     <td><span className="badge-partial">Partial</span></td>
                     <td><span className="badge-no">None</span></td>
@@ -298,7 +299,7 @@ export default function Home() {
                     <td><span className="badge-no">Limited</span></td>
                   </tr>
                   <tr>
-                    <td>Blinkit</td>
+                    <td>-</td>
                     <td>High</td>
                     <td><span className="badge-no">None</span></td>
                     <td><span className="badge-no">None</span></td>
@@ -381,7 +382,7 @@ export default function Home() {
               <p className="section-label-v3">Get the App</p>
               <h2 className="section-title-v3" id="app-heading">Order Bhubaneswar's<br />Best Food — Anywhere</h2>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1rem', marginBottom: '2rem', lineHeight: '1.7' }}>
-                Download TezDel and get ₹100 off your first order. Available on Android — iOS coming soon.
+                Download TezDel and get ₹100 off your first order.
               </p>
               <div className="app-badge-row-v3">
                 <a href="#" aria-label="Download TezDel on Google Play Store">
@@ -394,29 +395,14 @@ export default function Home() {
               <div className="ondc-badge-v3">📡 <span>ONDC Certified Seller App</span></div>
             </div>
 
-            {/* Phone Mockup */}
+            {/* iPhone 17 Pro Mockup */}
             <div className="app-mockup-outer-v3">
-              <div className="app-mockup-v3" aria-label="TezDel app screen preview" role="img">
-                <div className="app-notch-v3" aria-hidden="true" />
-                <div className="app-screen-v3">
-                  <div className="app-screen-header-v3">
-                    <span>TezDel</span>
-                    <p>📍 Patia, BHB</p>
-                  </div>
-                  <div className="app-mini-items-v3">
-                    {[
-                      { emoji: '🍛', text: "Priya's Dalma Thali · ₹120" },
-                      { emoji: '🥬', text: 'Fresh Vegetables · Kirana' },
-                      { emoji: '🍮', text: 'Chenna Poda · ₹60' },
-                      { emoji: '🛵', text: 'Captain Rajan · 12 min away' },
-                    ].map(item => (
-                      <div key={item.text} className="app-mini-item-v3">
-                        <span>{item.emoji}</span>
-                        <span>{item.text}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div className="app-mockup-v3-new">
+                <img
+                  src={iphoneMock}
+                  alt="TeZdel App on iPhone 17 Pro"
+                  className="iphone-17-mock"
+                />
               </div>
             </div>
           </div>
