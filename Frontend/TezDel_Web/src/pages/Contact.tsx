@@ -12,7 +12,7 @@ export default function Contact() {
   const channels = [
     { icon: '📧', title: 'Email Us', desc: 'hello@tezdel.com', sub: 'We reply within 24 hours' },
     { icon: '📍', title: 'Our Office', desc: 'Patia, Bhubaneswar', sub: 'Odisha, India — 751024' },
-    { icon: '💬', title: 'WhatsApp', desc: '+91 9XXXXXXXXX', sub: 'Mon–Sat, 9am–7pm IST' },
+    { icon: '💬', title: 'WhatsApp', desc: '+91 8767091077', sub: 'Mon–Sat, 9am–7pm IST' },
     { icon: '📡', title: 'ONDC Enquiries', desc: 'ondc@tezdel.com', sub: 'Seller & buyer app queries' },
   ];
 
