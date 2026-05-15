@@ -50,7 +50,7 @@ export default function Food() {
       <section className="page-section-v3 page-section-light-v3" style={{ paddingTop: '60px', paddingBottom: '40px' }}>
         <div className="container">
           <h2 className="section-title-v3" style={{ marginBottom: '28px' }}>What's on your mind?</h2>
-          <div style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '8px' }}>
+          <div className="food-chip-grid-v3" style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: '12px' }}>
             {categories.map(cat => (
               <div key={cat.name} className="food-cat-chip-v3">
                 <span style={{ fontSize: '28px', display: 'block', marginBottom: '6px' }}>{cat.icon}</span>

@@ -244,7 +244,7 @@
 .food-search-box-v3 { display: flex; gap: 10px; align-items: center; background: #fff; border-radius: 12px; padding: 12px 18px; flex: 1; min-width: 280px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); }
 
 /* ── FOOD CATEGORY CHIPS ── */
-.food-cat-chip-v3 { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 16px 20px; border-radius: 16px; background: #FFF9F5; border: 1.5px solid #F0E8E4; transition: all 0.2s; flex-shrink: 0; min-width: 90px; }
+.food-cat-chip-v3 { display: flex; flex-direction: column; align-items: center; cursor: pointer; padding: 16px 12px; border-radius: 16px; background: #FFF9F5; border: 1.5px solid #F0E8E4; transition: all 0.2s; width: 100%; }
 .food-cat-chip-v3:hover { background: #FFF3EE; border-color: var(--color-primary); transform: translateY(-2px); }
 
 /* ── FILTER CHIPS ── */
@@ -294,6 +294,7 @@
   .food-search-box-v3 { min-width: 100%; }
   .restaurant-grid-v3 { grid-template-columns: 1fr; }
   .careers-role-card-v3 { flex-direction: column; align-items: flex-start; }
+  .food-chip-grid-v3 { grid-template-columns: repeat(3,1fr) !important; }
 }
 
 @media (max-width: 430px) {
@@ -302,5 +303,6 @@
   .food-cat-chip-v3 { background: rgba(255,61,0,0.06); border-color: rgba(255,61,0,0.15); }
   .restaurant-card-v3 { background: var(--color-bg-light); }
   .page-hero-v3-title { font-size: 28px; }
+  .food-chip-grid-v3 { grid-template-columns: repeat(2,1fr) !important; }
 }
 
