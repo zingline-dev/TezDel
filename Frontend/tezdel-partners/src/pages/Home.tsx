@@ -1,6 +1,6 @@
 'use client';
 
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ShieldCheck, Zap, Globe, Users, ShoppingBag, ChefHat, Utensils, Bike, Star, TrendingUp } from 'lucide-react';
 

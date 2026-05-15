@@ -20,6 +20,10 @@
     --muted-foreground: rgba(240, 244, 255, 0.65);
     --accent: var(--teal);
     --border: rgba(255, 255, 255, 0.1);
+    
+    --font-display: 'Sora', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+    --font-logo: 'Syne', sans-serif;
   }
 }
 
