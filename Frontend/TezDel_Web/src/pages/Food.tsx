@@ -22,9 +22,9 @@ export default function Food() {
   return (
     <div className="page-v3">
 
-      {/* Page Header */}
-      <section className="page-header-v3">
-        <div className="page-header-v3-bg" style={{ backgroundImage: 'linear-gradient(rgba(13,7,6,0.75),rgba(13,7,6,0.88)), url(https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1920&q=80)' }} aria-hidden="true" />
+      {/* Header */}
+      <section className="page-header-v3" style={{ minHeight: '260px' }}>
+        <div className="page-header-v3-bg" style={{ background: '#0D0706' }} aria-hidden="true" />
         <div className="page-header-v3-glow" aria-hidden="true" />
         <div className="page-header-v3-dots" aria-hidden="true" />
         <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '30px' }}>

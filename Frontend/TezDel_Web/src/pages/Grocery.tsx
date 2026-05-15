@@ -19,8 +19,8 @@ export default function Grocery() {
     <div className="page-v3">
 
       {/* Header */}
-      <section className="page-header-v3">
-        <div className="page-header-v3-bg" style={{ backgroundImage: 'linear-gradient(rgba(13,7,6,0.75),rgba(13,7,6,0.88)), url(https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1920&q=80)' }} aria-hidden="true" />
+      <section className="page-header-v3" style={{ minHeight: '260px' }}>
+        <div className="page-header-v3-bg" style={{ background: '#0D0706' }} aria-hidden="true" />
         <div className="page-header-v3-glow" aria-hidden="true" />
         <div className="page-header-v3-dots" aria-hidden="true" />
         <div className="container" style={{ position: 'relative', zIndex: 2, paddingTop: '30px' }}>
