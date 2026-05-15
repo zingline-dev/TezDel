@@ -29,12 +29,14 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Home', path: '/' },
+    { name: 'Food', path: '/food' },
+    { name: 'Grocery', path: '/grocery' },
     { name: 'About', path: '/about' },
-    { name: 'Investor', path: '/investor' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'Investor Relations', path: '/investor' },
+    { name: 'Contact Us', path: '/contact' }
   ];
 
-  const scrolledStyle = isScrolled || !isHome;
+  const scrolledStyle = isScrolled;
 
   return (
     <header className={`header ${scrolledStyle ? 'scrolled glass' : ''}`}>
@@ -71,20 +73,6 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
-          <Link
-            to="/food"
-            className="btn btn-primary"
-            style={{
-              padding: '0.6rem 1.25rem',
-              fontSize: '0.9rem',
-              marginLeft: '1rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem'
-            }}
-          >
-            Order Now <ArrowRight size={16} />
-          </Link>
         </nav>
 
         <button

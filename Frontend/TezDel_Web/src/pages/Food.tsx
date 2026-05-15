@@ -23,7 +23,7 @@ export default function Food() {
     <div className="page-v3">
 
       {/* Header */}
-      <section className="page-header-v3" style={{ minHeight: '180px', display: 'flex', alignItems: 'center', paddingBottom: 0 }}>
+      <section className="page-header-v3">
         <div className="page-header-v3-bg" style={{ background: '#0D0706' }} aria-hidden="true" />
         <div className="page-header-v3-glow" aria-hidden="true" />
         <div className="page-header-v3-dots" aria-hidden="true" />
@@ -42,6 +42,13 @@ export default function Food() {
               <input type="text" placeholder="Search for Pakhala, Dalma or your favourite restaurant" style={{ border: 'none', outline: 'none', background: 'transparent', flex: 1, fontSize: '16px', color: '#333', fontWeight: 500 }} />
             </div>
             <button className="btn btn-primary" style={{ padding: '0 40px', borderRadius: '14px', fontSize: '16px', fontWeight: 700, whiteSpace: 'nowrap' }}>Find Food</button>
+          </div>
+          <div style={{ marginTop: '16px', textAlign: 'center', fontSize: '13px', color: 'rgba(255,255,255,0.4)', display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <span>Popular: <strong>Biryani</strong></span>
+            <span>•</span>
+            <span><strong>Rolls</strong></span>
+            <span>•</span>
+            <span><strong>North Indian</strong></span>
           </div>
         </div>
       </section>

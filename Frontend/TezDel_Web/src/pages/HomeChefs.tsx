@@ -29,7 +29,7 @@ export default function HomeChefs() {
           </div>
           <h1 className="page-hero-v3-title">Real Odia Food.<br /><span className="page-hero-v3-accent">Real Home Kitchens.</span></h1>
           <p className="page-hero-v3-sub">Order authentic pakhala, dalma, macha besara, and chenna poda — cooked by verified home chefs from your neighbourhood. The food Swiggy doesn't even list.</p>
-          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem', borderRadius: '12px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', fontSize: '1rem', fontWeight: 600 }}>Become a Home Chef →</Link>
+          <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem', borderRadius: '12px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', fontSize: '1rem', fontWeight: 600 }}>Book your Home Chef !!</Link>
         </div>
       </section>
 
@@ -92,23 +92,23 @@ export default function HomeChefs() {
         </div>
       </section>
 
-      {/* Become a Chef CTA */}
+      {/* Quality Assurance */}
       <section className="tezpass-v3">
         <div className="container">
           <div className="tezpass-v3-inner">
             <div>
-              <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Earn from Home</p>
-              <h2 className="section-title-v3 tezpass-v3-title">Do You Cook Odia Food<br />That People Love?</h2>
-              <p className="tezpass-v3-p">Join our home chef network and turn your kitchen into a business. We handle orders, delivery, and payments — you just cook.</p>
-              <Link to="/contact" className="btn-outline-white-v3">Apply to Join</Link>
+              <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Quality & Hygiene</p>
+              <h2 className="section-title-v3 tezpass-v3-title">Cooked with Love.<br />Served with Safety.</h2>
+              <p className="tezpass-v3-p">Every chef in our network is personally verified. We conduct regular kitchen inspections and hygiene audits so you can enjoy home food with 100% peace of mind.</p>
+              <Link to="/about" className="btn-outline-white-v3">Our Safety Standards</Link>
             </div>
             <div className="tezpass-card-v3">
-              <div className="tezpass-price-v3">₹0</div>
-              <div className="tezpass-period-v3">to join — no upfront cost ever</div>
+              <div className="tezpass-price-v3">100%</div>
+              <div className="tezpass-period-v3">Verified Home Kitchens</div>
               <ul className="tezpass-benefits-v3">
-                {['Zero registration or onboarding fee', 'We handle all deliveries for you', 'Weekly payouts directly to your account', 'Your own profile page on TezDel', 'Marketing & promotional support', 'FSSAI registration guidance'].map(b => <li key={b}>{b}</li>)}
+                {['Personal kitchen verification visits', 'Mandatory hygiene & safety training', 'Fresh ingredients sourced daily', 'FSSAI registration assistance & checks', 'Strict quality control on every order', 'Transparent customer review system'].map(b => <li key={b}>{b}</li>)}
               </ul>
-              <Link to="/contact" className="btn btn-primary" style={{ width: '100%', padding: '1rem', borderRadius: '12px', textDecoration: 'none', display: 'block', textAlign: 'center', fontWeight: 600 }}>Start Cooking with Us</Link>
+              <Link to="/food" className="btn btn-primary" style={{ width: '100%', padding: '1rem', borderRadius: '12px', textDecoration: 'none', display: 'block', textAlign: 'center', fontWeight: 600 }}>Explore All Meals</Link>
             </div>
           </div>
         </div>

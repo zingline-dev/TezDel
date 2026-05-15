@@ -73,6 +73,13 @@ export default function Home() {
               />
               <button className="hero-v3-search-btn" type="button">Search</button>
             </div>
+            <div style={{ marginTop: '14px', fontSize: '13px', color: 'rgba(255,255,255,0.45)', display: 'flex', gap: '12px' }}>
+              <span>Try: <strong>Dalma</strong></span>
+              <span>•</span>
+              <span><strong>Odia Thali</strong></span>
+              <span>•</span>
+              <span><strong>Macha Besara</strong></span>
+            </div>
             <div className="hero-v3-chips" role="list" aria-label="Popular searches">
               {chips.map(chip => (
                 <span
@@ -226,8 +233,8 @@ export default function Home() {
             ))}
           </div>
           <div className="homechef-cta-v3">
-            <p>Are you a home cook who loves making Odia food? Join our home chef network.</p>
-            <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem' }}>Become a Home Chef</Link>
+            <p>Craving that authentic, slow-cooked Odia taste? Experience the magic of our verified home kitchens.</p>
+            <Link to="/contact" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem' }}>Book your Home Chef !!</Link>
           </div>
         </div>
       </section>
@@ -341,8 +348,12 @@ export default function Home() {
         <div className="container">
           <div className="section-head-v3">
             <p className="section-label-v3">Coverage</p>
-            <h2 className="section-title-v3" id="zones-heading">Delivering Across<br />Bhubaneswar</h2>
-            <p className="section-sub-v3">We're live in key zones and expanding fast. Check if we deliver in your area.</p>
+            <h2 className="section-title-v3" id="zones-heading">Delivering to 25+ Zones</h2>
+            <p className="section-sub-v3">We are rapidly expanding across Bhubaneswar. Select your zone to explore local favorites.</p>
+            <div style={{ marginTop: '12px', fontSize: '13px', color: 'var(--color-text-muted)' }}>
+              <span className="hero-v3-tag-dot" style={{ verticalAlign: 'middle', marginRight: '8px' }}></span>
+              Tap any zone to see estimated delivery times
+            </div>
           </div>
           <div className="zone-grid-v3" role="list">
             {zones.map(zone => (

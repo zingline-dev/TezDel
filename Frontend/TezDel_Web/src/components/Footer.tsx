@@ -18,35 +18,30 @@ export default function Footer() {
             </div>
 
             <div className="footer-grid-v2">
-               <div className="footer-col">
-                  <h4>ABOUT TEZDEL</h4>
-                  <ul>
-                     <li><Link to="/about">Who We Are</Link></li>
-                     <li><Link to="/about">Our Story</Link></li>
-                     <li><Link to="/careers">Work With Us</Link></li>
-                     <li><Link to="/investor">Investor Relations</Link></li>
-                     <li><Link to="/contact">Contact Us</Link></li>
-                  </ul>
-               </div>
-               <div className="footer-col">
-                  <h4>TEZDEL SERVICES</h4>
-                  <ul>
-                     <li><Link to="/food">Food Delivery</Link></li>
-                     <li><Link to="/home-chefs">Home Chef Network</Link></li>
-                     <li><Link to="/grocery">Grocery Delivery</Link></li>
-                     <li><Link to="/food">Festival Specials</Link></li>
-                     <li><Link to="/contact">Corporate Lunch</Link></li>
-                  </ul>
-               </div>
-               <div className="footer-col">
-                  <h4>LEGAL</h4>
-                  <ul>
-                     <li><Link to="/legal">Privacy Policy</Link></li>
-                     <li><Link to="/legal">Terms & Conditions</Link></li>
-                     <li><Link to="/legal">Refund Policy</Link></li>
-                     <li><Link to="/legal">Delivery Policy</Link></li>
-                  </ul>
-               </div>
+                <div className="footer-col">
+                   <h4>ABOUT TEZDEL</h4>
+                   <ul>
+                      <li><Link to="/about">About Us</Link></li>
+                      <li><Link to="/careers">Careers</Link></li>
+                      <li><Link to="/investor">Investor Relations</Link></li>
+                      <li><Link to="/contact">Contact Us</Link></li>
+                   </ul>
+                </div>
+                <div className="footer-col">
+                   <h4>OUR SERVICES</h4>
+                   <ul>
+                      <li><Link to="/food">Food Delivery</Link></li>
+                      <li><Link to="/home-chefs">Home Chef Network</Link></li>
+                      <li><Link to="/grocery">Grocery Delivery</Link></li>
+                   </ul>
+                </div>
+                <div className="footer-col">
+                   <h4>LEGAL</h4>
+                   <ul>
+                      <li><Link to="/legal">Privacy Policy</Link></li>
+                      <li><Link to="/legal">Terms & Conditions</Link></li>
+                   </ul>
+                </div>
                <div className="footer-col">
                   <h4>SOCIAL LINKS</h4>
                   <div className="social-links" style={{ display: 'flex', gap: '8px', marginBottom: '1.5rem' }}>

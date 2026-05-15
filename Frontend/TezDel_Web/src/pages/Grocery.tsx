@@ -19,7 +19,7 @@ export default function Grocery() {
     <div className="page-v3">
 
       {/* Header */}
-      <section className="page-header-v3" style={{ minHeight: '180px', display: 'flex', alignItems: 'center', paddingBottom: 0 }}>
+      <section className="page-header-v3">
         <div className="page-header-v3-bg" style={{ background: '#0D0706' }} aria-hidden="true" />
         <div className="page-header-v3-glow" aria-hidden="true" />
         <div className="page-header-v3-dots" aria-hidden="true" />
@@ -37,6 +37,13 @@ export default function Grocery() {
               <input type="text" placeholder="Search for vegetables, milk, groceries..." style={{ border: 'none', outline: 'none', background: 'transparent', flex: 1, fontSize: '16px', color: '#333', fontWeight: 500 }} />
             </div>
             <button className="btn btn-primary" style={{ padding: '0 40px', borderRadius: '14px', fontSize: '16px', fontWeight: 700, whiteSpace: 'nowrap' }}>Search</button>
+          </div>
+          <div style={{ marginTop: '16px', textAlign: 'center', fontSize: '13px', color: 'rgba(255,255,255,0.4)', display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <span>Popular: <strong>Fresh Vegetables</strong></span>
+            <span>•</span>
+            <span><strong>Milk & Dairy</strong></span>
+            <span>•</span>
+            <span><strong>Rice & Atta</strong></span>
           </div>
         </div>
       </section>
