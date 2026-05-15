@@ -32,9 +32,9 @@ export default function Food() {
           <div style={{ display: 'flex', gap: '16px', alignItems: 'stretch', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
             <div className="food-location-box-v3">
               <span>📍</span>
-              <div>
-                <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.8px', marginBottom: '2px' }}>Delivering to</div>
-                <div style={{ fontWeight: 700, color: '#fff', fontSize: '16px' }}>Patia, Bhubaneswar</div>
+              <div style={{ fontWeight: 700, color: '#fff', fontSize: '15px' }}>
+                <span style={{ fontSize: '11px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.8px', marginRight: '8px' }}>Delivering to:</span>
+                Patia, Bhubaneswar
               </div>
             </div>
             <div className="food-search-box-v3">
