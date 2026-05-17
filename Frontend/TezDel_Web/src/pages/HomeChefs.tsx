@@ -148,7 +148,7 @@ export default function HomeChefs() {
             whileInView="animate"
             viewport={{ once: true }}
             className="steps-v3"
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '40px' }}
           >
             {howItWorks.map(s => (
               <motion.article key={s.step} variants={fadeInUp} className="step-v3" style={{ textAlign: 'center' }}>
@@ -168,7 +168,7 @@ export default function HomeChefs() {
             <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="section-label-v3">Our verified Chefs</motion.p>
             <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3" style={{ color: '#fff', fontSize: '2.75rem' }}>Meet Your Neighbourhood Cooks</motion.h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '30px' }}>
             {chefs.map((chef, i) => (
               <motion.article 
                 key={chef.name} 
@@ -220,7 +220,7 @@ export default function HomeChefs() {
       {/* Quality Assurance */}
       <section className="tezpass-v3" style={{ padding: '140px 0' }}>
         <div className="container">
-          <div className="tezpass-v3-inner" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '80px', alignItems: 'center' }}>
+          <div className="tezpass-v3-inner" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '80px', alignItems: 'center' }}>
             <div>
               <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Quality & Hygiene</motion.p>
               <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3 tezpass-v3-title" style={{ fontSize: '3rem', marginBottom: '2rem' }}>Cooked with Love.<br />Served with Safety.</motion.h2>

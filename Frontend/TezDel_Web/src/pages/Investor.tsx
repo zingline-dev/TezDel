@@ -177,7 +177,7 @@ export default function Investor() {
             whileInView="animate"
             viewport={{ once: true }}
             className="why-grid-v3"
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '24px' }}
           >
             {pillars.map(p => (
               <motion.article 

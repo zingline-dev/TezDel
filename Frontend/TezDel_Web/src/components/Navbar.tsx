@@ -152,6 +152,8 @@ export default function Navbar() {
         </div>
       </div>
 
+      </motion.header>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -166,33 +168,35 @@ export default function Navbar() {
               top: 0,
               right: 0,
               bottom: 0,
-              width: '80%',
-              maxWidth: '400px',
-              zIndex: 1100,
+              width: '100%',
+              maxWidth: '100%',
+              zIndex: 9999,
               padding: '2rem',
               display: 'flex',
               flexDirection: 'column',
-              gap: '1.5rem'
+              gap: '1.5rem',
+              backgroundColor: 'rgba(15, 23, 42, 0.95)',
+              backdropFilter: 'blur(20px)'
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#fff' }}>
-                <X size={32} />
+            <div style={{ display: 'flex', justifyContent: 'flex-end', paddingTop: '10px' }}>
+              <button onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#fff', background: 'none', border: 'none', cursor: 'pointer' }}>
+                <X size={36} />
               </button>
             </div>
             
-            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.path}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * i }}
                 >
                   <Link
                     to={link.path}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    style={{ fontSize: '1.5rem', fontWeight: '700', color: '#fff' }}
+                    style={{ fontSize: '2rem', fontWeight: '800', color: '#fff', textDecoration: 'none' }}
                   >
                     {link.name}
                   </Link>
@@ -203,8 +207,8 @@ export default function Navbar() {
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              style={{ marginTop: 'auto' }}
+              transition={{ delay: 0.5 }}
+              style={{ marginTop: 'auto', paddingBottom: '2rem' }}
             >
               <button 
                 onClick={() => {
@@ -212,7 +216,7 @@ export default function Navbar() {
                   setIsDevModalOpen(true);
                 }}
                 className="btn-v3 primary" 
-                style={{ width: '100%', textAlign: 'center', background: 'var(--color-primary)', color: '#fff', border: 'none', padding: '1rem', borderRadius: '12px', fontWeight: '700', cursor: 'pointer' }}
+                style={{ width: '100%', textAlign: 'center', background: 'var(--color-primary)', color: '#fff', border: 'none', padding: '1.2rem', borderRadius: '16px', fontWeight: '800', fontSize: '1.2rem', cursor: 'pointer', boxShadow: '0 10px 30px rgba(255, 61, 0, 0.3)' }}
               >
                 Join the Mission
               </button>
@@ -220,7 +224,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-      </motion.header>
     </>
   );
 }
