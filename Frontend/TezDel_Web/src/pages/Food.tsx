@@ -39,7 +39,7 @@ const FOOD_IMAGES = {
     'https://images.unsplash.com/photo-1589301760014-d929f3979dbc', // Spicy Gravy Tarkari / Paneer
     'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', // Tandoori Paneer Butter Masala
     'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4', // Tandoori Platter
-    'https://images.unsplash.com/photo-1645177625172-5957088b9014'  // Special Pav Bhaji / Curry
+    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7'  // Special Pav Bhaji / Curry (Verified 200 OK)
   ],
   'Biryani': [
     'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8', // Royal Hyderabadi Biryani
@@ -55,7 +55,7 @@ const FOOD_IMAGES = {
     'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e', // Pepperoni Feast Pizza
     'https://images.unsplash.com/photo-1574071318508-1cdbab80d002', // Cheese Burst Pizza
     'https://images.unsplash.com/photo-1511018556340-d16986a1c194', // Fresh Basil Pesto Pizza
-    'https://images.unsplash.com/photo-1594009493602-44a417cd8852'  // Thin Crust Vegetable Pizza
+    'https://images.unsplash.com/photo-1590947132387-155cc02f3212'  // Deluxe Pepperoni Pizza (Verified 200 OK)
   ],
   'Burgers': [
     'https://images.unsplash.com/photo-1568901346375-23c9450c58cd', // Gourmet Double Cheeseburger
@@ -68,16 +68,16 @@ const FOOD_IMAGES = {
   'Rolls': [
     'https://images.unsplash.com/photo-1626132647523-66f5bf380027', // Paneer Kathi Roll Wraps
     'https://images.unsplash.com/photo-1608897013039-887f21d8c804', // Spicy Chicken Kathi Wrap
-    'https://images.unsplash.com/photo-1601356616077-695728617cb9', // Indian Street Food Chaat / Dahibara
+    'https://images.unsplash.com/photo-1625398407796-82650a8c135f', // Delicious Spring Rolls (Verified 200 OK)
     'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb', // Steamed Momos with Red Dip
     'https://images.unsplash.com/photo-1585238342024-78d387f4a707', // Schezwan Noodles
-    'https://images.unsplash.com/photo-1601050690597-df056fb4ce78'  // Punjabi Samosas with Chutney
+    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc'  // Chaat base / Curry Bowl (Verified 200 OK)
   ],
   'Desserts': [
     'https://images.unsplash.com/photo-1551024506-0bccd828d307', // Hot Chocolate Cake
     'https://images.unsplash.com/photo-1587314168485-3236d6710814', // Assorted Indian Sweets / Ladoo
     'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e', // Traditional Chenna Poda / Sweets
-    'https://images.unsplash.com/photo-1625220194771-7ebedd0b70b9', // Sweet Rasgullas in Bowl
+    'https://images.unsplash.com/photo-1508737027454-e6454ef45afd', // Sweet cupcakes/cakes (Verified 200 OK)
     'https://images.unsplash.com/photo-1578985545062-69928b1d9587', // Black Forest Gateau Cake
     'https://images.unsplash.com/photo-1596797038530-2c107229654b'  // Premium Kaju Katli / Sweets
   ]
@@ -180,12 +180,12 @@ function generateHyperlocalRestaurants(location: string): Array<{
       restaurantName = 'Cuttack Dahibara Express';
       customCategory = 'Rolls';
       customTags = 'Odia · Iconic Dahibara Aloodum · Ghuguni';
-      img = 'https://images.unsplash.com/photo-1601356616077-695728617cb9?auto=format&fit=crop&w=800&h=600&q=80&sig=cuttack_dahibara'; // Indian Street chaat / dahibara
+      img = 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&h=600&q=80&sig=cuttack_dahibara'; // Indian Street chaat / dahibara (Verified 200 OK)
     } else if (i === 6) {
       restaurantName = 'Nimapada Sweets';
       customCategory = 'Desserts';
       customTags = 'Desserts · Iconic Chenna Poda · Rasgulla';
-      img = 'https://images.unsplash.com/photo-1625220194771-7ebedd0b70b9?auto=format&fit=crop&w=800&h=600&q=80&sig=nimapada_sweets'; // Rasgullas in bowl
+      img = 'https://images.unsplash.com/photo-1508737027454-e6454ef45afd?auto=format&fit=crop&w=800&h=600&q=80&sig=nimapada_sweets'; // Sweet cakes/sweets (Verified 200 OK)
     }
 
     list.push({
