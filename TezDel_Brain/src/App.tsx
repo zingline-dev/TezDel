@@ -1,9 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import {
   Activity,
+  AlertTriangle,
   ArrowRight,
   BarChart3,
   Bike,
+  Bot,
   Brain,
   BriefcaseBusiness,
   Check,
@@ -12,10 +14,16 @@ import {
   Code2,
   Command,
   Copy,
+  Cpu,
   Crosshair,
   HeartHandshake,
+  Loader2,
   Megaphone,
+  PlayCircle,
   Radio,
+  RefreshCw,
+  Send,
+  Server,
   ShieldCheck,
   Store,
   Telescope,
@@ -36,6 +44,15 @@ import {
   refuseToCompeteOn,
   type Department,
 } from './data/brain';
+import {
+  getBrainHealth,
+  getDiagnostics,
+  runAgent,
+  runStandup,
+  type AgentDiagnostic,
+  type AgentRunResponse,
+  type BrainHealth,
+} from './api/brainApi';
 
 const iconMap = {
   ceo: Command,
@@ -67,16 +84,141 @@ function ToneIcon({ tone }: { tone: string }) {
 export default function App() {
   const [activeId, setActiveId] = useState('ceo');
   const [copied, setCopied] = useState(false);
+  const [health, setHealth] = useState<BrainHealth | null>(null);
+  const [healthError, setHealthError] = useState('');
+  const [selectedModel, setSelectedModel] = useState('');
+  const [diagnostics, setDiagnostics] = useState<AgentDiagnostic[]>([]);
+  const [diagnosticsLoading, setDiagnosticsLoading] = useState(false);
+  const [task, setTask] = useState(
+    'Create today execution plan for this department to help TezDel dominate one Bhubaneswar locality.',
+  );
+  const [agentResponse, setAgentResponse] = useState<AgentRunResponse | null>(null);
+  const [standupResponse, setStandupResponse] = useState<AgentRunResponse | null>(null);
+  const [runningAgent, setRunningAgent] = useState(false);
+  const [runningStandup, setRunningStandup] = useState(false);
 
   const activeDepartment = useMemo(
     () => departments.find((department) => department.id === activeId) ?? departments[0],
     [activeId],
   );
 
+  const diagnosticMap = useMemo(
+    () => new Map(diagnostics.map((diagnostic) => [diagnostic.id, diagnostic])),
+    [diagnostics],
+  );
+
+  const modelNames = health?.ollama.models.map((model) => model.name) ?? [];
+  const modelMode = health?.mode ?? 'fallback';
+  const modelStatusText =
+    healthError ||
+    (health?.ollama.connected
+      ? health.ollama.selectedModel
+        ? `Connected to ${health.ollama.selectedModel}`
+        : 'Ollama connected, but no model is available'
+      : 'Ollama is offline, fallback mode active');
+
+  useEffect(() => {
+    let mounted = true;
+
+    getBrainHealth()
+      .then((data) => {
+        if (!mounted) return;
+        setHealth(data);
+        setSelectedModel(data.ollama.selectedModel ?? '');
+      })
+      .catch((error: unknown) => {
+        if (!mounted) return;
+        setHealthError(error instanceof Error ? error.message : 'Brain API is not reachable');
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
+  async function refreshHealth(model = selectedModel) {
+    setHealthError('');
+    try {
+      const data = await getBrainHealth(model || undefined);
+      setHealth(data);
+      setSelectedModel(model || data.ollama.selectedModel || '');
+    } catch (error) {
+      setHealthError(error instanceof Error ? error.message : 'Brain API is not reachable');
+    }
+  }
+
   async function handleCopyPrompt() {
     await navigator.clipboard.writeText(masterPrompt);
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
+  }
+
+  function handleSelectAgent(agentId: string) {
+    setActiveId(agentId);
+    setAgentResponse(null);
+  }
+
+  async function handleDiagnostics() {
+    setDiagnosticsLoading(true);
+    setHealthError('');
+    try {
+      const result = await getDiagnostics(selectedModel || undefined);
+      setDiagnostics(result.agents);
+      setHealth((current) =>
+        current
+          ? { ...current, mode: result.mode, ollama: result.ollama }
+          : {
+              api: 'ok',
+              mode: result.mode,
+              agentCount: result.agents.length,
+              ollama: result.ollama,
+            },
+      );
+      setSelectedModel(result.ollama.selectedModel ?? selectedModel);
+    } catch (error) {
+      setHealthError(error instanceof Error ? error.message : 'Diagnostics failed');
+    } finally {
+      setDiagnosticsLoading(false);
+    }
+  }
+
+  async function handleRunAgent() {
+    setRunningAgent(true);
+    setAgentResponse(null);
+    try {
+      const result = await runAgent(activeDepartment.id, task, selectedModel || undefined);
+      setAgentResponse(result);
+    } catch (error) {
+      setAgentResponse({
+        mode: 'fallback',
+        model: selectedModel || null,
+        output: error instanceof Error ? error.message : 'Agent run failed',
+        warning: 'Local Brain API error',
+      });
+    } finally {
+      setRunningAgent(false);
+    }
+  }
+
+  async function handleRunStandup() {
+    setRunningStandup(true);
+    setStandupResponse(null);
+    try {
+      const result = await runStandup(
+        'Create today morning standup for all TezDel Brain departments. Focus on Bhubaneswar launch execution, home chefs, kiranas, captains, customer trust, and AI infrastructure.',
+        selectedModel || undefined,
+      );
+      setStandupResponse(result);
+    } catch (error) {
+      setStandupResponse({
+        mode: 'fallback',
+        model: selectedModel || null,
+        output: error instanceof Error ? error.message : 'Standup generation failed',
+        warning: 'Local Brain API error',
+      });
+    } finally {
+      setRunningStandup(false);
+    }
   }
 
   return (
@@ -91,11 +233,18 @@ export default function App() {
             <small>AI Operating System</small>
           </span>
         </a>
-        <nav className="topnav" aria-label="Primary">
-          <a href="#agents">Agents</a>
-          <a href="#loop">Execution Loop</a>
-          <a href="#prompt">Master Prompt</a>
-        </nav>
+        <div className="top-actions">
+          <nav className="topnav" aria-label="Primary">
+            <a href="#console">Console</a>
+            <a href="#agents">Agents</a>
+            <a href="#loop">Execution Loop</a>
+            <a href="#prompt">Master Prompt</a>
+          </nav>
+          <span className={`model-pill ${modelMode}`}>
+            <span className="model-dot" />
+            {modelMode === 'ollama' ? 'AI Online' : 'Fallback'}
+          </span>
+        </div>
       </header>
 
       <main>
@@ -159,6 +308,199 @@ export default function App() {
           ))}
         </section>
 
+        <section className="brain-console" id="console" aria-label="Functional agent console">
+          <article className="console-status">
+            <div className="panel-heading">
+              <div>
+                <p className="section-kicker">Functional Brain</p>
+                <h2>Model Connection</h2>
+              </div>
+              <button className="icon-button" type="button" onClick={() => refreshHealth()}>
+                <RefreshCw size={17} aria-hidden="true" />
+                Refresh
+              </button>
+            </div>
+
+            <div className={`connection-card ${modelMode}`}>
+              <div className="connection-icon">
+                {modelMode === 'ollama' ? (
+                  <Server size={22} aria-hidden="true" />
+                ) : (
+                  <AlertTriangle size={22} aria-hidden="true" />
+                )}
+              </div>
+              <div>
+                <strong>{modelStatusText}</strong>
+                <p>
+                  API: {health?.api === 'ok' ? 'running' : 'checking'} · Agents:{' '}
+                  {health?.agentCount ?? departments.length} · Ollama:{' '}
+                  {health?.ollama.ollamaUrl ?? 'http://127.0.0.1:11434'}
+                </p>
+              </div>
+            </div>
+
+            <label className="model-select-label" htmlFor="model-select">
+              Active Model
+              <select
+                id="model-select"
+                value={selectedModel}
+                onChange={(event) => setSelectedModel(event.target.value)}
+                disabled={!modelNames.length}
+              >
+                {modelNames.length ? (
+                  modelNames.map((model) => (
+                    <option value={model} key={model}>
+                      {model}
+                    </option>
+                  ))
+                ) : (
+                  <option value="">
+                    {health?.ollama.connected ? 'No models installed' : 'Ollama offline'}
+                  </option>
+                )}
+              </select>
+            </label>
+
+            <div className="console-actions">
+              <button
+                className="primary-action"
+                type="button"
+                onClick={handleDiagnostics}
+                disabled={diagnosticsLoading}
+              >
+                {diagnosticsLoading ? (
+                  <Loader2 className="spin" size={18} aria-hidden="true" />
+                ) : (
+                  <Cpu size={18} aria-hidden="true" />
+                )}
+                Check All Agents
+              </button>
+              <button
+                className="secondary-action"
+                type="button"
+                onClick={handleRunStandup}
+                disabled={runningStandup}
+              >
+                {runningStandup ? (
+                  <Loader2 className="spin" size={18} aria-hidden="true" />
+                ) : (
+                  <PlayCircle size={18} aria-hidden="true" />
+                )}
+                Generate CEO Standup
+              </button>
+            </div>
+
+            <div className="diagnostic-list">
+              {(diagnostics.length
+                ? diagnostics
+                : departments.map((department) => ({
+                    id: department.id,
+                    name: department.shortName,
+                    status: 'fallback' as const,
+                    detail: 'Not checked yet.',
+                  }))
+              ).map((diagnostic) => (
+                <button
+                  className={`diagnostic-item ${activeId === diagnostic.id ? 'active' : ''}`}
+                  data-status={diagnostic.status}
+                  key={diagnostic.id}
+                  type="button"
+                  onClick={() => handleSelectAgent(diagnostic.id)}
+                >
+                  <span>{diagnostic.name}</span>
+                  <small>{diagnostic.detail}</small>
+                </button>
+              ))}
+            </div>
+          </article>
+
+          <article className="console-runner">
+            <div className="panel-heading">
+              <div>
+                <p className="section-kicker">Run Agent</p>
+                <h2>{activeDepartment.shortName}</h2>
+              </div>
+              <span>{activeDepartment.personality}</span>
+            </div>
+
+            <label className="agent-select-label" htmlFor="agent-select">
+              Select Agent
+              <select
+                id="agent-select"
+                value={activeId}
+                onChange={(event) => handleSelectAgent(event.target.value)}
+              >
+                {departments.map((department) => (
+                  <option value={department.id} key={department.id}>
+                    {department.shortName}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="task-box" htmlFor="agent-task">
+              Task
+              <textarea
+                id="agent-task"
+                value={task}
+                onChange={(event) => setTask(event.target.value)}
+                rows={5}
+              />
+            </label>
+
+            <button
+              className="primary-action wide"
+              type="button"
+              onClick={handleRunAgent}
+              disabled={runningAgent || !task.trim()}
+            >
+              {runningAgent ? (
+                <Loader2 className="spin" size={18} aria-hidden="true" />
+              ) : (
+                <Send size={18} aria-hidden="true" />
+              )}
+              Run Selected Agent
+            </button>
+
+            <div className="output-console">
+              <div className="output-head">
+                <span>
+                  <Bot size={16} aria-hidden="true" />
+                  Agent Output
+                </span>
+                {agentResponse ? (
+                  <small>
+                    {agentResponse.mode} {agentResponse.model ? `· ${agentResponse.model}` : ''}
+                    {agentResponse.latencyMs ? ` · ${agentResponse.latencyMs}ms` : ''}
+                  </small>
+                ) : null}
+              </div>
+              <pre>
+                {agentResponse
+                  ? agentResponse.output
+                  : 'Select any department, write a task, and run it. If Ollama is online, this will be a real model response.'}
+              </pre>
+              {agentResponse?.warning ? <p className="console-warning">{agentResponse.warning}</p> : null}
+            </div>
+
+            {standupResponse ? (
+              <div className="output-console standup-output">
+                <div className="output-head">
+                  <span>
+                    <Command size={16} aria-hidden="true" />
+                    CEO Standup
+                  </span>
+                  <small>{standupResponse.mode}</small>
+                </div>
+                <pre>{standupResponse.output}</pre>
+                {standupResponse.warning ? (
+                  <p className="console-warning">{standupResponse.warning}</p>
+                ) : null}
+              </div>
+            ) : null}
+          </article>
+        </section>
+
         <section className="agent-workbench" id="agents">
           <div className="section-title-row">
             <div>
@@ -176,10 +518,19 @@ export default function App() {
                   data-color={department.color}
                   key={department.id}
                   type="button"
-                  onClick={() => setActiveId(department.id)}
+                  onClick={() => handleSelectAgent(department.id)}
                 >
                   <AgentIcon department={department} />
-                  <span>{department.shortName}</span>
+                  <span className="agent-tab-copy">
+                    {department.shortName}
+                    {diagnosticMap.get(department.id) ? (
+                      <small data-status={diagnosticMap.get(department.id)?.status}>
+                        {diagnosticMap.get(department.id)?.status === 'ready'
+                          ? 'model ready'
+                          : 'fallback'}
+                      </small>
+                    ) : null}
+                  </span>
                 </button>
               ))}
             </aside>

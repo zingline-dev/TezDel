@@ -117,6 +117,38 @@ button {
   color: var(--ink);
 }
 
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.model-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 8px 11px;
+  border-radius: 8px;
+  background: rgba(180, 35, 24, 0.09);
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.model-pill.ollama {
+  background: rgba(11, 143, 115, 0.1);
+  color: var(--green);
+}
+
+.model-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
 main {
   width: min(1480px, calc(100% - 32px));
   margin: 0 auto;
@@ -133,6 +165,8 @@ main {
 .command-panel,
 .identity-panel,
 .kpi-card,
+.console-status,
+.console-runner,
 .agent-detail,
 .loop-panel,
 .flow-panel,
@@ -387,10 +421,274 @@ h1 {
 }
 
 .agent-workbench,
+.brain-console,
 .operations-grid,
 .strategy-grid,
 .prompt-console {
   margin-top: 28px;
+}
+
+.brain-console {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1.18fr);
+  gap: 16px;
+}
+
+.console-status,
+.console-runner {
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.icon-button,
+.primary-action,
+.secondary-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 10px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.icon-button,
+.secondary-action {
+  border: 1px solid rgba(25, 23, 20, 0.1);
+  background: #fff;
+  color: var(--ink);
+}
+
+.primary-action {
+  background: var(--charcoal);
+  color: #fff;
+}
+
+.primary-action:disabled,
+.secondary-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.62;
+}
+
+.wide {
+  width: 100%;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.connection-card {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  gap: 14px;
+  align-items: flex-start;
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid rgba(180, 35, 24, 0.18);
+  border-radius: 8px;
+  background: rgba(180, 35, 24, 0.05);
+}
+
+.connection-card.ollama {
+  border-color: rgba(11, 143, 115, 0.2);
+  background: rgba(11, 143, 115, 0.06);
+}
+
+.connection-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.connection-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.connection-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: var(--red);
+  color: #fff;
+}
+
+.connection-card.ollama .connection-icon {
+  background: var(--green);
+}
+
+.model-select-label,
+.agent-select-label,
+.task-box {
+  display: grid;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.model-select-label select,
+.agent-select-label select,
+.task-box textarea {
+  width: 100%;
+  border: 1px solid rgba(25, 23, 20, 0.14);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 700;
+  outline: none;
+}
+
+.model-select-label select,
+.agent-select-label select {
+  min-height: 44px;
+  padding: 0 12px;
+}
+
+.agent-select-label {
+  margin: 18px 0 12px;
+}
+
+.task-box textarea {
+  min-height: 130px;
+  margin-bottom: 12px;
+  padding: 12px;
+  resize: vertical;
+  line-height: 1.5;
+  text-transform: none;
+}
+
+.console-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.diagnostic-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  max-height: 370px;
+  margin-top: 18px;
+  overflow: auto;
+}
+
+.diagnostic-item {
+  min-height: 78px;
+  padding: 12px;
+  border: 1px solid rgba(180, 35, 24, 0.14);
+  border-radius: 8px;
+  background: rgba(180, 35, 24, 0.04);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.diagnostic-item[data-status="ready"] {
+  border-color: rgba(11, 143, 115, 0.18);
+  background: rgba(11, 143, 115, 0.05);
+}
+
+.diagnostic-item:hover,
+.diagnostic-item.active {
+  border-color: rgba(240, 90, 40, 0.45);
+  background: #fff;
+  box-shadow: 0 10px 22px rgba(240, 90, 40, 0.12);
+}
+
+.diagnostic-item span,
+.diagnostic-item small {
+  display: block;
+}
+
+.diagnostic-item span {
+  margin-bottom: 6px;
+  font-weight: 900;
+}
+
+.diagnostic-item small {
+  color: var(--muted);
+  line-height: 1.35;
+}
+
+.console-runner .panel-heading {
+  align-items: flex-start;
+}
+
+.console-runner .panel-heading > span {
+  max-width: 320px;
+  white-space: normal;
+  line-height: 1.35;
+  text-align: right;
+}
+
+.output-console {
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(25, 23, 20, 0.1);
+  border-radius: 8px;
+  background: #121110;
+}
+
+.standup-output {
+  background: #1d1a17;
+}
+
+.output-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.output-head span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 900;
+}
+
+.output-head small {
+  color: #ffb28e;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.output-console pre {
+  min-height: 180px;
+  max-height: 430px;
+  margin: 0;
+  overflow: auto;
+  padding: 16px;
+  color: #f8f2e8;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.console-warning {
+  margin: 0;
+  padding: 0 16px 16px;
+  color: #ffb28e;
+  font-size: 0.88rem;
+  font-weight: 800;
 }
 
 .section-title-row {
@@ -432,6 +730,22 @@ h1 {
 
 .agent-tab svg {
   flex: 0 0 auto;
+}
+
+.agent-tab-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.agent-tab-copy small {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.agent-tab-copy small[data-status="ready"] {
+  color: var(--green);
 }
 
 .agent-tab:hover,
@@ -737,6 +1051,7 @@ h1 {
 
 @media (max-width: 1180px) {
   .command-grid,
+  .brain-console,
   .operations-grid,
   .strategy-grid {
     grid-template-columns: 1fr;
@@ -749,10 +1064,16 @@ h1 {
 
 @media (max-width: 880px) {
   .topbar,
+  .top-actions,
   .section-title-row,
   .panel-heading {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .top-actions {
+    width: 100%;
+    gap: 8px;
   }
 
   .topnav {
@@ -764,7 +1085,8 @@ h1 {
   .directive-grid,
   .workbench-grid,
   .agent-columns,
-  .flow-list {
+  .flow-list,
+  .diagnostic-list {
     grid-template-columns: 1fr;
   }
 
@@ -796,6 +1118,15 @@ h1 {
   .kpi-card,
   .mission-strip {
     align-items: flex-start;
+  }
+
+  .console-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .console-runner .panel-heading > span {
+    max-width: 100%;
+    text-align: left;
   }
 
   .agent-detail::before {
