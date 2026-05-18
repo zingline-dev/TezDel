@@ -911,31 +911,30 @@ export default function Food() {
               </button>
 
               {/* Header Image */}
-              <div style={{ borderRadius: '20px', overflow: 'hidden', height: '160px', marginBottom: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+              <div style={{ borderRadius: '16px', overflow: 'hidden', height: '115px', marginBottom: '16px', border: '1px solid rgba(255,255,255,0.05)' }}>
                 <img src={selectedRestaurant.img} alt={selectedRestaurant.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
 
               {/* Title & Tagline */}
-              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-                <span style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '6px 14px', borderRadius: '30px', display: 'inline-block', marginBottom: '12px', fontFamily: "'Syne', sans-serif" }}>
+              <div style={{ textAlign: 'center', marginBottom: '16px' }}>
+                <span style={{ fontSize: '9px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '4px 10px', borderRadius: '30px', display: 'inline-block', marginBottom: '8px', fontFamily: "'Syne', sans-serif" }}>
                   Exclusive Pre-Release Access
                 </span>
-                <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '26px', fontWeight: 800, color: '#fff', lineHeight: '1.2' }}>
-                  Access {selectedRestaurant.name} <br />
-                  <span style={{ color: 'var(--color-primary)' }}>Exclusively in the App</span>
+                <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, color: '#fff', lineHeight: '1.2' }}>
+                  Access {selectedRestaurant.name} Exclusively in App
                 </h3>
-                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', marginTop: '12px', lineHeight: '1.6' }}>
-                  To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission, direct-to-customer</strong> delivery model, digital menus and active checkout are exclusively accessible via the forthcoming TezDel iOS and Android mobile applications.
+                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', marginTop: '8px', lineHeight: '1.4' }}>
+                  To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission</strong> delivery model, digital menus and checkouts are accessible only via the upcoming TezDel mobile application.
                 </p>
               </div>
 
               {/* Wishlist Box */}
-              <div style={{ background: 'rgba(255, 114, 76, 0.05)', border: '1px solid rgba(255, 114, 76, 0.15)', borderRadius: '20px', padding: '20px', textAlign: 'center', marginBottom: '24px' }}>
-                <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.95)', fontWeight: '600' }}>
-                  🚀 Join {selectedRestaurant.name}'s Exclusive App Wishlist
+              <div style={{ background: 'rgba(255, 114, 76, 0.05)', border: '1px solid rgba(255, 114, 76, 0.15)', borderRadius: '16px', padding: '14px', textAlign: 'center' }}>
+                <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.95)', fontWeight: '600' }}>
+                  🚀 Join {selectedRestaurant.name}'s App Wishlist
                 </div>
-                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: '1.4' }}>
-                  Be notified instantly when {selectedRestaurant.name} goes live. You will be joining <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> who just joined this exclusive wishlist!
+                <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: '1.3' }}>
+                  Get notified instantly when they go live. Join <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> already on the queue!
                 </p>
                 
                 {/* Simulated Input / Action */}
@@ -948,10 +947,10 @@ export default function Food() {
                       flex: 1, 
                       background: 'rgba(0,0,0,0.2)', 
                       border: '1px solid rgba(255,255,255,0.1)', 
-                      borderRadius: '12px', 
-                      padding: '10px 14px', 
+                      borderRadius: '10px', 
+                      padding: '8px 12px', 
                       color: '#fff', 
-                      fontSize: '13px' 
+                      fontSize: '12px' 
                     }} 
                     readOnly
                   />
@@ -964,25 +963,16 @@ export default function Food() {
                       background: 'var(--color-primary)',
                       border: 'none',
                       color: '#fff',
-                      padding: '10px 18px',
-                      borderRadius: '12px',
+                      padding: '8px 16px',
+                      borderRadius: '10px',
                       fontWeight: '700',
-                      fontSize: '13px',
+                      fontSize: '12px',
                       cursor: 'pointer'
                     }}
                   >
                     Join Queue
                   </button>
                 </div>
-              </div>
-
-              {/* App Moat Bullet Points */}
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: '600', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '16px' }}>
-                <span>⚡ Zero Commission</span>
-                <span>•</span>
-                <span>🏪 Direct local pricing</span>
-                <span>•</span>
-                <span>🛵 Nearby Captains</span>
               </div>
             </motion.div>
           </div>
