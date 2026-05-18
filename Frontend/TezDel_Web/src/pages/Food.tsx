@@ -943,7 +943,18 @@ export default function Food() {
 
                 {/* Right Column: Wishlist Queue Form */}
                 <div className="wishlist-modal-col-right-v3">
-                  <div style={{ background: 'rgba(255, 114, 76, 0.05)', border: '1px solid rgba(255, 114, 76, 0.15)', borderRadius: '16px', padding: '20px', textAlign: 'center' }}>
+                  <div style={{ 
+                    background: 'rgba(255, 114, 76, 0.05)', 
+                    border: '1px solid rgba(255, 114, 76, 0.15)', 
+                    borderRadius: '16px', 
+                    padding: '24px 20px', 
+                    textAlign: 'center',
+                    height: '100%',
+                    boxSizing: 'border-box',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center'
+                  }}>
                     <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.95)', fontWeight: '700' }}>
                       🚀 Join {selectedRestaurant.name}'s App Wishlist
                     </div>
