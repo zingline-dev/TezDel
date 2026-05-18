@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function Careers() {
   const roles = [
@@ -16,8 +17,29 @@ export default function Careers() {
     { icon: '💰', title: 'Competitive Pay', desc: 'Market-rate salaries + ESOPs for early team members across all roles.' },
   ];
 
+  const careersSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TezDel Careers",
+    "url": "https://tezdel.com/careers",
+    "logo": "https://tezdel.com/logo.png",
+    "description": "Build the future of community-first q-commerce and logistics. Apply for engineering, product, operations, and rider captain roles at TezDel in Bhubaneswar.",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "TezDel",
+      "sameAs": "https://tezdel.com"
+    }
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="Careers at TezDel | Join Bhubaneswar's Fastest Growing Q-Commerce Brand" 
+        description="Build the future of community-first q-commerce and logistics. Apply for engineering, product, operations, and rider captain roles at TezDel in Bhubaneswar." 
+        keywords="TezDel careers, startup jobs Bhubaneswar, logistics jobs Odisha, software engineer jobs Bhubaneswar, delivery captain jobs" 
+        image="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
+        schema={careersSchema}
+      />
 
       {/* Hero */}
       <section className="page-hero-v3">

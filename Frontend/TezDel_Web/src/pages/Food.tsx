@@ -3,6 +3,7 @@ import { Search, MapPin, Zap, Star, Filter, ArrowRight, ShieldCheck, Compass, Lo
 import { motion, AnimatePresence } from 'framer-motion';
 import Skeleton from '../components/Skeleton';
 import UnderDevelopmentModal from '../components/UnderDevelopmentModal';
+import SEO from '../components/SEO';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -272,7 +273,7 @@ function generateHyperlocalRestaurants(location: string): Array<{
   ];
 
   const list: any[] = [];
-  
+
   // Deterministic seed generation based on location name length to shuffle slightly
   const baseSeed = location.length;
 
@@ -301,7 +302,7 @@ function generateHyperlocalRestaurants(location: string): Array<{
 
     // Find category images
     const categoryImages = FOOD_IMAGES[rData.category as keyof typeof FOOD_IMAGES];
-    
+
     // Choose the pre-assigned unique image index for this specific restaurant
     const uniqueImgIdx = restaurantImageIndex[targetIdx];
     const baseImg = categoryImages[uniqueImgIdx % categoryImages.length];
@@ -331,7 +332,7 @@ export default function Food() {
   const [locationGranted, setLocationGranted] = useState<boolean | null>(null);
   const [isDetecting, setIsDetecting] = useState(false);
   const [allRestaurants, setAllRestaurants] = useState<any[]>([]);
-  
+
   const [isLoading, setIsLoading] = useState(true);
   const [isDevModalOpen, setIsDevModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -392,7 +393,7 @@ export default function Food() {
     setLocationName(finalLocation);
     setLocationGranted(true);
     setIsDetecting(false);
-    
+
     // Generate 100+ custom hyperlocal restaurants matching this neighborhood
     const generated = generateHyperlocalRestaurants(finalLocation);
     setAllRestaurants(generated);
@@ -419,8 +420,8 @@ export default function Food() {
 
   // Filter restaurants based on search input & category click
   const filteredRestaurants = allRestaurants.filter((r) => {
-    const matchesSearch = r.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          r.tags.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.tags.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory ? r.category === selectedCategory : true;
     return matchesSearch && matchesCategory;
   });
@@ -434,14 +435,50 @@ export default function Food() {
     setVisibleCount(12); // Reset count
   };
 
+  const foodPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "FoodEstablishment",
+    "name": "TezDel Food Delivery",
+    "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d",
+    "url": "https://tezdel.com/food",
+    "telephone": "+910000000000",
+    "priceRange": "₹₹",
+    "servesCuisine": ["Odia Specials", "Biryani", "Pizza", "Burgers", "Rolls", "Desserts"],
+    "areaServed": [
+      { "@type": "City", "name": "Bhubaneswar", "sameAs": "https://en.wikipedia.org/wiki/Bhubaneswar" },
+      { "@type": "City", "name": "Cuttack", "sameAs": "https://en.wikipedia.org/wiki/Cuttack" }
+    ],
+    "description": "Order authentic Odia thali, premium biryani, delicious woodfired pizzas, and rolls. Swift 20-minute delivery from 100+ local kitchens in Bhubaneswar.",
+    "potentialAction": {
+      "@type": "OrderAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://tezdel.com/food",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/IOSPlatform",
+          "http://schema.org/AndroidPlatform"
+        ]
+      },
+      "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
+    }
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="Authentic Odia Food & Restaurant Delivery in Bhubaneswar | TezDel" 
+        description="Craving Dalma, Pakhala or Biryani? Order from Bhubaneswar's best restaurants and home chefs on TezDel. Swift 20-minute delivery & real food photos!" 
+        keywords="Bhubaneswar restaurants, order food online Bhubaneswar, local home chefs, Odia food, dalma delivery, chicken biryani Bhubaneswar, ONDC food network" 
+        image="https://images.unsplash.com/photo-1546833999-b9f581a1996d"
+        schema={foodPageSchema}
+      />
       <UnderDevelopmentModal isOpen={isDevModalOpen} onClose={() => setIsDevModalOpen(false)} />
 
       {/* Geolocation Request Custom Splash Screen */}
       <AnimatePresence>
         {!locationGranted && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -456,7 +493,7 @@ export default function Food() {
               padding: '24px'
             }}
           >
-            <motion.div 
+            <motion.div
               initial={{ scale: 0.9, y: 30 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 30 }}
@@ -471,7 +508,7 @@ export default function Food() {
                 boxShadow: '0 24px 60px rgba(0,0,0,0.8), var(--shadow-glow)'
               }}
             >
-              <div 
+              <div
                 style={{
                   width: '80px',
                   height: '80px',
@@ -500,7 +537,7 @@ export default function Food() {
                 </div>
               ) : (
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <motion.button 
+                  <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={requestLocation}
@@ -519,20 +556,20 @@ export default function Food() {
                   >
                     <MapPin size={18} /> Share Current Location
                   </motion.button>
-                  
+
                   <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px', margin: '8px 0' }}>— OR CHOOSE MANUALLY —</span>
-                  
+
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                    <button 
+                    <button
                       onClick={() => handleManualSelect('Patia, Bhubaneswar')}
-                      className="glass" 
+                      className="glass"
                       style={{ color: '#fff', padding: '10px', borderRadius: '12px', fontSize: '13px', fontWeight: '700' }}
                     >
                       📍 Patia
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleManualSelect('Saheed Nagar, Bhubaneswar')}
-                      className="glass" 
+                      className="glass"
                       style={{ color: '#fff', padding: '10px', borderRadius: '12px', fontSize: '13px', fontWeight: '700' }}
                     >
                       📍 Saheed Nagar
@@ -550,13 +587,13 @@ export default function Food() {
         <div className="page-header-v3-bg" style={{ background: '#0D0706' }} />
         <div className="page-header-v3-glow" />
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             className="food-search-container-v3"
             style={{ display: 'flex', gap: '16px', alignItems: 'stretch', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}
           >
-            <motion.div 
+            <motion.div
               whileTap={{ scale: 0.98 }}
               onClick={requestLocation}
               className="food-location-box-v3 glass"
@@ -570,15 +607,15 @@ export default function Food() {
             </motion.div>
             <div className="food-search-box-v3 glass">
               <Search size={20} color="rgba(255,255,255,0.4)" />
-              <input 
-                type="text" 
+              <input
+                type="text"
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
                   setVisibleCount(12);
                 }}
-                placeholder="Search for Pakhala, Dalma, Biryani..." 
-                style={{ border: 'none', outline: 'none', background: 'transparent', flex: 1, fontSize: '16px', color: '#fff', fontWeight: 500 }} 
+                placeholder="Search for Pakhala, Dalma, Biryani..."
+                style={{ border: 'none', outline: 'none', background: 'transparent', flex: 1, fontSize: '16px', color: '#fff', fontWeight: 500 }}
               />
             </div>
           </motion.div>
@@ -588,11 +625,11 @@ export default function Food() {
       {/* Categories */}
       <section className="page-section-v3" style={{ background: 'var(--color-bg-light)', paddingTop: '60px' }}>
         <div className="container">
-          <motion.h2 
+          <motion.h2
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="section-title-v3" 
+            className="section-title-v3"
             style={{ marginBottom: '40px', textAlign: 'center', fontSize: '1.75rem' }}
           >
             {"What's on your mind?".split(' ').map((word, i) => (
@@ -606,7 +643,7 @@ export default function Food() {
               </motion.span>
             ))}
           </motion.h2>
-          <motion.div 
+          <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
@@ -616,16 +653,16 @@ export default function Food() {
             {categories.map((cat, i) => {
               const isSelected = selectedCategory === cat.name;
               return (
-                <motion.div 
-                  key={cat.name} 
+                <motion.div
+                  key={cat.name}
                   variants={fadeInUp}
                   whileHover={{ scale: 1.05, y: -10 }}
                   onClick={() => handleCategoryClick(cat.name)}
                   className={`food-cat-chip-v3 ${isSelected ? 'active-chip' : ''}`}
-                  style={{ 
-                    background: isSelected ? 'var(--color-secondary)' : '#fff', 
-                    boxShadow: 'var(--shadow-premium)', 
-                    padding: '2rem 1rem', 
+                  style={{
+                    background: isSelected ? 'var(--color-secondary)' : '#fff',
+                    boxShadow: 'var(--shadow-premium)',
+                    padding: '2rem 1rem',
                     borderRadius: '24px',
                     textAlign: 'center',
                     cursor: 'pointer',
@@ -634,7 +671,7 @@ export default function Food() {
                     transition: 'all 0.3s cubic-bezier(0.23, 1, 0.32, 1)'
                   }}
                 >
-                  <motion.span 
+                  <motion.span
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
                     style={{ fontSize: '36px', display: 'block', marginBottom: '10px' }}
@@ -653,19 +690,16 @@ export default function Food() {
       <section className="page-section-v3" style={{ background: 'var(--color-bg-light)', paddingBottom: '80px' }}>
         <div className="container">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '40px', flexWrap: 'wrap', gap: '16px' }}>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="section-title-v3" 
+              className="section-title-v3"
               style={{ fontSize: '28px', marginBottom: 0 }}
             >
-              Popular Near {locationName.split(',')[0]}
-              <span style={{ fontSize: '14px', color: 'var(--color-text-muted)', display: 'block', fontWeight: 500, marginTop: '4px' }}>
-                Found {filteredRestaurants.length} kitchens in your zone
-              </span>
+              Top Restaurants Near {locationName.split(',')[0]}
             </motion.h2>
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => setSelectedCategory(null)}
@@ -696,29 +730,29 @@ export default function Food() {
                 </div>
               ) : (
                 filteredRestaurants.slice(0, visibleCount).map((r, i) => (
-                  <motion.article 
-                    key={`${r.name}-${i}`} 
+                  <motion.article
+                    key={`${r.name}-${i}`}
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: (i % 6) * 0.1 }}
                     whileHover={{ y: -12 }}
                     className="restaurant-card-v3"
-                    style={{ 
-                      background: '#fff', 
-                      borderRadius: '28px', 
-                      overflow: 'hidden', 
+                    style={{
+                      background: '#fff',
+                      borderRadius: '28px',
+                      overflow: 'hidden',
                       boxShadow: 'var(--shadow-premium)',
                       border: '1px solid rgba(0,0,0,0.02)'
                     }}
                   >
                     <div className="restaurant-card-img-v3" style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
-                      <motion.img 
+                      <motion.img
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.6 }}
-                        src={r.img} 
-                        alt={r.name} 
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                        src={r.img}
+                        alt={r.name}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                       <div className="restaurant-card-badge-v3" style={{ position: 'absolute', bottom: '16px', right: '16px', background: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(8px)', color: '#fff', padding: '6px 12px', borderRadius: '12px', fontSize: '12px', fontWeight: '700', display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <Zap size={14} fill="currentColor" /> {r.time}
@@ -734,7 +768,7 @@ export default function Food() {
                       <p style={{ fontSize: '13px', color: 'var(--color-text-muted)', marginBottom: '16px', fontWeight: '500' }}>{r.tags}</p>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #f1f5f9', paddingTop: '16px' }}>
                         <span style={{ fontSize: '14px', fontWeight: '700', color: 'var(--color-primary)' }}>{r.price}</span>
-                        <motion.button 
+                        <motion.button
                           onClick={() => setIsDevModalOpen(true)}
                           whileHover={{ x: 5 }}
                           style={{ color: 'var(--color-secondary)', fontWeight: '700', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}
@@ -774,20 +808,20 @@ export default function Food() {
 
       {/* TezPass Promo */}
       <section className="container" style={{ margin: '60px auto' }}>
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           className="tezpass-banner-v3 glass"
-          style={{ 
-            background: 'linear-gradient(135deg, var(--color-secondary) 0%, #1e293b 100%)', 
-            borderRadius: '32px', 
-            padding: '3rem', 
-            color: '#fff', 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            flexWrap: 'wrap', 
+          style={{
+            background: 'linear-gradient(135deg, var(--color-secondary) 0%, #1e293b 100%)',
+            borderRadius: '32px',
+            padding: '3rem',
+            color: '#fff',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            flexWrap: 'wrap',
             gap: '2rem',
             position: 'relative',
             overflow: 'hidden'
@@ -797,26 +831,26 @@ export default function Food() {
             <h3 style={{ fontSize: '28px', fontWeight: '800', letterSpacing: '-0.5px' }}>Get Unlimited Free Delivery</h3>
             <p style={{ opacity: 0.8, marginTop: '8px', fontSize: '1.1rem', maxWidth: '400px' }}>Join TezPass for ₹149/month and skip all delivery fees on every order.</p>
           </div>
-          <motion.button 
+          <motion.button
             onClick={() => setIsDevModalOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="btn btn-primary" 
-            style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '10px', 
-              padding: '1rem 2rem', 
-              borderRadius: '16px', 
-              fontSize: '1.1rem', 
+            className="btn btn-primary"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '1rem 2rem',
+              borderRadius: '16px',
+              fontSize: '1.1rem',
               fontWeight: '700',
               position: 'relative',
-              zIndex: 2 
+              zIndex: 2
             }}
           >
             Get TezPass <ArrowRight size={20} />
           </motion.button>
-          
+
           {/* Decorative Glow */}
           <div style={{ position: 'absolute', top: '-50%', right: '-10%', width: '300px', height: '300px', background: 'var(--color-primary)', filter: 'blur(100px)', opacity: 0.15, zIndex: 1 }} />
         </motion.div>

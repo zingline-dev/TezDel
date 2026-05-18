@@ -1,3 +1,5 @@
+import SEO from '../components/SEO';
+
 export default function Legal() {
   const sections = [
     { title: 'Terms of Service', icon: '📋', content: 'By accessing and using TezDel, you accept and agree to be bound by the terms and provision of this agreement. TezDel provides a hyperlocal food and grocery delivery platform connecting consumers with local restaurants, home chefs, kirana stores, and delivery captains in Bhubaneswar, Odisha. Users must be 18 years or older to place orders. All food and product descriptions are provided by partner businesses and TezDel is not responsible for inaccuracies. TezDel reserves the right to refuse service, cancel orders, or terminate accounts at our discretion.' },
@@ -8,8 +10,28 @@ export default function Legal() {
     { title: 'ONDC Compliance', icon: '📡', content: 'TezDel operates as an ONDC-compliant seller application. All transactions conducted through the ONDC network are subject to ONDC\'s network policy and buyer protection framework. Disputes arising from ONDC transactions will be resolved through the ONDC grievance redressal mechanism. TezDel is committed to full ONDC compliance as the network evolves.' },
   ];
 
+  const legalSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "TezDel Terms of Service & Privacy Policy",
+    "url": "https://tezdel.com/legal",
+    "description": "Read TezDel's Terms of Service, Privacy Policy, Zero-Commission Community Guidelines, and merchant agreements for a secure and transparent experience.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "TezDel",
+      "logo": "https://tezdel.com/logo.png"
+    }
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="Terms of Service, Privacy Policy & Partners Legal | TezDel" 
+        description="Read TezDel's Terms of Service, Privacy Policy, Zero-Commission Community Guidelines, and merchant agreements for a secure and transparent experience." 
+        keywords="TezDel terms, privacy policy, refund policy, zero commission contract, partner guidelines, ONDC delivery guidelines" 
+        image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
+        schema={legalSchema}
+      />
 
       {/* Hero */}
       <section className="page-hero-v3" style={{ minHeight: '50vh' }}>

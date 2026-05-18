@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, TrendingUp, Users, ShieldCheck, Rocket } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -47,8 +48,28 @@ export default function Investor() {
     { icon: '🗺️', title: 'Expansion Playbook', desc: 'Bhubaneswar-proven model ready to replicate across Cuttack, Rourkela, Berhampur and other Odisha Tier-2 cities.' },
   ];
 
+  const investorSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "TezDel Investor Relations",
+    "url": "https://tezdel.com/investor",
+    "description": "Explore TezDel's disruptive zero-commission hyperlocal business model, unit economics, ONDC integration, and growth playbook in Tier-2 and Tier-3 Indian cities.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "TezDel",
+      "logo": "https://tezdel.com/logo.png"
+    }
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="Investor Relations | TezDel Zero-Commission Logistics Network" 
+        description="Explore TezDel's disruptive zero-commission hyperlocal business model, unit economics, ONDC integration, and growth playbook in Tier-2 and Tier-3 Indian cities." 
+        keywords="TezDel investment, seed round startup, Indian q-commerce growth, ONDC logistics partner, investor pitch TezDel, quick commerce unit economics" 
+        image="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
+        schema={investorSchema}
+      />
 
       {/* Hero */}
       <section className="page-hero-v3">

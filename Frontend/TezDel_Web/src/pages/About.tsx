@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 export default function About() {
   const values = [
@@ -17,8 +18,35 @@ export default function About() {
     { name: 'Community Lead', icon: '🌐', desc: 'The person behind every chef, kirana, and captain partnership.' },
   ];
 
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "TezDel",
+      "url": "https://tezdel.com",
+      "logo": "https://tezdel.com/logo.png",
+      "description": "TezDel is a zero-commission hyperlocal food and grocery delivery network in Bhubaneswar.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Patia",
+        "addressLocality": "Bhubaneswar",
+        "addressRegion": "Odisha",
+        "postalCode": "751024",
+        "addressCountry": "IN"
+      }
+    }
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="About TezDel | Zero-Commission Community Delivery Platform" 
+        description="Discover how TezDel is empowering local Bhubaneswar home chefs, kirana merchants, and restaurants with our fair, community-first zero commission delivery network." 
+        keywords="about TezDel, zero commission delivery, community commerce, ONDC partner, hyperlocal logistics, Bhubaneswar startup, support local Odisha" 
+        image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+        schema={aboutSchema}
+      />
 
       {/* Hero */}
       <section className="page-hero-v3">

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', type: 'general', message: '' });
@@ -16,8 +17,37 @@ export default function Contact() {
     { icon: '📡', title: 'ONDC Enquiries', desc: 'ondc@tezdel.com', sub: 'Seller & buyer app queries' },
   ];
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact TezDel",
+    "url": "https://tezdel.com/contact",
+    "description": "Get in touch with TezDel. Reach out via email, phone, or visit our office in Patia, Bhubaneswar.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "TezDel",
+      "telephone": "+91 8767091077",
+      "email": "hello@tezdel.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Patia",
+        "addressLocality": "Bhubaneswar",
+        "addressRegion": "Odisha",
+        "postalCode": "751024",
+        "addressCountry": "IN"
+      }
+    }
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="Contact TezDel | 24/7 Hyperlocal Support in Bhubaneswar" 
+        description="Need help with an order? Want to partner as a kirana merchant, restaurant, or delivery captain? Get in touch with our team in Patia, Bhubaneswar." 
+        keywords="contact TezDel, restaurant partner signup, kirana registration, delivery partner signup, TezDel customer care, contact startup Bhubaneswar" 
+        image="https://images.unsplash.com/photo-1423666639041-f56000c27a9a"
+        schema={contactSchema}
+      />
 
       {/* Hero */}
       <section className="page-hero-v3">

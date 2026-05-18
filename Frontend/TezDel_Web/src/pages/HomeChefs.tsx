@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Star, Heart, ShieldCheck, Utensils } from 'lucide-react';
 import { useState } from 'react';
 import UnderDevelopmentModal from '../components/UnderDevelopmentModal';
+import SEO from '../components/SEO';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -47,8 +48,33 @@ export default function HomeChefs() {
     { step: '3', title: 'Home-Cooked Delivery', desc: 'Your captain picks up your meal freshly cooked and delivers it to your door in minutes.' },
   ];
 
+  const homeChefsSchema = {
+    "@context": "https://schema.org",
+    "@type": "FoodService",
+    "name": "TezDel Home Chef Network",
+    "image": "https://images.unsplash.com/photo-1556910103-1c02745aae4d",
+    "url": "https://tezdel.com/home-chefs",
+    "provider": {
+      "@type": "Organization",
+      "name": "TezDel",
+      "url": "https://tezdel.com"
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Bhubaneswar" },
+      { "@type": "City", "name": "Cuttack" }
+    ],
+    "description": "Pure home-cooked Odia specials made on schedule by local verified home chefs. Order fresh Dalma Thali, Pakhala Platter, and hand-baked Chenna Poda in Bhubaneswar."
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="Authentic Odia Home Cooked Meals in Bhubaneswar | TezDel" 
+        description="Savour pure home-cooked Odia specials made by verified home chefs. Order fresh Pakhala, Dalma, Besara, and sweets like Chenna Poda delivered hot." 
+        keywords="home chefs Bhubaneswar, home cooked food delivery, authentic Odia food, healthy meal delivery, home cooked meal subscription, odisha home foods" 
+        image="https://images.unsplash.com/photo-1556910103-1c02745aae4d"
+        schema={homeChefsSchema}
+      />
       <UnderDevelopmentModal isOpen={isDevModalOpen} onClose={() => setIsDevModalOpen(false)} />
 
       {/* Hero */}

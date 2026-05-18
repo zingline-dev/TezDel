@@ -4,6 +4,7 @@ import { Search, MapPin, Zap, Store, ArrowRight, Package } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Skeleton from '../components/Skeleton';
 import UnderDevelopmentModal from '../components/UnderDevelopmentModal';
+import SEO from '../components/SEO';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -55,8 +56,52 @@ export default function Grocery() {
     { name: 'Omfed Dairy Centre', loc: 'Infocity', items: 'Dairy Specialist', time: '15 mins', icon: <Package size={32} /> },
   ];
 
+  const grocerySchema = {
+    "@context": "https://schema.org",
+    "@type": "GroceryStore",
+    "name": "TezDel Kirana Grocery",
+    "image": "https://images.unsplash.com/photo-1542838132-92c53300491e",
+    "url": "https://tezdel.com/grocery",
+    "telephone": "+910000000000",
+    "priceRange": "₹₹",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Patia",
+      "addressLocality": "Bhubaneswar",
+      "addressRegion": "Odisha",
+      "postalCode": "751024",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "20.3588",
+      "longitude": "85.8333"
+    },
+    "description": "Buy fresh daily essentials, milk, bread, organic vegetables and fruits from local kiranas with dynamic 20-minute delivery in Bhubaneswar.",
+    "potentialAction": {
+      "@type": "OrderAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://tezdel.com/grocery",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/IOSPlatform",
+          "http://schema.org/AndroidPlatform"
+        ]
+      },
+      "deliveryMethod": ["http://purl.org/goodrelations/v1#DeliveryModeOwnFleet"]
+    }
+  };
+
   return (
     <div className="page-v3">
+      <SEO 
+        title="Fast Kirana Grocery Delivery in Bhubaneswar | TezDel" 
+        description="Get fresh vegetables, dairy, dairy products (Omfed), household essentials, and pantry staples delivered in 20 minutes from your trusted local kirana shops." 
+        keywords="grocery delivery Bhubaneswar, kirana delivery, fresh vegetables Bhubaneswar, online supermarket, household essentials, 20 minute grocery, Omfed delivery" 
+        image="https://images.unsplash.com/photo-1542838132-92c53300491e"
+        schema={grocerySchema}
+      />
       <UnderDevelopmentModal isOpen={isDevModalOpen} onClose={() => setIsDevModalOpen(false)} />
 
       {/* Header */}

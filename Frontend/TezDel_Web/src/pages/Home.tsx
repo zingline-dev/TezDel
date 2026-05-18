@@ -5,6 +5,7 @@ import { Search, MapPin, Zap, Home as HomeIcon, ShoppingBag, TrendingUp, Star, A
 import { motion, useScroll, useTransform } from 'framer-motion';
 import iphoneMock from '../assets/iphone_17_mock.png';
 import UnderDevelopmentModal from '../components/UnderDevelopmentModal';
+import SEO from '../components/SEO';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -44,8 +45,69 @@ export default function Home() {
 
   const chips = ['🍛 Odia Thali', '🥗 Dalma', '🧅 Grocery', '🍰 Chenna Poda', '🛵 Quick Delivery'];
 
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tezdel.com/#website",
+        "url": "https://tezdel.com",
+        "name": "TezDel",
+        "description": "Bhubaneswar's fastest hyperlocal food & grocery delivery platform.",
+        "publisher": {
+          "@id": "https://tezdel.com/#organization"
+        },
+        "potentialAction": [
+          {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://tezdel.com/?search={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        ]
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://tezdel.com/#organization",
+        "name": "TezDel",
+        "url": "https://tezdel.com",
+        "logo": "https://tezdel.com/logo.png",
+        "image": "https://tezdel.com/og-image.jpg",
+        "telephone": "+910000000000",
+        "priceRange": "₹₹",
+        "description": "Hyperlocal food and grocery delivery platform connecting users with local restaurants, home chefs, and kirana stores in Bhubaneswar.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Patia",
+          "addressLocality": "Bhubaneswar",
+          "addressRegion": "Odisha",
+          "postalCode": "751024",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "20.3588",
+          "longitude": "85.8333"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Bhubaneswar" },
+          { "@type": "City", "name": "Cuttack" }
+        ]
+      }
+    ]
+  };
+
   return (
     <div className="home-v3">
+      <SEO 
+        title="TezDel | Fast Hyperlocal Food & Grocery Delivery in Bhubaneswar" 
+        description="Order authentic Odia food from home chefs, fresh groceries from local kiranas, and meals from top restaurants. Delivered in 20 minutes with zero commission across Bhubaneswar." 
+        keywords="TezDel, food delivery Bhubaneswar, Odia food delivery, grocery delivery Bhubaneswar, fast delivery, home chefs, kirana stores, Pakhala delivery, quick commerce, local restaurants" 
+        image="https://tezdel.com/og-image.jpg"
+        schema={homeSchema}
+      />
       <UnderDevelopmentModal isOpen={isDevModalOpen} onClose={() => setIsDevModalOpen(false)} />
       {/* ── AMBIENT BACKGROUND ── */}
       <div className="ambient-background" style={{ position: 'fixed', inset: 0, zIndex: -1, overflow: 'hidden' }}>
