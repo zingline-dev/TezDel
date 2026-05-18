@@ -862,35 +862,14 @@ export default function Food() {
       {/* Dynamic App Promotion Wishlist Modal */}
       <AnimatePresence>
         {selectedRestaurant && (
-          <div 
-            style={{ 
-              position: 'fixed', 
-              top: 0, 
-              left: 0, 
-              right: 0, 
-              bottom: 0, 
-              zIndex: 9999, 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              padding: '24px' 
-            }}
-          >
+          <div className="wishlist-modal-overlay-v3">
             {/* Backdrop */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedRestaurant(null)}
-              style={{ 
-                position: 'absolute', 
-                top: 0, 
-                left: 0, 
-                right: 0, 
-                bottom: 0, 
-                background: 'rgba(13, 7, 6, 0.85)', 
-                backdropFilter: 'blur(12px)' 
-              }}
+              className="wishlist-modal-backdrop-v3"
             />
 
             {/* Modal Box */}
@@ -899,18 +878,7 @@ export default function Food() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 30 }}
               transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-              style={{
-                position: 'relative',
-                background: '#1C1210',
-                border: '1px solid #33201C',
-                borderRadius: '32px',
-                width: '100%',
-                maxWidth: '540px',
-                padding: '40px',
-                color: '#fff',
-                boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
-                overflow: 'hidden'
-              }}
+              className="wishlist-modal-box-v3"
             >
               {/* Decorative background glow */}
               <div style={{ position: 'absolute', top: '-40%', right: '-40%', width: '300px', height: '300px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.15, pointerEvents: 'none' }} />
@@ -971,7 +939,7 @@ export default function Food() {
                 </p>
                 
                 {/* Simulated Input / Action */}
-                <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                <div className="wishlist-form-container-v3">
                   <input 
                     type="email" 
                     placeholder="Enter your email address" 
