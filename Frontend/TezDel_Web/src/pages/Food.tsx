@@ -900,7 +900,7 @@ export default function Food() {
                     Exclusive Pre-Release Access
                   </span>
                   <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '24px', fontWeight: 800, color: '#fff', lineHeight: '1.25', margin: '0 0 12px 0' }}>
-                    Access {selectedRestaurant.name} Exclusively in App
+                    Access <span style={{ color: 'var(--color-primary)' }}>{selectedRestaurant.name}</span> Exclusively in App
                   </h3>
                   <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', margin: '0 0 18px 0', lineHeight: '1.4' }}>
                     To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission</strong> delivery model, digital menus and checkouts are accessible only via the upcoming TezDel mobile application.
@@ -938,7 +938,7 @@ export default function Food() {
                     justifyContent: 'center'
                   }}>
                     <div style={{ fontSize: '15px', color: 'rgba(255,255,255,0.95)', fontWeight: '700', marginBottom: '6px' }}>
-                      🚀 Join {selectedRestaurant.name}'s App Wishlist
+                      🚀 Join <span style={{ color: 'var(--color-primary)' }}>{selectedRestaurant.name}</span>'s App Wishlist
                     </div>
                     <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', margin: '0 0 16px 0', lineHeight: '1.3' }}>
                       Get notified instantly when they go live. Join <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> already on the queue!
