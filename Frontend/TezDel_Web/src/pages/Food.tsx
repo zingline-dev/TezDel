@@ -964,7 +964,8 @@ export default function Food() {
                           borderRadius: '10px', 
                           padding: '8px 12px', 
                           color: '#fff', 
-                          fontSize: '12px' 
+                          fontSize: '12px',
+                          fontFamily: 'inherit'
                         }} 
                         readOnly
                       />
@@ -981,7 +982,8 @@ export default function Food() {
                           borderRadius: '10px',
                           fontWeight: '700',
                           fontSize: '12px',
-                          cursor: 'pointer'
+                          cursor: 'pointer',
+                          fontFamily: 'inherit'
                         }}
                       >
                         Join Queue
