@@ -467,10 +467,10 @@ export default function Food() {
 
   return (
     <div className="page-v3">
-      <SEO 
-        title="Authentic Odia Food & Restaurant Delivery in Bhubaneswar | TezDel" 
-        description="Craving Dalma, Pakhala or Biryani? Order from Bhubaneswar's best restaurants and home chefs on TezDel. Swift 20-minute delivery & real food photos!" 
-        keywords="Bhubaneswar restaurants, order food online Bhubaneswar, local home chefs, Odia food, dalma delivery, chicken biryani Bhubaneswar, ONDC food network" 
+      <SEO
+        title="Authentic Odia Food & Restaurant Delivery in Bhubaneswar | TezDel"
+        description="Craving Dalma, Pakhala or Biryani? Order from Bhubaneswar's best restaurants and home chefs on TezDel. Swift 20-minute delivery & real food photos!"
+        keywords="Bhubaneswar restaurants, order food online Bhubaneswar, local home chefs, Odia food, dalma delivery, chicken biryani Bhubaneswar, ONDC food network"
         image="https://images.unsplash.com/photo-1546833999-b9f581a1996d"
         schema={foodPageSchema}
       />
@@ -864,7 +864,7 @@ export default function Food() {
         {selectedRestaurant && (
           <div className="wishlist-modal-overlay-v3">
             {/* Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -880,12 +880,12 @@ export default function Food() {
               transition={{ type: 'spring', damping: 25, stiffness: 350 }}
               className="wishlist-modal-box-v3"
             >
-               {/* Decorative background glows */}
+              {/* Decorative background glows */}
               <div style={{ position: 'absolute', top: '-20%', right: '-20%', width: '350px', height: '350px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.15, pointerEvents: 'none' }} />
               <div style={{ position: 'absolute', bottom: '-20%', left: '-20%', width: '350px', height: '350px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.08, pointerEvents: 'none' }} />
 
               {/* Close Button (Hidden on desktop, visible on mobile screens) */}
-              <button 
+              <button
                 onClick={() => setSelectedRestaurant(null)}
                 className="wishlist-modal-close-v3"
               >
@@ -925,11 +925,11 @@ export default function Food() {
 
                 {/* Right Column: Wishlist Queue Form */}
                 <div className="wishlist-modal-col-right-v3">
-                  <div style={{ 
-                    background: 'rgba(255, 114, 76, 0.05)', 
-                    border: '1px solid rgba(255, 114, 76, 0.15)', 
-                    borderRadius: '20px', 
-                    padding: '28px 24px', 
+                  <div style={{
+                    background: 'rgba(255, 114, 76, 0.05)',
+                    border: '1px solid rgba(255, 114, 76, 0.15)',
+                    borderRadius: '20px',
+                    padding: '28px 24px',
                     textAlign: 'center',
                     height: '100%',
                     boxSizing: 'border-box',
@@ -937,32 +937,32 @@ export default function Food() {
                     flexDirection: 'column',
                     justifyContent: 'center'
                   }}>
-                    <div style={{ fontSize: '15px', color: 'rgba(255,255,255,0.95)', fontWeight: '700', marginBottom: '6px' }}>
+                    <div style={{ fontSize: '23px', color: 'rgba(255,255,255,0.95)', fontWeight: '700', marginBottom: '8px' }}>
                       🚀 Join <span style={{ color: 'var(--color-primary)' }}>{selectedRestaurant.name}</span>'s App Wishlist
                     </div>
-                    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', margin: '0 0 16px 0', lineHeight: '1.3' }}>
+                    <p style={{ fontSize: '18.5px', color: 'rgba(255,255,255,0.5)', margin: '0 0 20px 0', lineHeight: '1.4' }}>
                       Get notified instantly when they go live. Join <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> already on the queue!
                     </p>
-                    
+
                     {/* Simulated Input / Action */}
                     <div className="wishlist-form-container-v3" style={{ alignItems: 'center' }}>
-                      <input 
-                        type="email" 
-                        placeholder="Enter your email address" 
+                      <input
+                        type="email"
+                        placeholder="Enter your email address"
                         defaultValue="user@example.com"
-                        style={{ 
-                          flex: 1, 
-                          background: 'rgba(0,0,0,0.2)', 
-                          border: '1px solid rgba(255,255,255,0.1)', 
-                          borderRadius: '10px', 
-                          padding: '0 14px', 
-                          color: '#fff', 
+                        style={{
+                          flex: 1,
+                          background: 'rgba(0,0,0,0.2)',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          borderRadius: '10px',
+                          padding: '0 14px',
+                          color: '#fff',
                           fontSize: '13px',
                           fontFamily: 'inherit',
                           height: '42px',
                           boxSizing: 'border-box',
                           textAlign: 'left'
-                        }} 
+                        }}
                         readOnly
                       />
                       <button
