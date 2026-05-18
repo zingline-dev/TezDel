@@ -402,7 +402,7 @@ export default function Home() {
             variants={fadeInUp}
           >
             <p className="section-label-v3">Why we're different</p>
-            <h2 className="section-title-v3">Not Just Another<br />Delivery App</h2>
+            <h2 className="section-title-v3" style={{ color: '#ffffff' }}>Not Just Another<br />Delivery App</h2>
           </motion.div>
           
           <motion.div 
