@@ -1582,3 +1582,195 @@
     background: var(--color-bg-light);
   }
 }
+
+/* ════════════════════════════════════════
+   INVESTOR PAGE — MOBILE STYLES
+   ════════════════════════════════════════ */
+
+/* Investor stats band — default 4 cols */
+.investor-stats-inner {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Market opportunity section */
+.investor-market-section {
+  background: #fff;
+  padding: clamp(60px, 8vw, 120px) 0;
+}
+
+.investor-two-col {
+  gap: clamp(32px, 5vw, 80px);
+  align-items: flex-start;
+}
+
+.investor-opp-title {
+  font-size: clamp(22px, 4vw, 44px);
+  margin-bottom: 2rem;
+}
+
+.investor-body-text {
+  font-size: clamp(14px, 2vw, 18px);
+}
+
+/* Stat row cards */
+.investor-stat-row {
+  background: #FFF9F5;
+  border: 1px solid rgba(255, 61, 0, 0.1);
+  border-radius: 20px;
+  padding: clamp(14px, 3vw, 24px) clamp(16px, 4vw, 32px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+  flex-wrap: wrap;
+}
+
+.investor-stat-label {
+  font-size: clamp(12px, 2vw, 15px);
+  color: var(--color-text-muted);
+  font-weight: 700;
+  flex: 1;
+  min-width: 0;
+}
+
+.investor-stat-value {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 4vw, 28px);
+  color: var(--color-primary);
+  letter-spacing: -1px;
+  white-space: nowrap;
+}
+
+/* Pillars section */
+.investor-pillars-section {
+  background: #0D0706;
+  padding: clamp(60px, 8vw, 120px) 0;
+}
+
+.investor-pillars-head {
+  margin-bottom: clamp(40px, 6vw, 80px);
+}
+
+.investor-pillars-title {
+  color: #fff !important;
+  font-size: clamp(24px, 4vw, 40px) !important;
+}
+
+/* CTA section */
+.investor-cta-section {
+  padding: clamp(60px, 10vw, 140px) 0;
+}
+
+.investor-cta-title {
+  margin: 0 auto 1.5rem;
+  font-size: clamp(22px, 4vw, 48px) !important;
+  max-width: 700px;
+}
+
+.investor-cta-p {
+  max-width: 580px;
+  margin: 0 auto 3rem;
+  font-size: clamp(14px, 2vw, 18px);
+  opacity: 0.9;
+}
+
+.investor-cta-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.investor-cta-btn-primary {
+  padding: 1rem 2.5rem;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.investor-cta-btn-outline {
+  padding: 1rem 2rem;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 1rem;
+  border: 2px solid #fff;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  display: inline-block;
+}
+
+/* ════════════════════════════════════════
+   CONTACT PAGE — MOBILE STYLES
+   ════════════════════════════════════════ */
+
+/* Channels band — default 4 cols */
+.contact-channels-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Form + info two-col */
+.contact-form-grid {
+  gap: clamp(32px, 5vw, 60px);
+  align-items: flex-start;
+}
+
+/* ── Responsive overrides ── */
+@media (max-width: 900px) {
+  .investor-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-channels-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .investor-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .investor-stat-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .investor-stat-value {
+    font-size: 24px;
+  }
+
+  .investor-cta-btn-primary,
+  .investor-cta-btn-outline {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .contact-channels-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 430px) {
+  .investor-stats-inner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-channels-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .investor-cta-btns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+}

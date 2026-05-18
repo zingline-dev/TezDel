@@ -107,7 +107,7 @@ export default function Investor() {
 
       {/* Metrics Band */}
       <div className="stats-band-v3" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div className="stats-band-v3-inner">
+        <div className="stats-band-v3-inner investor-stats-inner">
           {metrics.map((m, i) => (
             <motion.div 
               key={m.label} 
@@ -132,15 +132,15 @@ export default function Investor() {
       </div>
 
       {/* Market Opportunity */}
-      <section className="page-section-v3" style={{ background: '#fff', padding: '120px 0' }}>
-        <div className="container page-two-col-v3" style={{ gap: '80px' }}>
+      <section className="page-section-v3 investor-market-section">
+        <div className="container page-two-col-v3 investor-two-col">
           <div>
             <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-label-v3">The Opportunity</motion.p>
-            <motion.h2 initial="initial" whileInView="animate" variants={fadeInUp} className="section-title-v3" style={{ fontSize: '2.75rem', marginBottom: '2rem' }}>India's Q-Commerce Boom Is Bypassing Tier-2 Cities.</motion.h2>
-            <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-sub-v3" style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>Zomato and Swiggy are metro-first platforms grafted onto Tier-2 cities as an afterthought. They don't understand local food culture, can't build neighbourhood trust, and charge 25-30% commissions that are slowly killing local restaurants.</motion.p>
-            <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-sub-v3" style={{ fontSize: '1.1rem' }}>TezDel is built from the ground up for Bhubaneswar — speaking the local language, serving local food, and empowering local partners. This is a structural advantage that cannot be copied quickly.</motion.p>
+            <motion.h2 initial="initial" whileInView="animate" variants={fadeInUp} className="section-title-v3 investor-opp-title">India's Q-Commerce Boom Is Bypassing Tier-2 Cities.</motion.h2>
+            <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-sub-v3 investor-body-text" style={{ marginBottom: '2rem' }}>Zomato and Swiggy are metro-first platforms grafted onto Tier-2 cities as an afterthought. They don't understand local food culture, can't build neighbourhood trust, and charge 25-30% commissions that are slowly killing local restaurants.</motion.p>
+            <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-sub-v3 investor-body-text">TezDel is built from the ground up for Bhubaneswar — speaking the local language, serving local food, and empowering local partners. This is a structural advantage that cannot be copied quickly.</motion.p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {[
               { label: 'Bhubaneswar Population', value: '1M+' },
               { label: 'Restaurants in City', value: '8,000+' },
@@ -153,11 +153,11 @@ export default function Investor() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                whileHover={{ x: 10, borderColor: 'var(--color-primary)' }}
-                style={{ background: '#FFF9F5', border: '1px solid rgba(255,61,0,0.1)', borderRadius: '24px', padding: '24px 32px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', transition: 'all 0.3s ease' }}
+                whileHover={{ x: 6, borderColor: 'var(--color-primary)' }}
+                className="investor-stat-row"
               >
-                <span style={{ fontSize: '15px', color: 'var(--color-text-muted)', fontWeight: '700' }}>{item.label}</span>
-                <strong style={{ fontFamily: "'Syne',sans-serif", fontSize: '28px', color: 'var(--color-primary)', letterSpacing: '-1px' }}>{item.value}</strong>
+                <span className="investor-stat-label">{item.label}</span>
+                <strong className="investor-stat-value">{item.value}</strong>
               </motion.div>
             ))}
           </div>
@@ -165,11 +165,11 @@ export default function Investor() {
       </section>
 
       {/* Investment Pillars */}
-      <section className="page-section-v3" style={{ background: '#0D0706', padding: '120px 0' }}>
+      <section className="page-section-v3 investor-pillars-section">
         <div className="container">
-          <div className="section-head-v3" style={{ marginBottom: '80px' }}>
+          <div className="section-head-v3 investor-pillars-head">
             <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="section-label-v3">Why Invest</motion.p>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3" style={{ color: '#fff', fontSize: '2.5rem' }}>Six Structural Advantages</motion.h2>
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3 investor-pillars-title">Six Structural Advantages</motion.h2>
           </div>
           <motion.div 
             variants={staggerContainer}
@@ -177,7 +177,6 @@ export default function Investor() {
             whileInView="animate"
             viewport={{ once: true }}
             className="why-grid-v3"
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '24px' }}
           >
             {pillars.map(p => (
               <motion.article 
@@ -197,7 +196,7 @@ export default function Investor() {
       </section>
 
       {/* CTA */}
-      <section className="tezpass-v3" style={{ padding: '140px 0' }}>
+      <section className="tezpass-v3 investor-cta-section">
         <div className="container" style={{ textAlign: 'center' }}>
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -205,18 +204,17 @@ export default function Investor() {
             viewport={{ once: true }}
           >
             <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Seed Round Open</p>
-            <h2 className="section-title-v3 tezpass-v3-title" style={{ margin: '0 auto 1.5rem', fontSize: '3rem' }}>Interested in Investing in TezDel?</h2>
-            <p className="tezpass-v3-p" style={{ maxWidth: '580px', margin: '0 auto 3.5rem', fontSize: '1.15rem', opacity: 0.9 }}>We're currently raising our seed round to expand our zone coverage, build our tech platform, and onboard 500 partners in year one.</p>
-            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <h2 className="section-title-v3 tezpass-v3-title investor-cta-title">Interested in Investing in TezDel?</h2>
+            <p className="tezpass-v3-p investor-cta-p">We're currently raising our seed round to expand our zone coverage, build our tech platform, and onboard 500 partners in year one.</p>
+            <div className="investor-cta-btns">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link to="/contact" className="btn btn-primary" style={{ padding: '1.25rem 3.5rem', borderRadius: '20px', textDecoration: 'none', fontWeight: '800', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}>Request Pitch Deck</Link>
+                <Link to="/contact" className="btn btn-primary investor-cta-btn-primary" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 20px 40px rgba(0,0,0,0.2)' }}>Request Pitch Deck</Link>
               </motion.div>
               <motion.a 
                 whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.1)' }} 
                 whileTap={{ scale: 0.95 }}
                 href="mailto:invest@tezdel.com" 
-                className="btn-outline-white-v3"
-                style={{ padding: '1.25rem 3rem', borderRadius: '20px', fontWeight: '800', fontSize: '1.1rem', border: '2px solid #fff' }}
+                className="btn-outline-white-v3 investor-cta-btn-outline"
               >
                 invest@tezdel.com
               </motion.a>

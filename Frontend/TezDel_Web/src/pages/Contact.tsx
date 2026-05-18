@@ -36,7 +36,7 @@ export default function Contact() {
 
       {/* Channels */}
       <div className="stats-band-v3" style={{ background: '#1C1210' }}>
-        <div className="stats-band-v3-inner" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
+        <div className="stats-band-v3-inner contact-channels-grid">
           {channels.map(c => (
             <div key={c.title} style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '24px', marginBottom: '6px' }}>{c.icon}</div>
@@ -49,7 +49,7 @@ export default function Contact() {
 
       {/* Form + Info */}
       <section className="page-section-v3 page-section-light-v3">
-        <div className="container page-two-col-v3" style={{ gap: '60px', alignItems: 'flex-start' }}>
+        <div className="container page-two-col-v3 contact-form-grid">
 
           {/* Form */}
           <div style={{ background: '#fff', borderRadius: '24px', padding: '40px', boxShadow: '0 8px 40px rgba(0,0,0,0.08)', border: '1px solid #F0E8E4' }}>
