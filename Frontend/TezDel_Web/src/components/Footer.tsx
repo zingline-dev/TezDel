@@ -5,7 +5,14 @@ export default function Footer() {
       <footer className="footer-v2">
          <div className="container">
             <div className="footer-top">
-               <div className="footer-logo">TezDel</div>
+               <Link to="/" className="nav-logo-v3" style={{ textDecoration: 'none' }} aria-label="TezDel Home">
+                  <div className="nav-logo-mark-v3">
+                     <span>Tz</span>
+                  </div>
+                  <span className="nav-logo-text-v3" style={{ color: 'var(--color-secondary)' }}>
+                     Tez<em style={{ color: 'var(--color-primary)', fontStyle: 'normal' }}>Del</em>
+                  </span>
+               </Link>
                <div style={{ display: 'flex', gap: '1.5rem' }}>
                   <select style={{ padding: '0.5rem', borderRadius: '8px', border: '1px solid #ddd' }}>
                      <option>India</option>
