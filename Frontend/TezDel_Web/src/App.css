@@ -538,6 +538,29 @@
   display: none;
 }
 
+.wishlist-modal-close-v3 {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: none; /* Hidden on desktop screens */
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.wishlist-modal-close-v3:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .wishlist-modal-body-v3 {
   display: flex;
   gap: 40px;
@@ -588,6 +611,11 @@
 }
 
 @media (max-width: 768px) {
+  .wishlist-modal-close-v3 {
+    display: flex; /* Show only on mobile screens */
+    top: 16px;
+    right: 16px;
+  }
   .wishlist-modal-box-v3 {
     max-width: 480px;
     padding: 28px 24px;

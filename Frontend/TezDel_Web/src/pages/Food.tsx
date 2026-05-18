@@ -884,29 +884,10 @@ export default function Food() {
               <div style={{ position: 'absolute', top: '-20%', right: '-20%', width: '350px', height: '350px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.15, pointerEvents: 'none' }} />
               <div style={{ position: 'absolute', bottom: '-20%', left: '-20%', width: '350px', height: '350px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.08, pointerEvents: 'none' }} />
 
-              {/* Close Button */}
+              {/* Close Button (Hidden on desktop, visible on mobile screens) */}
               <button 
                 onClick={() => setSelectedRestaurant(null)}
-                style={{
-                  position: 'absolute',
-                  top: '24px',
-                  right: '24px',
-                  background: 'rgba(255,255,255,0.05)',
-                  border: 'none',
-                  color: '#fff',
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  fontSize: '18px',
-                  transition: 'background 0.2s',
-                  zIndex: 10
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+                className="wishlist-modal-close-v3"
               >
                 ✕
               </button>
