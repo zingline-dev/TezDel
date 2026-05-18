@@ -335,6 +335,7 @@ export default function Food() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [isDevModalOpen, setIsDevModalOpen] = useState(false);
+  const [selectedRestaurant, setSelectedRestaurant] = useState<any | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(12);
@@ -737,13 +738,15 @@ export default function Food() {
                     viewport={{ once: true }}
                     transition={{ delay: (i % 6) * 0.1 }}
                     whileHover={{ y: -12 }}
+                    onClick={() => setSelectedRestaurant(r)}
                     className="restaurant-card-v3"
                     style={{
                       background: '#fff',
                       borderRadius: '28px',
                       overflow: 'hidden',
                       boxShadow: 'var(--shadow-premium)',
-                      border: '1px solid rgba(0,0,0,0.02)'
+                      border: '1px solid rgba(0,0,0,0.02)',
+                      cursor: 'pointer'
                     }}
                   >
                     <div className="restaurant-card-img-v3" style={{ position: 'relative', height: '220px', overflow: 'hidden' }}>
@@ -769,9 +772,9 @@ export default function Food() {
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid #f1f5f9', paddingTop: '16px' }}>
                         <span style={{ fontSize: '14px', fontWeight: '700', color: 'var(--color-primary)' }}>{r.price}</span>
                         <motion.button
-                          onClick={() => setIsDevModalOpen(true)}
+                          onClick={(e) => { e.stopPropagation(); setSelectedRestaurant(r); }}
                           whileHover={{ x: 5 }}
-                          style={{ color: 'var(--color-secondary)', fontWeight: '700', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px' }}
+                          style={{ color: 'var(--color-secondary)', fontWeight: '700', fontSize: '13px', display: 'flex', alignItems: 'center', gap: '4px', background: 'none', border: 'none', cursor: 'pointer' }}
                         >
                           View Menu <ArrowRight size={14} />
                         </motion.button>
@@ -855,6 +858,168 @@ export default function Food() {
           <div style={{ position: 'absolute', top: '-50%', right: '-10%', width: '300px', height: '300px', background: 'var(--color-primary)', filter: 'blur(100px)', opacity: 0.15, zIndex: 1 }} />
         </motion.div>
       </section>
+
+      {/* Dynamic App Promotion Wishlist Modal */}
+      <AnimatePresence>
+        {selectedRestaurant && (
+          <div 
+            style={{ 
+              position: 'fixed', 
+              top: 0, 
+              left: 0, 
+              right: 0, 
+              bottom: 0, 
+              zIndex: 9999, 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              padding: '24px' 
+            }}
+          >
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedRestaurant(null)}
+              style={{ 
+                position: 'absolute', 
+                top: 0, 
+                left: 0, 
+                right: 0, 
+                bottom: 0, 
+                background: 'rgba(13, 7, 6, 0.85)', 
+                backdropFilter: 'blur(12px)' 
+              }}
+            />
+
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 30 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+              style={{
+                position: 'relative',
+                background: '#1C1210',
+                border: '1px solid #33201C',
+                borderRadius: '32px',
+                width: '100%',
+                maxWidth: '540px',
+                padding: '40px',
+                color: '#fff',
+                boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
+                overflow: 'hidden'
+              }}
+            >
+              {/* Decorative background glow */}
+              <div style={{ position: 'absolute', top: '-40%', right: '-40%', width: '300px', height: '300px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.15, pointerEvents: 'none' }} />
+
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedRestaurant(null)}
+                style={{
+                  position: 'absolute',
+                  top: '24px',
+                  right: '24px',
+                  background: 'rgba(255,255,255,0.05)',
+                  border: 'none',
+                  color: '#fff',
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  fontSize: '18px',
+                  transition: 'background 0.2s',
+                  zIndex: 10
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.1)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+              >
+                ✕
+              </button>
+
+              {/* Header Image */}
+              <div style={{ borderRadius: '20px', overflow: 'hidden', height: '160px', marginBottom: '24px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                <img src={selectedRestaurant.img} alt={selectedRestaurant.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+
+              {/* Title & Tagline */}
+              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                <span style={{ fontSize: '11px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '6px 14px', borderRadius: '30px', display: 'inline-block', marginBottom: '12px', fontFamily: "'Syne', sans-serif" }}>
+                  Exclusive Pre-Release Access
+                </span>
+                <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '26px', fontWeight: 800, color: '#fff', lineHeight: '1.2' }}>
+                  Access {selectedRestaurant.name} <br />
+                  <span style={{ color: 'var(--color-primary)' }}>Exclusively in the App</span>
+                </h3>
+                <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.6)', marginTop: '12px', lineHeight: '1.6' }}>
+                  To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission, direct-to-customer</strong> delivery model, digital menus and active checkout are exclusively accessible via the forthcoming TezDel iOS and Android mobile applications.
+                </p>
+              </div>
+
+              {/* Wishlist Box */}
+              <div style={{ background: 'rgba(255, 114, 76, 0.05)', border: '1px solid rgba(255, 114, 76, 0.15)', borderRadius: '20px', padding: '20px', textAlign: 'center', marginBottom: '24px' }}>
+                <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.95)', fontWeight: '600' }}>
+                  🚀 Join {selectedRestaurant.name}'s Exclusive App Wishlist
+                </div>
+                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: '1.4' }}>
+                  Be notified instantly when {selectedRestaurant.name} goes live. You will be joining <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> who just joined this exclusive wishlist!
+                </p>
+                
+                {/* Simulated Input / Action */}
+                <div style={{ display: 'flex', gap: '8px', marginTop: '16px' }}>
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email address" 
+                    defaultValue="user@example.com"
+                    style={{ 
+                      flex: 1, 
+                      background: 'rgba(0,0,0,0.2)', 
+                      border: '1px solid rgba(255,255,255,0.1)', 
+                      borderRadius: '12px', 
+                      padding: '10px 14px', 
+                      color: '#fff', 
+                      fontSize: '13px' 
+                    }} 
+                    readOnly
+                  />
+                  <button
+                    onClick={() => {
+                      alert('✨ Success! You have been placed on the TezDel priority app launch queue for ' + selectedRestaurant.name + '.');
+                      setSelectedRestaurant(null);
+                    }}
+                    style={{
+                      background: 'var(--color-primary)',
+                      border: 'none',
+                      color: '#fff',
+                      padding: '10px 18px',
+                      borderRadius: '12px',
+                      fontWeight: '700',
+                      fontSize: '13px',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Join Queue
+                  </button>
+                </div>
+              </div>
+
+              {/* App Moat Bullet Points */}
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', fontSize: '11px', color: 'rgba(255,255,255,0.4)', fontWeight: '600', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '16px' }}>
+                <span>⚡ Zero Commission</span>
+                <span>•</span>
+                <span>🏪 Direct local pricing</span>
+                <span>•</span>
+                <span>🛵 Nearby Captains</span>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
