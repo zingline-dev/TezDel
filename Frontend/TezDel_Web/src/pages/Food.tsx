@@ -31,7 +31,7 @@ const staggerContainer = {
   }
 };
 
-// Real, mouth-watering Unsplash food-only images curated by category (6 unique photos per category)
+// Real, mouth-watering Unsplash food-only images curated by category (Exactly unique, no overlaps)
 const FOOD_IMAGES = {
   'Odia Specials': [
     'https://images.unsplash.com/photo-1546833999-b9f581a1996d', // Authentic Indian Veg/Non-veg Thali
@@ -39,7 +39,18 @@ const FOOD_IMAGES = {
     'https://images.unsplash.com/photo-1589301760014-d929f3979dbc', // Spicy Gravy Tarkari / Paneer
     'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', // Tandoori Paneer Butter Masala
     'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4', // Tandoori Platter
-    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7'  // Special Pav Bhaji / Curry (Verified 200 OK)
+    'https://images.unsplash.com/photo-1631452180519-c014fe946bc7', // Special Pav Bhaji / Curry
+    'https://images.unsplash.com/photo-1605333396915-47ed6b68a00e', // Butter Chicken curry
+    'https://images.unsplash.com/photo-1565557623262-b51c2513a641', // Paneer/Tandoor dish
+    'https://images.unsplash.com/photo-1505253716362-afaea1d3d1af', // Traditional veg bowl
+    'https://images.unsplash.com/photo-1621979087428-16aa3a69f2cf', // Curry gravy
+    'https://images.unsplash.com/photo-1603360946369-dc9bb6258143', // Indian mutton curry
+    'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d', // Indian paneer masala
+    'https://images.unsplash.com/photo-1546069901-ba9599a7e63c', // Indian veg curry dish
+    'https://images.unsplash.com/photo-1504674900247-0877df9cc836', // Indian spiced items
+    'https://images.unsplash.com/photo-1470309864661-68328b2cd0a5', // Indian style meal
+    'https://images.unsplash.com/photo-1624462966581-bc6d768cbce5', // Delicious Indian thali
+    'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327'  // Special roast chicken/gravy
   ],
   'Biryani': [
     'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8', // Royal Hyderabadi Biryani
@@ -47,7 +58,16 @@ const FOOD_IMAGES = {
     'https://images.unsplash.com/photo-1589302168068-964664d93dc0', // Premium Hyderabadi Chicken Biryani
     'https://images.unsplash.com/photo-1606491956689-2ea866880c84', // Dum Mutton Biryani Plate
     'https://images.unsplash.com/photo-1512058564366-18510be2db19', // Special Egg Pulav
-    'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46'  // Jeera Rice Bowls
+    'https://images.unsplash.com/photo-1569058242253-92a9c755a0ec', // Fragrant saffron rice
+    'https://images.unsplash.com/photo-1604152135912-04a022e23696', // Basmati rice side
+    'https://images.unsplash.com/photo-1599043513900-ed6fe01d385d', // Spiced Biryani Rice bowl
+    'https://images.unsplash.com/photo-1618412674454-e0b49206d203', // Premium Pulav bowl
+    'https://images.unsplash.com/photo-1601356616077-695728617cb9', // Basmati bowl
+    'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0', // Grilled kebab platter
+    'https://images.unsplash.com/photo-1622483767028-3f66f32aef97', // Smoked chicken feast
+    'https://images.unsplash.com/photo-1555939594-58d7cb561ad1', // Spicy grilled meats
+    'https://images.unsplash.com/photo-1540420773420-3366772f4999', // Lunch platter
+    'https://images.unsplash.com/photo-1543353071-10c8ba85a904'  // Special food table
   ],
   'Pizza': [
     'https://images.unsplash.com/photo-1513104890138-7c749659a591', // Woodfired Mozzarella Pizza
@@ -55,7 +75,16 @@ const FOOD_IMAGES = {
     'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e', // Pepperoni Feast Pizza
     'https://images.unsplash.com/photo-1574071318508-1cdbab80d002', // Cheese Burst Pizza
     'https://images.unsplash.com/photo-1511018556340-d16986a1c194', // Fresh Basil Pesto Pizza
-    'https://images.unsplash.com/photo-1590947132387-155cc02f3212'  // Deluxe Pepperoni Pizza (Verified 200 OK)
+    'https://images.unsplash.com/photo-1590947132387-155cc02f3212', // Deluxe Pepperoni Pizza
+    'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee', // Deluxe Pizza
+    'https://images.unsplash.com/photo-1528137871618-79d2761e3fd5', // Premium Pizza Slice
+    'https://images.unsplash.com/photo-1544982503-9f984c14501a', // Pizza slice boards
+    'https://images.unsplash.com/photo-1551218808-94e220e084d2', // Fresh baked pizza
+    'https://images.unsplash.com/photo-1555507036-ab1f4038808a', // Ovenfresh pizza
+    'https://images.unsplash.com/photo-1595708684082-a173bb3a06c5', // Italian gourmet pizza
+    'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3', // Cheese loaded pizza slice
+    'https://images.unsplash.com/photo-1573080496219-bb080dd4f877', // Thin crust pizza
+    'https://images.unsplash.com/photo-1460306855393-0410f61241c7'  // Delish pasta
   ],
   'Burgers': [
     'https://images.unsplash.com/photo-1568901346375-23c9450c58cd', // Gourmet Double Cheeseburger
@@ -63,23 +92,63 @@ const FOOD_IMAGES = {
     'https://images.unsplash.com/photo-1571091718767-18b5b1457add', // Supreme Veg Burger with Fries
     'https://images.unsplash.com/photo-1586190848861-99aa4a171e90', // Classic Bistro Burger
     'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9', // Smokehouse Beef Burger
-    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47'  // Mini Sliders Basket
+    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47', // Mini Sliders Basket
+    'https://images.unsplash.com/photo-1551782450-a2132b4ba21d', // Cheeseburger fresh
+    'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2', // Hamburger
+    'https://images.unsplash.com/photo-1606755962773-d324e0a13086', // Classic fast food meal basket
+    'https://images.unsplash.com/photo-1610614819513-58e34989848b', // Crispy chicken burger with bun
+    'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5', // Bacon double cheeseburger
+    'https://images.unsplash.com/photo-1576107232684-1279f390859f', // Crispy burgers basket
+    'https://images.unsplash.com/photo-1562967914-608f82629710'  // Golden crispy chicken
   ],
   'Rolls': [
     'https://images.unsplash.com/photo-1626132647523-66f5bf380027', // Paneer Kathi Roll Wraps
     'https://images.unsplash.com/photo-1608897013039-887f21d8c804', // Spicy Chicken Kathi Wrap
-    'https://images.unsplash.com/photo-1625398407796-82650a8c135f', // Delicious Spring Rolls (Verified 200 OK)
+    'https://images.unsplash.com/photo-1625398407796-82650a8c135f', // Delicious Spring Rolls
     'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb', // Steamed Momos with Red Dip
     'https://images.unsplash.com/photo-1585238342024-78d387f4a707', // Schezwan Noodles
-    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc'  // Chaat base / Curry Bowl (Verified 200 OK)
+    'https://images.unsplash.com/photo-1541518763669-27fef04b14ea', // Special roll snack
+    'https://images.unsplash.com/photo-1541532713592-79a0317b6b77', // Indian samosa/snack
+    'https://images.unsplash.com/photo-1556910103-1c02745aae4d', // Stuffed flatbread rolls
+    'https://images.unsplash.com/photo-1558985250-27a406d64cb3', // Delicious street food platter
+    'https://images.unsplash.com/photo-1574484284002-952d92456975', // Spiced potatoes & dip
+    'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0', // Toast breakfast
+    'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2', // Tasty platter
+    'https://images.unsplash.com/photo-1529042410759-befb1204b468', // Meatballs plate
+    'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe', // Platter of salads
+    'https://images.unsplash.com/photo-1547496502-affa22d38842', // Delicious salad mix
+    'https://images.unsplash.com/photo-1603532648955-039310d9ed75', // Paneer tikka skewers
+    'https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c', // Delicate appetizer food
+    'https://images.unsplash.com/photo-1617196034183-421b4917c92d', // Gourmet salad with chicken
+    'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db', // Crinkle cut fries
+    'https://images.unsplash.com/photo-1496412705862-a0088c16f785'  // Gourmet dish
   ],
   'Desserts': [
     'https://images.unsplash.com/photo-1551024506-0bccd828d307', // Hot Chocolate Cake
     'https://images.unsplash.com/photo-1587314168485-3236d6710814', // Assorted Indian Sweets / Ladoo
     'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e', // Traditional Chenna Poda / Sweets
-    'https://images.unsplash.com/photo-1508737027454-e6454ef45afd', // Sweet cupcakes/cakes (Verified 200 OK)
+    'https://images.unsplash.com/photo-1508737027454-e6454ef45afd', // Sweet cupcakes/cakes
     'https://images.unsplash.com/photo-1578985545062-69928b1d9587', // Black Forest Gateau Cake
-    'https://images.unsplash.com/photo-1596797038530-2c107229654b'  // Premium Kaju Katli / Sweets
+    'https://images.unsplash.com/photo-1596797038530-2c107229654b', // Premium Kaju Katli / Sweets
+    'https://images.unsplash.com/photo-1551024601-bec78aea704b', // Sweets glazed
+    'https://images.unsplash.com/photo-1563805042-7684c019e1cb', // Gourmet Ice cream cup
+    'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f', // Ice cream scoop
+    'https://images.unsplash.com/photo-1481931098730-318b6f776db0', // Premium desserts
+    'https://images.unsplash.com/photo-1482049016688-2d3e1b311543', // Brunch pancakes
+    'https://images.unsplash.com/photo-1488477181946-6428a0291777', // Sweet pastries
+    'https://images.unsplash.com/photo-1498837167922-ddd27525d352', // Bakery sweets
+    'https://images.unsplash.com/photo-1506084868230-bb9d95c24759', // Ice cream bowl
+    'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b', // Mouth-watering chocolate donuts
+    'https://images.unsplash.com/photo-1514517604298-cf80e0fb7f1e', // Choco cookie sweets
+    'https://images.unsplash.com/photo-1551024709-8f23befc6f87', // Chocolate donuts
+    'https://images.unsplash.com/photo-1551183053-bf91a1d81141', // Layered dessert cakes
+    'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa', // Premium waffle desserts
+    'https://images.unsplash.com/photo-1560684352-8497838a2229', // Mouth-watering chocolate waffles
+    'https://images.unsplash.com/photo-1565958011703-44f9829ba187', // Strawberry glaze dessert
+    'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445', // Pancakes syrup
+    'https://images.unsplash.com/photo-1576618148400-f54bed99fcfd', // Glazed pastries
+    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5', // Sweet strawberry waffles
+    'https://images.unsplash.com/photo-1612240498936-65f5101365d2'  // Fresh fruit bowl dessert
   ]
 };
 
@@ -207,6 +276,24 @@ function generateHyperlocalRestaurants(location: string): Array<{
   // Deterministic seed generation based on location name length to shuffle slightly
   const baseSeed = location.length;
 
+  // Track unique index counters per category to completely prevent image reuse
+  const categoryCounters: Record<string, number> = {
+    'Odia Specials': 0,
+    'Biryani': 0,
+    'Pizza': 0,
+    'Burgers': 0,
+    'Rolls': 0,
+    'Desserts': 0
+  };
+
+  // Pre-calculate category indices in original static order to guarantee 100% unique image assignment
+  const restaurantImageIndex = REAL_RESTAURANTS_DATA.map((r) => {
+    const category = r.category;
+    const currentCount = categoryCounters[category] || 0;
+    categoryCounters[category] = currentCount + 1;
+    return currentCount;
+  });
+
   for (let i = 0; i < REAL_RESTAURANTS_DATA.length; i++) {
     // Deterministic shuffle based on location length
     const targetIdx = (i * 7 + baseSeed) % REAL_RESTAURANTS_DATA.length;
@@ -215,29 +302,14 @@ function generateHyperlocalRestaurants(location: string): Array<{
     // Find category images
     const categoryImages = FOOD_IMAGES[rData.category as keyof typeof FOOD_IMAGES];
     
-    // Choose images deterministically matching the category so they don't duplicate
-    const imgSeed = (baseSeed + i) % categoryImages.length;
-    const baseImg = categoryImages[imgSeed];
+    // Choose the pre-assigned unique image index for this specific restaurant
+    const uniqueImgIdx = restaurantImageIndex[targetIdx];
+    const baseImg = categoryImages[uniqueImgIdx % categoryImages.length];
 
     // Dynamic crops & zooms to make the 100+ listings look absolutely unique
     const cropSetting = i % 3 === 0 ? 'entropy' : i % 3 === 1 ? 'faces' : 'center';
     const zoomSetting = i % 3 === 0 ? 'w=800&h=600' : i % 3 === 1 ? 'w=800&h=550' : 'w=800&h=650';
-    let img = `${baseImg}?auto=format&fit=crop&crop=${cropSetting}&${zoomSetting}&q=80&sig=${i}`;
-
-    // Hardcode premium real local Odisha restaurants with exact food item image configurations
-    if (rData.name === 'Odisha Hotel') {
-      img = 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&h=600&q=80&sig=odia_hotel'; // Premium Thali
-    } else if (rData.name === 'Dalma Restaurant') {
-      img = 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&h=600&q=80&sig=dalma_rest'; // Dalma/Rice curry
-    } else if (rData.name === 'The Biryani Box') {
-      img = 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&h=600&q=80&sig=biryani_box'; // Claypot aromatic biryani
-    } else if (rData.name === 'Pakhala Hub') {
-      img = 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&h=600&q=80&sig=pakhala_hub'; // Authentic Indian curry
-    } else if (rData.name === 'Cuttack Dahibara Express') {
-      img = 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&h=600&q=80&sig=cuttack_dahibara'; // Indian Street chaat / dahibara (Verified 200 OK)
-    } else if (rData.name === 'Nimapada Sweets') {
-      img = 'https://images.unsplash.com/photo-1508737027454-e6454ef45afd?auto=format&fit=crop&w=800&h=600&q=80&sig=nimapada_sweets'; // Sweet cakes/sweets (Verified 200 OK)
-    }
+    const img = `${baseImg}?auto=format&fit=crop&crop=${cropSetting}&${zoomSetting}&q=80&sig=${targetIdx}`;
 
     list.push({
       name: rData.name,
