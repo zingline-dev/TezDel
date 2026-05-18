@@ -642,7 +642,7 @@ export default function Food() {
                   boxShadow: 'var(--shadow-premium)'
                 }}
               >
-                Load More Restaurants ({filteredRestaurants.length - visibleCount} Left)
+                Load More Restaurants
               </motion.button>
             </div>
           )}
