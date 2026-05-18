@@ -1984,3 +1984,118 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ════════════════════════════════════════
+   RESPONSIVE HELPERS & TOGGLES
+   ════════════════════════════════════════ */
+
+/* Standard Desktop navigation links vs Mobile navigation toggles */
+@media (max-width: 900px) {
+  .desktop-only {
+    display: none !important;
+  }
+}
+
+@media (min-width: 901px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* ════════════════════════════════════════
+   FLOATING NAVBAR (MOBILE TAB BAR)
+   ════════════════════════════════════════ */
+
+.floating-nav-outer {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  width: 90%;
+  max-width: 420px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 40px;
+  background: rgba(15, 23, 42, 0.75) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 
+              0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+.floating-nav-link {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.floating-nav-link.active {
+  color: var(--color-primary);
+}
+
+.floating-nav-pill {
+  position: absolute;
+  inset: 4px 8px;
+  background: rgba(255, 61, 0, 0.12);
+  border-radius: 30px;
+  z-index: 0;
+  border: 1px solid rgba(255, 61, 0, 0.08);
+}
+
+.floating-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  zIndex: 1;
+}
+
+.floating-nav-item span {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+.floating-nav-link.active .floating-nav-item span {
+  font-weight: 700;
+}
+
+/* Perfect adaptation on extremely small devices (iPhone SE/5/Mini/older Androids) */
+@media (max-width: 380px) {
+  .floating-nav-outer {
+    bottom: 16px;
+    width: 92%;
+  }
+  
+  .floating-nav-inner {
+    padding: 6px 8px;
+    border-radius: 30px;
+  }
+  
+  .floating-nav-item span {
+    font-size: 9px;
+  }
+  
+  .floating-nav-link {
+    padding: 8px 0;
+  }
+  
+  .floating-nav-pill {
+    inset: 3px 6px;
+  }
+}
