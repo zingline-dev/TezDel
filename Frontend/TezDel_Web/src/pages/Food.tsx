@@ -952,7 +952,7 @@ export default function Food() {
                     </p>
                     
                     {/* Simulated Input / Action */}
-                    <div className="wishlist-form-container-v3">
+                    <div className="wishlist-form-container-v3" style={{ alignItems: 'center' }}>
                       <input 
                         type="email" 
                         placeholder="Enter your email address" 
@@ -962,10 +962,13 @@ export default function Food() {
                           background: 'rgba(0,0,0,0.2)', 
                           border: '1px solid rgba(255,255,255,0.1)', 
                           borderRadius: '10px', 
-                          padding: '8px 12px', 
+                          padding: '0 14px', 
                           color: '#fff', 
-                          fontSize: '12px',
-                          fontFamily: 'inherit'
+                          fontSize: '13px',
+                          fontFamily: 'inherit',
+                          height: '42px',
+                          boxSizing: 'border-box',
+                          textAlign: 'left'
                         }} 
                         readOnly
                       />
@@ -978,12 +981,18 @@ export default function Food() {
                           background: 'var(--color-primary)',
                           border: 'none',
                           color: '#fff',
-                          padding: '8px 16px',
+                          padding: '0 20px',
                           borderRadius: '10px',
                           fontWeight: '700',
-                          fontSize: '12px',
+                          fontSize: '13px',
                           cursor: 'pointer',
-                          fontFamily: 'inherit'
+                          fontFamily: 'inherit',
+                          height: '42px',
+                          boxSizing: 'border-box',
+                          whiteSpace: 'nowrap',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
                         }}
                       >
                         Join Queue
