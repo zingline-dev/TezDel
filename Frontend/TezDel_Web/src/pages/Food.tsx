@@ -937,10 +937,10 @@ export default function Food() {
                     flexDirection: 'column',
                     justifyContent: 'center'
                   }}>
-                    <div style={{ fontSize: '23px', color: 'rgba(255,255,255,0.95)', fontWeight: '700', marginBottom: '8px' }}>
-                      🚀 Join <span style={{ color: 'var(--color-primary)' }}>{selectedRestaurant.name}</span>'s App Wishlist
+                    <div style={{ fontSize: '18px', color: 'rgba(255,255,255,0.95)', fontWeight: '700', marginBottom: '8px' }}>
+                      🚀 Join <span style={{ color: 'var(--color-primary)' }}>{selectedRestaurant.name}</span>'s <br />App Wishlist
                     </div>
-                    <p style={{ fontSize: '18.5px', color: 'rgba(255,255,255,0.5)', margin: '0 0 20px 0', lineHeight: '1.4' }}>
+                    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', margin: '0 0 20px 0', lineHeight: '1.4' }}>
                       Get notified instantly when they go live. Join <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> already on the queue!
                     </p>
 
