@@ -914,10 +914,10 @@ export default function Food() {
               <div className="wishlist-modal-body-v3">
                 {/* Left Column: Context & Brand moat */}
                 <div className="wishlist-modal-col-left-v3">
-                  <span style={{ fontSize: '9px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '4px 10px', borderRadius: '30px', display: 'inline-block', marginBottom: '8px', fontFamily: "'Syne', sans-serif", width: 'fit-content' }}>
+                  <span style={{ fontSize: '9.5px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '4px 12px', borderRadius: '30px', display: 'inline-block', marginBottom: '12px', fontFamily: "'Syne', sans-serif", width: 'fit-content' }}>
                     Exclusive Pre-Release Access
                   </span>
-                  <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', fontWeight: 800, color: '#fff', lineHeight: '1.2', margin: '0 0 12px 0' }}>
+                  <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', fontWeight: 800, color: '#fff', lineHeight: '1.2', margin: '0 0 16px 0' }}>
                     Access {selectedRestaurant.name} Exclusively in App
                   </h3>
                   <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.4' }}>

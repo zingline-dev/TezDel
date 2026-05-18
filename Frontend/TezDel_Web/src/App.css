@@ -528,7 +528,7 @@
   max-width: 800px;
   max-height: 90vh;
   overflow: hidden;
-  padding: 36px;
+  padding: 48px;
   color: #fff;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
 }
@@ -539,7 +539,7 @@
 
 .wishlist-modal-body-v3 {
   display: flex;
-  gap: 32px;
+  gap: 48px;
   align-items: stretch;
 }
 
@@ -549,7 +549,7 @@
   flex-direction: column;
   justify-content: center;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
-  padding-right: 32px;
+  padding-right: 48px;
   text-align: left;
 }
 
