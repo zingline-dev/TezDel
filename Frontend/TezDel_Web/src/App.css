@@ -525,10 +525,10 @@
   border: 1px solid #33201C;
   border-radius: 32px;
   width: 100%;
-  max-width: 720px;
+  max-width: 800px;
   max-height: 90vh;
   overflow: hidden;
-  padding: 32px;
+  padding: 36px;
   color: #fff;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
 }
@@ -539,26 +539,44 @@
 
 .wishlist-modal-body-v3 {
   display: flex;
-  gap: 28px;
+  gap: 32px;
   align-items: stretch;
 }
 
 .wishlist-modal-col-left-v3 {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-  padding-right: 28px;
-  text-align: left;
-}
-
-.wishlist-modal-col-right-v3 {
   flex: 1.1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding-right: 32px;
   text-align: left;
+}
+
+.wishlist-modal-col-right-v3 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.wishlist-benefit-list-v3 {
+  margin: 18px 0 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wishlist-benefit-item-v3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
 }
 
 .wishlist-form-container-v3 {

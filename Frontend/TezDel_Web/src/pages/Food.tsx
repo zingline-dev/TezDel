@@ -923,6 +923,22 @@ export default function Food() {
                   <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.4' }}>
                     To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission</strong> delivery model, digital menus and checkouts are accessible only via the upcoming TezDel mobile application.
                   </p>
+
+                  {/* Brand Moat Benefits list */}
+                  <ul className="wishlist-benefit-list-v3">
+                    <li className="wishlist-benefit-item-v3">
+                      <Zap size={14} style={{ color: 'var(--color-primary)' }} />
+                      <span>Flat ₹0 Delivery Fee always</span>
+                    </li>
+                    <li className="wishlist-benefit-item-v3">
+                      <ShieldCheck size={14} style={{ color: 'var(--color-primary)' }} />
+                      <span>Direct-from-kitchen authentic local pricing</span>
+                    </li>
+                    <li className="wishlist-benefit-item-v3">
+                      <Compass size={14} style={{ color: 'var(--color-primary)' }} />
+                      <span>Live GPS real-time neighborhood tracking</span>
+                    </li>
+                  </ul>
                 </div>
 
                 {/* Right Column: Wishlist Queue Form */}
