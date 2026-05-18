@@ -910,68 +910,68 @@ export default function Food() {
                 ✕
               </button>
 
-              {/* Header Image */}
-              <div style={{ borderRadius: '16px', overflow: 'hidden', height: '115px', marginBottom: '16px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                <img src={selectedRestaurant.img} alt={selectedRestaurant.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              </div>
-
-              {/* Title & Tagline */}
-              <div style={{ textAlign: 'center', marginBottom: '16px' }}>
-                <span style={{ fontSize: '9px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '4px 10px', borderRadius: '30px', display: 'inline-block', marginBottom: '8px', fontFamily: "'Syne', sans-serif" }}>
-                  Exclusive Pre-Release Access
-                </span>
-                <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '20px', fontWeight: 800, color: '#fff', lineHeight: '1.2' }}>
-                  Access {selectedRestaurant.name} Exclusively in App
-                </h3>
-                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.6)', marginTop: '8px', lineHeight: '1.4' }}>
-                  To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission</strong> delivery model, digital menus and checkouts are accessible only via the upcoming TezDel mobile application.
-                </p>
-              </div>
-
-              {/* Wishlist Box */}
-              <div style={{ background: 'rgba(255, 114, 76, 0.05)', border: '1px solid rgba(255, 114, 76, 0.15)', borderRadius: '16px', padding: '14px', textAlign: 'center' }}>
-                <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.95)', fontWeight: '600' }}>
-                  🚀 Join {selectedRestaurant.name}'s App Wishlist
+              {/* Side-by-Side Flex Layout Container */}
+              <div className="wishlist-modal-body-v3">
+                {/* Left Column: Context & Brand moat */}
+                <div className="wishlist-modal-col-left-v3">
+                  <span style={{ fontSize: '9px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '4px 10px', borderRadius: '30px', display: 'inline-block', marginBottom: '8px', fontFamily: "'Syne', sans-serif", width: 'fit-content' }}>
+                    Exclusive Pre-Release Access
+                  </span>
+                  <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '22px', fontWeight: 800, color: '#fff', lineHeight: '1.2', margin: '0 0 12px 0' }}>
+                    Access {selectedRestaurant.name} Exclusively in App
+                  </h3>
+                  <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', margin: 0, lineHeight: '1.4' }}>
+                    To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission</strong> delivery model, digital menus and checkouts are accessible only via the upcoming TezDel mobile application.
+                  </p>
                 </div>
-                <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: '1.3' }}>
-                  Get notified instantly when they go live. Join <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> already on the queue!
-                </p>
-                
-                {/* Simulated Input / Action */}
-                <div className="wishlist-form-container-v3">
-                  <input 
-                    type="email" 
-                    placeholder="Enter your email address" 
-                    defaultValue="user@example.com"
-                    style={{ 
-                      flex: 1, 
-                      background: 'rgba(0,0,0,0.2)', 
-                      border: '1px solid rgba(255,255,255,0.1)', 
-                      borderRadius: '10px', 
-                      padding: '8px 12px', 
-                      color: '#fff', 
-                      fontSize: '12px' 
-                    }} 
-                    readOnly
-                  />
-                  <button
-                    onClick={() => {
-                      alert('✨ Success! You have been placed on the TezDel priority app launch queue for ' + selectedRestaurant.name + '.');
-                      setSelectedRestaurant(null);
-                    }}
-                    style={{
-                      background: 'var(--color-primary)',
-                      border: 'none',
-                      color: '#fff',
-                      padding: '8px 16px',
-                      borderRadius: '10px',
-                      fontWeight: '700',
-                      fontSize: '12px',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    Join Queue
-                  </button>
+
+                {/* Right Column: Wishlist Queue Form */}
+                <div className="wishlist-modal-col-right-v3">
+                  <div style={{ background: 'rgba(255, 114, 76, 0.05)', border: '1px solid rgba(255, 114, 76, 0.15)', borderRadius: '16px', padding: '20px', textAlign: 'center' }}>
+                    <div style={{ fontSize: '14px', color: 'rgba(255,255,255,0.95)', fontWeight: '700' }}>
+                      🚀 Join {selectedRestaurant.name}'s App Wishlist
+                    </div>
+                    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginTop: '4px', lineHeight: '1.3' }}>
+                      Get notified instantly when they go live. Join <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> already on the queue!
+                    </p>
+                    
+                    {/* Simulated Input / Action */}
+                    <div className="wishlist-form-container-v3">
+                      <input 
+                        type="email" 
+                        placeholder="Enter your email address" 
+                        defaultValue="user@example.com"
+                        style={{ 
+                          flex: 1, 
+                          background: 'rgba(0,0,0,0.2)', 
+                          border: '1px solid rgba(255,255,255,0.1)', 
+                          borderRadius: '10px', 
+                          padding: '8px 12px', 
+                          color: '#fff', 
+                          fontSize: '12px' 
+                        }} 
+                        readOnly
+                      />
+                      <button
+                        onClick={() => {
+                          alert('✨ Success! You have been placed on the TezDel priority app launch queue for ' + selectedRestaurant.name + '.');
+                          setSelectedRestaurant(null);
+                        }}
+                        style={{
+                          background: 'var(--color-primary)',
+                          border: 'none',
+                          color: '#fff',
+                          padding: '8px 16px',
+                          borderRadius: '10px',
+                          fontWeight: '700',
+                          fontSize: '12px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        Join Queue
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </motion.div>
