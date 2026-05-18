@@ -881,27 +881,27 @@ export default function Food() {
               className="wishlist-modal-box-v3"
             >
                {/* Decorative background glows */}
-              <div style={{ position: 'absolute', top: '-10%', right: '-10%', width: '500px', height: '500px', background: 'var(--color-primary)', filter: 'blur(150px)', opacity: 0.12, pointerEvents: 'none' }} />
-              <div style={{ position: 'absolute', bottom: '-10%', left: '-10%', width: '500px', height: '500px', background: 'var(--color-primary)', filter: 'blur(150px)', opacity: 0.08, pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', top: '-20%', right: '-20%', width: '350px', height: '350px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.15, pointerEvents: 'none' }} />
+              <div style={{ position: 'absolute', bottom: '-20%', left: '-20%', width: '350px', height: '350px', background: 'var(--color-primary)', filter: 'blur(120px)', opacity: 0.08, pointerEvents: 'none' }} />
 
               {/* Close Button */}
               <button 
                 onClick={() => setSelectedRestaurant(null)}
                 style={{
                   position: 'absolute',
-                  top: '32px',
-                  right: '32px',
+                  top: '24px',
+                  right: '24px',
                   background: 'rgba(255,255,255,0.05)',
                   border: 'none',
                   color: '#fff',
-                  width: '44px',
-                  height: '44px',
+                  width: '40px',
+                  height: '40px',
                   borderRadius: '50%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   cursor: 'pointer',
-                  fontSize: '20px',
+                  fontSize: '18px',
                   transition: 'background 0.2s',
                   zIndex: 10
                 }}
@@ -915,28 +915,28 @@ export default function Food() {
               <div className="wishlist-modal-body-v3">
                 {/* Left Column: Context & Brand moat */}
                 <div className="wishlist-modal-col-left-v3">
-                  <span style={{ fontSize: '9.5px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '4px 12px', borderRadius: '30px', display: 'inline-block', marginBottom: '16px', fontFamily: "'Syne', sans-serif", width: 'fit-content' }}>
+                  <span style={{ fontSize: '9px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-primary)', background: 'rgba(255, 114, 76, 0.1)', padding: '4px 10px', borderRadius: '30px', display: 'inline-block', marginBottom: '10px', fontFamily: "'Syne', sans-serif", width: 'fit-content' }}>
                     Exclusive Pre-Release Access
                   </span>
-                  <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '36px', fontWeight: 800, color: '#fff', lineHeight: '1.2', margin: '0 0 18px 0' }}>
+                  <h3 style={{ fontFamily: "'Syne', sans-serif", fontSize: '24px', fontWeight: 800, color: '#fff', lineHeight: '1.25', margin: '0 0 12px 0' }}>
                     Access {selectedRestaurant.name} Exclusively in App
                   </h3>
-                  <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.7)', margin: '0 0 24px 0', lineHeight: '1.5' }}>
-                    To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission</strong> delivery model, digital menus and active checkouts are accessible exclusively via the forthcoming TezDel iOS and Android mobile applications.
+                  <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', margin: '0 0 18px 0', lineHeight: '1.4' }}>
+                    To maintain our strict <strong style={{ color: '#fff' }}>Zero-Commission</strong> delivery model, digital menus and checkouts are accessible only via the upcoming TezDel mobile application.
                   </p>
 
                   {/* Brand Moat Benefits list */}
                   <ul className="wishlist-benefit-list-v3">
                     <li className="wishlist-benefit-item-v3">
-                      <Zap size={16} style={{ color: 'var(--color-primary)' }} />
+                      <Zap size={14} style={{ color: 'var(--color-primary)' }} />
                       <span>Flat ₹0 Delivery Fee always</span>
                     </li>
                     <li className="wishlist-benefit-item-v3">
-                      <ShieldCheck size={16} style={{ color: 'var(--color-primary)' }} />
+                      <ShieldCheck size={14} style={{ color: 'var(--color-primary)' }} />
                       <span>Direct-from-kitchen authentic local pricing</span>
                     </li>
                     <li className="wishlist-benefit-item-v3">
-                      <Compass size={16} style={{ color: 'var(--color-primary)' }} />
+                      <Compass size={14} style={{ color: 'var(--color-primary)' }} />
                       <span>Live GPS real-time neighborhood tracking</span>
                     </li>
                   </ul>
@@ -947,8 +947,8 @@ export default function Food() {
                   <div style={{ 
                     background: 'rgba(255, 114, 76, 0.05)', 
                     border: '1px solid rgba(255, 114, 76, 0.15)', 
-                    borderRadius: '24px', 
-                    padding: '36px 28px', 
+                    borderRadius: '20px', 
+                    padding: '28px 24px', 
                     textAlign: 'center',
                     height: '100%',
                     boxSizing: 'border-box',
@@ -956,10 +956,10 @@ export default function Food() {
                     flexDirection: 'column',
                     justifyContent: 'center'
                   }}>
-                    <div style={{ fontSize: '18px', color: 'rgba(255,255,255,0.95)', fontWeight: '700', marginBottom: '8px' }}>
+                    <div style={{ fontSize: '15px', color: 'rgba(255,255,255,0.95)', fontWeight: '700', marginBottom: '6px' }}>
                       🚀 Join {selectedRestaurant.name}'s App Wishlist
                     </div>
-                    <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', margin: '0 0 20px 0', lineHeight: '1.4' }}>
+                    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', margin: '0 0 16px 0', lineHeight: '1.3' }}>
                       Get notified instantly when they go live. Join <strong style={{ color: 'var(--color-primary)' }}>100+ other local foodies</strong> already on the queue!
                     </p>
                     
@@ -973,12 +973,12 @@ export default function Food() {
                           flex: 1, 
                           background: 'rgba(0,0,0,0.2)', 
                           border: '1px solid rgba(255,255,255,0.1)', 
-                          borderRadius: '12px', 
-                          padding: '0 18px', 
+                          borderRadius: '10px', 
+                          padding: '0 14px', 
                           color: '#fff', 
-                          fontSize: '14.5px',
+                          fontSize: '13px',
                           fontFamily: 'inherit',
-                          height: '48px',
+                          height: '42px',
                           boxSizing: 'border-box',
                           textAlign: 'left'
                         }} 
@@ -993,13 +993,13 @@ export default function Food() {
                           background: 'var(--color-primary)',
                           border: 'none',
                           color: '#fff',
-                          padding: '0 24px',
-                          borderRadius: '12px',
+                          padding: '0 18px',
+                          borderRadius: '10px',
                           fontWeight: '700',
-                          fontSize: '14.5px',
+                          fontSize: '13px',
                           cursor: 'pointer',
                           fontFamily: 'inherit',
-                          height: '48px',
+                          height: '42px',
                           boxSizing: 'border-box',
                           whiteSpace: 'nowrap',
                           display: 'flex',
