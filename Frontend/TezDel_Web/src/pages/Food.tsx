@@ -115,8 +115,7 @@ export default function Food() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="food-chip-grid-v3" 
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '16px' }}
+            className="food-chip-grid-v3 food-cat-grid-css"
           >
             {categories.map((cat, i) => (
               <motion.div 
@@ -172,7 +171,7 @@ export default function Food() {
             </motion.button>
           </div>
 
-          <div className="restaurant-grid-v3" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '24px' }}>
+          <div className="restaurant-grid-v3 rest-grid-css">
             <AnimatePresence mode="wait">
               {isLoading ? (
                 Array(6).fill(0).map((_, i) => (

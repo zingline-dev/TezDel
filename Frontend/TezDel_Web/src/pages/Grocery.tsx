@@ -137,8 +137,7 @@ export default function Grocery() {
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="cat-grid-v3"
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '24px' }}
+            className="cat-grid-v3 grocery-cat-grid-css"
           >
             {categories.map((cat, i) => (
               <motion.div 
@@ -176,9 +175,9 @@ export default function Grocery() {
         <div className="container">
           <div className="section-head-v3" style={{ marginBottom: '60px' }}>
             <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="section-label-v3" style={{ color: 'rgba(255,255,255,0.5)' }}>Partner Stores</motion.p>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3" style={{ color: '#fff', fontSize: '2.5rem' }}>Your Neighbourhood<br />Kirana Network</motion.h2>
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3 dark-section-title">Your Neighbourhood<br />Kirana Network</motion.h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '24px' }}>
+          <div className="kirana-stores-grid">
             <AnimatePresence mode="wait">
               {isLoading ? (
                 Array(4).fill(0).map((_, i) => (

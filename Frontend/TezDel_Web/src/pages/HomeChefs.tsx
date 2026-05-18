@@ -140,15 +140,14 @@ export default function HomeChefs() {
         <div className="container">
           <div className="section-head-v3" style={{ textAlign: 'center', marginBottom: '80px' }}>
             <motion.p initial="initial" whileInView="animate" variants={fadeInUp} className="section-label-v3">Simple Process</motion.p>
-            <motion.h2 initial="initial" whileInView="animate" variants={fadeInUp} className="section-title-v3" style={{ fontSize: '2.5rem' }}>How Home Chef Orders Work</motion.h2>
+            <motion.h2 initial="initial" whileInView="animate" variants={fadeInUp} className="section-title-v3 fluid-title">How Home Chef Orders Work</motion.h2>
           </div>
           <motion.div 
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
             viewport={{ once: true }}
-            className="steps-v3"
-            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '40px' }}
+            className="steps-v3 steps-fluid-grid"
           >
             {howItWorks.map(s => (
               <motion.article key={s.step} variants={fadeInUp} className="step-v3" style={{ textAlign: 'center' }}>
@@ -166,9 +165,9 @@ export default function HomeChefs() {
         <div className="container">
           <div className="section-head-v3" style={{ marginBottom: '80px' }}>
             <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="section-label-v3">Our verified Chefs</motion.p>
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3" style={{ color: '#fff', fontSize: '2.75rem' }}>Meet Your Neighbourhood Cooks</motion.h2>
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3 dark-section-title">Meet Your Neighbourhood Cooks</motion.h2>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '30px' }}>
+          <div className="chef-dark-grid">
             {chefs.map((chef, i) => (
               <motion.article 
                 key={chef.name} 
@@ -220,10 +219,10 @@ export default function HomeChefs() {
       {/* Quality Assurance */}
       <section className="tezpass-v3" style={{ padding: '140px 0' }}>
         <div className="container">
-          <div className="tezpass-v3-inner" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, ), 1fr))', gap: '80px', alignItems: 'center' }}>
+          <div className="homechef-qa-grid">
             <div>
               <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Quality & Hygiene</motion.p>
-              <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3 tezpass-v3-title" style={{ fontSize: '3rem', marginBottom: '2rem' }}>Cooked with Love.<br />Served with Safety.</motion.h2>
+              <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} className="section-title-v3 tezpass-v3-title homechef-qa-title">Cooked with Love.<br />Served with Safety.</motion.h2>
               <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="tezpass-v3-p" style={{ fontSize: '1.2rem', lineHeight: '1.8', opacity: 0.9, marginBottom: '3rem' }}>Every chef in our network is personally verified. We conduct regular kitchen inspections and hygiene audits so you can enjoy home food with 100% peace of mind.</motion.p>
               <motion.button 
                 whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.1)' }}

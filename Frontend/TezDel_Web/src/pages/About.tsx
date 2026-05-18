@@ -109,7 +109,7 @@ export default function About() {
           <p className="section-label-v3" style={{ color: 'rgba(255,255,255,0.7)' }}>Join the Movement</p>
           <h2 className="section-title-v3 tezpass-v3-title" style={{ margin: '0 auto 1rem' }}>Want to Be Part<br />of the TezDel Story?</h2>
           <p className="tezpass-v3-p" style={{ maxWidth: '560px', margin: '0 auto 2rem' }}>Whether you're a foodie, a busy professional, or a resident who loves supporting local — join us in revolutionizing Bhubaneswar's delivery heartbeat.</p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="cta-btns-group">
             <Link to="/food" className="btn btn-primary" style={{ padding: '0.9rem 2.5rem', borderRadius: '12px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600 }}>Browse Local Food</Link>
             <Link to="/contact" className="btn-outline-white-v3">Become a Supporter</Link>
           </div>

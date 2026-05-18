@@ -1774,3 +1774,213 @@
     gap: 12px;
   }
 }
+
+/* ════════════════════════════════════════
+   FOOD PAGE — RESPONSIVE GRIDS
+   ════════════════════════════════════════ */
+
+/* Fix search box overflowing at tablet (600–900px) */
+@media (max-width: 900px) {
+  .food-search-box-v3 {
+    min-width: 0 !important;
+    flex: 1;
+  }
+  .food-location-box-v3 {
+    flex-shrink: 0;
+  }
+}
+
+/* Food category chip grid — replaces broken minmax inline */
+.food-cat-grid-css {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+/* Restaurant listings grid */
+.rest-grid-css {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* TezPass promo banner stacking */
+.tezpass-banner-v3 {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+/* ════════════════════════════════════════
+   GROCERY PAGE — RESPONSIVE GRIDS
+   ════════════════════════════════════════ */
+
+/* Grocery category cards (4-col) */
+.grocery-cat-grid-css {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Kirana stores grid (4-col) */
+.kirana-stores-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* Dark section headings — fluid font size */
+.dark-section-title {
+  color: #fff !important;
+  font-size: clamp(22px, 4vw, 44px) !important;
+}
+
+/* Light section headings — fluid font size only (no color override) */
+.fluid-title {
+  font-size: clamp(22px, 4vw, 44px) !important;
+}
+
+/* Fluid section padding — replaces hardcoded 120px/140px */
+.section-pad-fluid {
+  padding: clamp(60px, 8vw, 120px) 0;
+}
+
+/* ════════════════════════════════════════
+   HOMECHEFS PAGE — RESPONSIVE GRIDS
+   ════════════════════════════════════════ */
+
+/* Steps grid (3-col) */
+.steps-fluid-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+/* Chef cards dark grid (4-col) */
+.chef-dark-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+/* Quality assurance 2-col inner */
+.homechef-qa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.homechef-qa-title {
+  font-size: clamp(22px, 4vw, 48px) !important;
+  margin-bottom: 2rem;
+}
+
+/* ════════════════════════════════════════
+   SHARED — CTA BUTTON GROUPS
+   ════════════════════════════════════════ */
+
+.cta-btns-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ════════════════════════════════════════
+   ALL PAGES — RESPONSIVE OVERRIDES
+   ════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  .food-cat-grid-css {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .rest-grid-css {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grocery-cat-grid-css {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kirana-stores-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps-fluid-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .steps-fluid-grid::before {
+    display: none;
+  }
+
+  .chef-dark-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .homechef-qa-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .section-pad-fluid {
+    padding: clamp(48px, 7vw, 80px) 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .food-cat-grid-css {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .rest-grid-css {
+    grid-template-columns: 1fr;
+  }
+
+  .grocery-cat-grid-css {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .kirana-stores-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chef-dark-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-btns-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tezpass-banner-v3 {
+    flex-direction: column !important;
+    align-items: flex-start;
+  }
+
+  .section-pad-fluid {
+    padding: clamp(40px, 6vw, 60px) 0;
+  }
+}
+
+@media (max-width: 430px) {
+  .food-cat-grid-css {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grocery-cat-grid-css {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chef-dark-grid {
+    grid-template-columns: 1fr;
+  }
+}
