@@ -31,34 +31,55 @@ const staggerContainer = {
   }
 };
 
-// Real, mouth-watering Unsplash food-only images curated by category
+// Real, mouth-watering Unsplash food-only images curated by category (6 unique photos per category)
 const FOOD_IMAGES = {
   'Odia Specials': [
-    'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80', // Traditional Thali
-    'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&q=80', // Dal & Rice
-    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80', // Indian Curry
-    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80'  // Healthy Platter
+    'https://images.unsplash.com/photo-1546833999-b9f581a1996d', // Authentic Indian Veg/Non-veg Thali
+    'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46', // Lentil Dal & Rice Curry
+    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc', // Spicy Gravy Tarkari / Paneer
+    'https://images.unsplash.com/photo-1627308595229-7830a5c91f9f', // Tandoori Paneer Butter Masala
+    'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4', // Tandoori Platter
+    'https://images.unsplash.com/photo-1645177625172-5957088b9014'  // Special Pav Bhaji / Curry
   ],
   'Biryani': [
-    'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80', // Aromatic Biryani
-    'https://images.unsplash.com/photo-1633945274405-b6c8069047b0?auto=format&fit=crop&w=800&q=80', // Claypot Rice
-    'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80'  // Chicken Biryani
+    'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8', // Royal Hyderabadi Biryani
+    'https://images.unsplash.com/photo-1633945274405-b6c8069047b0', // Spiced Biryani Rice Claypot
+    'https://images.unsplash.com/photo-1589302168068-964664d93dc0', // Premium Hyderabadi Chicken Biryani
+    'https://images.unsplash.com/photo-1606491956689-2ea866880c84', // Dum Mutton Biryani Plate
+    'https://images.unsplash.com/photo-1512058564366-18510be2db19', // Special Egg Pulav
+    'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46'  // Jeera Rice Bowls
   ],
   'Pizza': [
-    'https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=800&q=80', // Cheese Pizza
-    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80'  // Margherita Pizza
+    'https://images.unsplash.com/photo-1513104890138-7c749659a591', // Woodfired Mozzarella Pizza
+    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38', // Sliced Margherita Pizza
+    'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e', // Pepperoni Feast Pizza
+    'https://images.unsplash.com/photo-1574071318508-1cdbab80d002', // Cheese Burst Pizza
+    'https://images.unsplash.com/photo-1511018556340-d16986a1c194', // Fresh Basil Pesto Pizza
+    'https://images.unsplash.com/photo-1594009493602-44a417cd8852'  // Thin Crust Vegetable Pizza
   ],
   'Burgers': [
-    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80', // Double Cheeseburger
-    'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=80'  // Spicy Veg Burger
+    'https://images.unsplash.com/photo-1568901346375-23c9450c58cd', // Gourmet Double Cheeseburger
+    'https://images.unsplash.com/photo-1550547660-d9450f859349', // Spicy Crispy Chicken Burger
+    'https://images.unsplash.com/photo-1571091718767-18b5b1457add', // Supreme Veg Burger with Fries
+    'https://images.unsplash.com/photo-1586190848861-99aa4a171e90', // Classic Bistro Burger
+    'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9', // Smokehouse Beef Burger
+    'https://images.unsplash.com/photo-1565299585323-38d6b0865b47'  // Mini Sliders Basket
   ],
   'Rolls': [
-    'https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=800&q=80', // Roll Wrap
-    'https://images.unsplash.com/photo-1608897013039-887f21d8c804?auto=format&fit=crop&w=800&q=80'  // Paneer/Egg Roll
+    'https://images.unsplash.com/photo-1626132647523-66f5bf380027', // Paneer Kathi Roll Wraps
+    'https://images.unsplash.com/photo-1608897013039-887f21d8c804', // Spicy Chicken Kathi Wrap
+    'https://images.unsplash.com/photo-1601356616077-695728617cb9', // Indian Street Food Chaat / Dahibara
+    'https://images.unsplash.com/photo-1534422298391-e4f8c172dddb', // Steamed Momos with Red Dip
+    'https://images.unsplash.com/photo-1585238342024-78d387f4a707', // Schezwan Noodles
+    'https://images.unsplash.com/photo-1601050690597-df056fb4ce78'  // Punjabi Samosas with Chutney
   ],
   'Desserts': [
-    'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80', // Chocolate cake
-    'https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=800&q=80'  // Indian traditional sweet
+    'https://images.unsplash.com/photo-1551024506-0bccd828d307', // Hot Chocolate Cake
+    'https://images.unsplash.com/photo-1587314168485-3236d6710814', // Assorted Indian Sweets / Ladoo
+    'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e', // Traditional Chenna Poda / Sweets
+    'https://images.unsplash.com/photo-1625220194771-7ebedd0b70b9', // Sweet Rasgullas in Bowl
+    'https://images.unsplash.com/photo-1578985545062-69928b1d9587', // Black Forest Gateau Cake
+    'https://images.unsplash.com/photo-1596797038530-2c107229654b'  // Premium Kaju Katli / Sweets
   ]
 };
 
@@ -118,26 +139,62 @@ function generateHyperlocalRestaurants(location: string): Array<{
     // Choose images deterministically matching the category
     const categoryImages = FOOD_IMAGES[catObj.name as keyof typeof FOOD_IMAGES];
     const imgSeed = (baseSeed * i + 99) % categoryImages.length;
-    const img = categoryImages[imgSeed];
+    const baseImg = categoryImages[imgSeed];
+
+    // Dynamic crops & zooms to make the 100+ listings look absolutely unique
+    const cropSetting = i % 3 === 0 ? 'entropy' : i % 3 === 1 ? 'faces' : 'center';
+    const zoomSetting = i % 3 === 0 ? 'w=800&h=600' : i % 3 === 1 ? 'w=800&h=550' : 'w=800&h=650';
+    let img = `${baseImg}?auto=format&fit=crop&crop=${cropSetting}&${zoomSetting}&q=80&sig=${i}`;
 
     const rating = parseFloat((4.0 + ((baseSeed * i + 5) % 10) * 0.1).toFixed(1));
     const time = `${15 + ((baseSeed * i + 3) % 7) * 5} mins`;
     const priceVal = 150 + ((baseSeed * i + 11) % 9) * 50;
     
     // Construct realistic hyperlocal name
-    const restaurantName = i <= 6 && i === 1 ? 'Odisha Hotel' :
-                           i <= 6 && i === 2 ? 'Dalma Restaurant' :
-                           i <= 6 && i === 3 ? 'The Biryani Box' :
-                           i <= 6 && i === 4 ? 'Pakhala Hub' :
-                           `${localPart.prefix} ${localPart.suffix} (#${i})`;
+    let restaurantName = `${localPart.prefix} ${localPart.suffix} (#${i})`;
+    let customTags = catObj.tags;
+    let customCategory = catObj.name;
+
+    // Hardcode premium real local Odisha restaurants with exact food item image configurations
+    if (i === 1) {
+      restaurantName = 'Odisha Hotel';
+      customCategory = 'Odia Specials';
+      customTags = 'Odia · Authentic Mansa Tarkari · Thali';
+      img = 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&h=600&q=80&sig=odia_hotel'; // Premium Thali
+    } else if (i === 2) {
+      restaurantName = 'Dalma Restaurant';
+      customCategory = 'Odia Specials';
+      customTags = 'Odia · Dalma · Authentic Veg Thali';
+      img = 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=800&h=600&q=80&sig=dalma_rest'; // Dalma/Rice curry
+    } else if (i === 3) {
+      restaurantName = 'The Biryani Box';
+      customCategory = 'Biryani';
+      customTags = 'Biryani · Hyderabadi Chicken Biryani';
+      img = 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&h=600&q=80&sig=biryani_box'; // Claypot aromatic biryani
+    } else if (i === 4) {
+      restaurantName = 'Pakhala Hub';
+      customCategory = 'Odia Specials';
+      customTags = 'Local · Cold Pakhala Bhaat · Saga Bhaja';
+      img = 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&h=600&q=80&sig=pakhala_hub'; // Authentic Indian curry
+    } else if (i === 5) {
+      restaurantName = 'Cuttack Dahibara Express';
+      customCategory = 'Rolls';
+      customTags = 'Odia · Iconic Dahibara Aloodum · Ghuguni';
+      img = 'https://images.unsplash.com/photo-1601356616077-695728617cb9?auto=format&fit=crop&w=800&h=600&q=80&sig=cuttack_dahibara'; // Indian Street chaat / dahibara
+    } else if (i === 6) {
+      restaurantName = 'Nimapada Sweets';
+      customCategory = 'Desserts';
+      customTags = 'Desserts · Iconic Chenna Poda · Rasgulla';
+      img = 'https://images.unsplash.com/photo-1625220194771-7ebedd0b70b9?auto=format&fit=crop&w=800&h=600&q=80&sig=nimapada_sweets'; // Rasgullas in bowl
+    }
 
     list.push({
       name: restaurantName,
       rating: rating > 4.9 ? 4.9 : rating,
       time,
       price: `₹${priceVal} for two`,
-      tags: catObj.tags,
-      category: catObj.name,
+      tags: customTags,
+      category: customCategory,
       img
     });
   }
