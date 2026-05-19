@@ -11,8 +11,10 @@ import {
   Loader2,
   Settings,
   Terminal,
-  MessageSquare
+  MessageSquare,
+  Workflow
 } from 'lucide-react';
+import WorkflowBuilder from './components/WorkflowBuilder';
 import {
   getBrainHealth,
   getDiagnostics,
@@ -62,6 +64,7 @@ export default function App() {
   
   const [isRunning, setIsRunning] = useState(false);
   const [isDiagnosticRunning, setIsDiagnosticRunning] = useState(false);
+  const [showWorkflowBuilder, setShowWorkflowBuilder] = useState(false);
   const [diagnostics, setDiagnostics] = useState<AgentDiagnostic[]>([]);
   
   const [apiEndpoint, setApiEndpoint] = useState('http://localhost:3000/api');
@@ -422,26 +425,37 @@ export default function App() {
             </div>
           </div>
 
-          <div className="n8n-section">
-            <div className="panel-head" style={{ background: 'transparent', padding: '0 0 12px 0', border: 'none' }}>
+          <div className="n8n-section" style={{ gridColumn: showWorkflowBuilder ? '1 / -1' : 'auto' }}>
+            <div className="panel-head" style={{ background: 'transparent', padding: '0 0 12px 0', border: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div className="panel-title">n8n Workflow Blueprints</div>
+              <button 
+                className="btn btn-ghost" 
+                style={{ padding: '4px 10px', fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px' }}
+                onClick={() => setShowWorkflowBuilder(!showWorkflowBuilder)}
+              >
+                <Workflow size={12} /> {showWorkflowBuilder ? 'Hide Builder' : 'Open Builder'}
+              </button>
             </div>
-            <div className="workflow-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
-              {n8nWorkflows.map((w, i) => (
-                <div className="workflow-card" key={i}>
-                  <div className="workflow-trigger">{w.trigger}</div>
-                  <div className="workflow-name">{w.name}</div>
-                  <div className="workflow-action">{w.action}</div>
-                  <div className="workflow-steps">
-                    <span className="step-bubble trigger">Trig</span>
-                    <span className="step-arrow">→</span>
-                    <span className="step-bubble agent">Agent</span>
-                    <span className="step-arrow">→</span>
-                    <span className="step-bubble action">Act</span>
+            {showWorkflowBuilder ? (
+              <WorkflowBuilder />
+            ) : (
+              <div className="workflow-grid" style={{ gridTemplateColumns: '1fr 1fr' }}>
+                {n8nWorkflows.map((w, i) => (
+                  <div className="workflow-card" key={i}>
+                    <div className="workflow-trigger">{w.trigger}</div>
+                    <div className="workflow-name">{w.name}</div>
+                    <div className="workflow-action">{w.action}</div>
+                    <div className="workflow-steps">
+                      <span className="step-bubble trigger">Trig</span>
+                      <span className="step-arrow">→</span>
+                      <span className="step-bubble agent">Agent</span>
+                      <span className="step-arrow">→</span>
+                      <span className="step-bubble action">Act</span>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
