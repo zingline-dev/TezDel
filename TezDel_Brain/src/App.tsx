@@ -166,10 +166,10 @@ export default function App() {
     <div className="app">
       <header className="topbar">
         <a href="#" className="brand">
-          <div className="brand-logo">
-            <Brain size={16} color="#fff" />
+          <div className="brand-logo" style={{ fontFamily: 'var(--font-display)', letterSpacing: '-1px' }}>
+            <span>Tz</span>
           </div>
-          TezDel Brain
+          <span>Tez<em style={{ color: 'var(--brand)', fontStyle: 'normal' }}>Del</em> Brain</span>
         </a>
         <div className="top-right">
           <div className="status-badge">
