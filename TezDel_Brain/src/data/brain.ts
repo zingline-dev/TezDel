@@ -10,6 +10,8 @@ export type Department = {
   collaboration: string[];
   operatingQuestion: string;
   color: 'orange' | 'green' | 'blue' | 'saffron' | 'red' | 'violet' | 'slate';
+  leaderName: string;
+  empId: string;
 };
 
 export type CollaborationFlow = {
@@ -123,6 +125,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'What single action moves TezDel closer to local commerce dominance today?',
     color: 'orange',
+    leaderName: 'Besal Kumar Rout',
+    empId: 'EMP Id 0001',
   },
   {
     id: 'culture',
@@ -160,6 +164,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'Which local dish can become a repeat-order ritual in each colony?',
     color: 'saffron',
+    leaderName: 'Debashis Mohanty',
+    empId: 'EMP Id 0002',
   },
   {
     id: 'marketing',
@@ -195,6 +201,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'What would make Bhubaneswar talk about TezDel today without paid media?',
     color: 'red',
+    leaderName: 'Priyaranjan Das',
+    empId: 'EMP Id 0003',
   },
   {
     id: 'operations',
@@ -225,6 +233,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'Which route, captain, or zone change reduces minutes without reducing trust?',
     color: 'blue',
+    leaderName: 'Jagannath Prasad Nayak',
+    empId: 'EMP Id 0004',
   },
   {
     id: 'kirana',
@@ -253,6 +263,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'Which kirana partnership makes this colony feel instantly covered?',
     color: 'green',
+    leaderName: 'Satish Kumar Sahu',
+    empId: 'EMP Id 0005',
   },
   {
     id: 'customer',
@@ -280,6 +292,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'What response makes the customer feel TezDel is their local team?',
     color: 'green',
+    leaderName: 'Amitav Patnaik',
+    empId: 'EMP Id 0006',
   },
   {
     id: 'engineering',
@@ -312,6 +326,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'Which system unlocks faster execution for multiple departments at once?',
     color: 'slate',
+    leaderName: 'Manoranjan Tripathy',
+    empId: 'EMP Id 0007',
   },
   {
     id: 'warfare',
@@ -334,6 +350,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'Where can TezDel win because it is local, trusted, and faster to adapt?',
     color: 'red',
+    leaderName: 'Rudra Prasad Mishra',
+    empId: 'EMP Id 0008',
   },
   {
     id: 'future',
@@ -367,6 +385,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'What shift can TezDel exploit before the market names it?',
     color: 'violet',
+    leaderName: 'Ashutosh Senapati',
+    empId: 'EMP Id 0009',
   },
   {
     id: 'analytics',
@@ -389,6 +409,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'Which number changes the decision, not just the dashboard?',
     color: 'blue',
+    leaderName: 'Subhasis Samal',
+    empId: 'EMP Id 0010',
   },
   {
     id: 'founder',
@@ -416,6 +438,8 @@ export const departments: Department[] = [
     operatingQuestion:
       'What does the founder need to decide, raise, hire, or partner faster?',
     color: 'saffron',
+    leaderName: 'Pradyumna Kumar Kar',
+    empId: 'EMP Id 0011',
   },
 ];
 

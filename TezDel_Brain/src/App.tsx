@@ -677,6 +677,34 @@ export default function App() {
                 <div>
                   <p className="section-kicker">Selected Department</p>
                   <h3>{activeDepartment.name}</h3>
+                  <div className="leader-badge-container" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '8px' }}>
+                    <span style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '4px 10px',
+                      background: 'rgba(25, 23, 20, 0.05)',
+                      borderRadius: '6px',
+                      fontSize: '0.8rem',
+                      fontWeight: 800,
+                      color: 'var(--ink)',
+                      border: '1px solid rgba(25, 23, 20, 0.08)'
+                    }}>
+                      Leader: {activeDepartment.leaderName}
+                    </span>
+                    <span style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '4px 10px',
+                      background: 'var(--accent, var(--orange))',
+                      borderRadius: '6px',
+                      fontSize: '0.8rem',
+                      fontWeight: 900,
+                      color: '#fff',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.06)'
+                    }}>
+                      {activeDepartment.empId}
+                    </span>
+                  </div>
                 </div>
               </div>
 

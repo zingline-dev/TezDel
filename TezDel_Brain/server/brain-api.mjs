@@ -207,6 +207,8 @@ const agents = [
       'Cross-department response time',
       'Bhubaneswar expansion readiness',
     ],
+    leaderName: 'Besal Kumar Rout',
+    empId: 'EMP Id 0001',
   },
   {
     id: 'culture',
@@ -221,6 +223,8 @@ const agents = [
       'Repeat orders',
       'Home-chef revenue growth',
     ],
+    leaderName: 'Debashis Mohanty',
+    empId: 'EMP Id 0002',
   },
   {
     id: 'marketing',
@@ -235,6 +239,8 @@ const agents = [
       'Referral growth',
       'Social engagement',
     ],
+    leaderName: 'Priyaranjan Das',
+    empId: 'EMP Id 0003',
   },
   {
     id: 'operations',
@@ -250,6 +256,8 @@ const agents = [
       'Fulfillment success',
       'Operational efficiency',
     ],
+    leaderName: 'Jagannath Prasad Nayak',
+    empId: 'EMP Id 0004',
   },
   {
     id: 'kirana',
@@ -263,6 +271,8 @@ const agents = [
       'Inventory optimization',
       'Revenue per kirana',
     ],
+    leaderName: 'Satish Kumar Sahu',
+    empId: 'EMP Id 0005',
   },
   {
     id: 'customer',
@@ -276,6 +286,8 @@ const agents = [
       'Customer retention',
       'Complaint reduction',
     ],
+    leaderName: 'Amitav Patnaik',
+    empId: 'EMP Id 0006',
   },
   {
     id: 'engineering',
@@ -284,6 +296,8 @@ const agents = [
     mission: 'Build scalable AI-native infrastructure for TezDel.',
     personality: 'Elite startup engineer mindset.',
     kpis: ['Speed', 'Stability', 'Scalability', 'Bug reduction'],
+    leaderName: 'Manoranjan Tripathy',
+    empId: 'EMP Id 0007',
   },
   {
     id: 'warfare',
@@ -292,6 +306,8 @@ const agents = [
     mission: 'Outgrow competitors using unconventional strategies.',
     personality: 'Obsessed with domination, highly experimental.',
     kpis: ['Growth rate', 'CAC reduction', 'Retention', 'Market penetration'],
+    leaderName: 'Rudra Prasad Mishra',
+    empId: 'EMP Id 0008',
   },
   {
     id: 'future',
@@ -300,6 +316,8 @@ const agents = [
     mission: 'Keep TezDel 3 steps ahead of the market.',
     personality: 'Futuristic, visionary, innovation-obsessed.',
     kpis: ['Innovation quality', 'Strategic advantage', 'Future readiness'],
+    leaderName: 'Ashutosh Senapati',
+    empId: 'EMP Id 0009',
   },
   {
     id: 'analytics',
@@ -308,6 +326,8 @@ const agents = [
     mission: 'Turn data into strategic advantage.',
     personality: 'Data-obsessed, logical, predictive.',
     kpis: ['Predictive accuracy', 'Insight quality', 'Strategic intelligence'],
+    leaderName: 'Subhasis Samal',
+    empId: 'EMP Id 0010',
   },
   {
     id: 'founder',
@@ -321,6 +341,8 @@ const agents = [
       'Founder time saved',
       'Operating cadence quality',
     ],
+    leaderName: 'Pradyumna Kumar Kar',
+    empId: 'EMP Id 0011',
   },
 ];
 
@@ -730,6 +752,7 @@ No blueprint memory has been imported yet. Tell the user to run Train All Agents
 
   return `
 You are ${agent.name}, one department inside TEZDEL BRAIN.
+Your designated leader is ${agent.leaderName} (${agent.empId}).
 
 ${doctrine}
 
