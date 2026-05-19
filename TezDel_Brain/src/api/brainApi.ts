@@ -1,6 +1,6 @@
 export type BrainHealth = {
   api: 'ok';
-  mode: 'ollama' | 'fallback';
+  mode: 'ollama' | 'fallback' | 'claude';
   agentCount: number;
   ollama: {
     connected: boolean;
@@ -9,6 +9,20 @@ export type BrainHealth = {
     error: string | null;
     models: Array<{ name: string; model?: string; modified_at?: string; size?: number }>;
   };
+  training: TrainingStatus;
+};
+
+export type TrainingStatus = {
+  trained: boolean;
+  sourceDoc: string;
+  sourceDocExists: boolean;
+  indexPath: string;
+  lastTrainedAt: string | null;
+  sourceModifiedAt: string | null;
+  paragraphCount: number;
+  sectionCount: number;
+  chunkCount: number;
+  agentCoverage: Record<string, number>;
 };
 
 export type AgentDiagnostic = {
@@ -19,13 +33,27 @@ export type AgentDiagnostic = {
 };
 
 export type DiagnosticsResponse = {
-  mode: 'ollama' | 'fallback';
+  mode: 'ollama' | 'fallback' | 'claude';
   ollama: BrainHealth['ollama'];
+  training: TrainingStatus;
   agents: AgentDiagnostic[];
 };
 
+export type MemoryMetadata = {
+  trained: boolean;
+  chunkCount: number;
+  sourceDoc: string;
+  lastTrainedAt: string | null;
+  chunks: Array<{
+    id: string;
+    section: string;
+    shared: boolean;
+    agentIds: string[];
+  }>;
+};
+
 export type AgentRunResponse = {
-  mode: 'ollama' | 'fallback';
+  mode: 'ollama' | 'fallback' | 'claude';
   agent?: {
     id: string;
     name: string;
@@ -33,6 +61,7 @@ export type AgentRunResponse = {
   };
   model: string | null;
   output: string;
+  memory?: MemoryMetadata;
   latencyMs?: number;
   warning?: string;
 };
@@ -65,6 +94,14 @@ export function getBrainHealth(model?: string) {
 export function getDiagnostics(model?: string) {
   const query = model ? `?model=${encodeURIComponent(model)}` : '';
   return getJson<DiagnosticsResponse>(`/api/diagnostics${query}`);
+}
+
+export function getTrainingStatus() {
+  return getJson<TrainingStatus>('/api/training/status');
+}
+
+export function importTraining(sourceDoc?: string) {
+  return postJson<TrainingStatus>('/api/training/import', { sourceDoc });
 }
 
 export function runAgent(agentId: string, task: string, model?: string) {

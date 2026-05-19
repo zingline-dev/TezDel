@@ -6,6 +6,7 @@ import {
   BarChart3,
   Bike,
   Bot,
+  BookOpen,
   Brain,
   BriefcaseBusiness,
   Check,
@@ -17,6 +18,7 @@ import {
   Cpu,
   Crosshair,
   HeartHandshake,
+  Share2,
   Loader2,
   Megaphone,
   PlayCircle,
@@ -30,6 +32,8 @@ import {
   Utensils,
   Zap,
 } from 'lucide-react';
+import AgentLibrary from './components/AgentLibrary';
+import SocialTools from './components/SocialTools';
 import {
   brainIdentity,
   collaborationFlows,
@@ -47,11 +51,14 @@ import {
 import {
   getBrainHealth,
   getDiagnostics,
+  getTrainingStatus,
+  importTraining,
   runAgent,
   runStandup,
   type AgentDiagnostic,
   type AgentRunResponse,
   type BrainHealth,
+  type TrainingStatus,
 } from './api/brainApi';
 
 const iconMap = {
@@ -87,6 +94,9 @@ export default function App() {
   const [health, setHealth] = useState<BrainHealth | null>(null);
   const [healthError, setHealthError] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
+  const [trainingStatus, setTrainingStatus] = useState<TrainingStatus | null>(null);
+  const [trainingLoading, setTrainingLoading] = useState(false);
+  const [trainingError, setTrainingError] = useState('');
   const [diagnostics, setDiagnostics] = useState<AgentDiagnostic[]>([]);
   const [diagnosticsLoading, setDiagnosticsLoading] = useState(false);
   const [task, setTask] = useState(
@@ -114,8 +124,20 @@ export default function App() {
     (health?.ollama.connected
       ? health.ollama.selectedModel
         ? `Connected to ${health.ollama.selectedModel}`
-        : 'Ollama connected, but no model is available'
-      : 'Ollama is offline, fallback mode active');
+        : modelMode === 'claude'
+          ? 'Claude connected, but no model is available'
+          : 'Ollama connected, but no model is available'
+      : modelMode === 'claude'
+        ? 'Claude connection offline, fallback mode active'
+        : 'Ollama connection offline, fallback mode active');
+  const trained = Boolean(trainingStatus?.trained);
+  const trainingStatusText = trainingError
+    ? trainingError
+    : trained
+      ? `${trainingStatus?.chunkCount ?? 0} memory chunks trained`
+      : trainingStatus?.sourceDocExists === false
+        ? 'Blueprint docx not found'
+        : 'Blueprint memory not trained yet';
 
   useEffect(() => {
     let mounted = true;
@@ -124,11 +146,21 @@ export default function App() {
       .then((data) => {
         if (!mounted) return;
         setHealth(data);
+        setTrainingStatus(data.training);
         setSelectedModel(data.ollama.selectedModel ?? '');
       })
       .catch((error: unknown) => {
         if (!mounted) return;
         setHealthError(error instanceof Error ? error.message : 'Brain API is not reachable');
+      });
+
+    getTrainingStatus()
+      .then((data) => {
+        if (!mounted) return;
+        setTrainingStatus(data);
+      })
+      .catch(() => {
+        // Health already surfaces API connectivity. Training status can wait for refresh.
       });
 
     return () => {
@@ -141,6 +173,7 @@ export default function App() {
     try {
       const data = await getBrainHealth(model || undefined);
       setHealth(data);
+      setTrainingStatus(data.training);
       setSelectedModel(model || data.ollama.selectedModel || '');
     } catch (error) {
       setHealthError(error instanceof Error ? error.message : 'Brain API is not reachable');
@@ -164,14 +197,16 @@ export default function App() {
     try {
       const result = await getDiagnostics(selectedModel || undefined);
       setDiagnostics(result.agents);
+      setTrainingStatus(result.training);
       setHealth((current) =>
         current
-          ? { ...current, mode: result.mode, ollama: result.ollama }
+          ? { ...current, mode: result.mode, ollama: result.ollama, training: result.training }
           : {
               api: 'ok',
               mode: result.mode,
               agentCount: result.agents.length,
               ollama: result.ollama,
+              training: result.training,
             },
       );
       setSelectedModel(result.ollama.selectedModel ?? selectedModel);
@@ -179,6 +214,32 @@ export default function App() {
       setHealthError(error instanceof Error ? error.message : 'Diagnostics failed');
     } finally {
       setDiagnosticsLoading(false);
+    }
+  }
+
+  async function handleTrainAgents() {
+    setTrainingLoading(true);
+    setTrainingError('');
+    try {
+      const status = await importTraining();
+      setTrainingStatus(status);
+      const diagnosticsResult = await getDiagnostics(selectedModel || undefined);
+      setDiagnostics(diagnosticsResult.agents);
+      setHealth((current) =>
+        current
+          ? { ...current, mode: diagnosticsResult.mode, ollama: diagnosticsResult.ollama, training: status }
+          : {
+              api: 'ok',
+              mode: diagnosticsResult.mode,
+              agentCount: diagnosticsResult.agents.length,
+              ollama: diagnosticsResult.ollama,
+              training: status,
+            },
+      );
+    } catch (error) {
+      setTrainingError(error instanceof Error ? error.message : 'Training import failed');
+    } finally {
+      setTrainingLoading(false);
     }
   }
 
@@ -239,6 +300,14 @@ export default function App() {
             <a href="#agents">Agents</a>
             <a href="#loop">Execution Loop</a>
             <a href="#prompt">Master Prompt</a>
+            <a href="#library">
+              <BookOpen size={14} aria-hidden="true" />
+              Agent Library
+            </a>
+            <a href="#social">
+              <Share2 size={14} aria-hidden="true" />
+              Social Tools
+            </a>
           </nav>
           <span className={`model-pill ${modelMode}`}>
             <span className="model-dot" />
@@ -323,7 +392,7 @@ export default function App() {
 
             <div className={`connection-card ${modelMode}`}>
               <div className="connection-icon">
-                {modelMode === 'ollama' ? (
+                {modelMode === 'ollama' || modelMode === 'claude' ? (
                   <Server size={22} aria-hidden="true" />
                 ) : (
                   <AlertTriangle size={22} aria-hidden="true" />
@@ -333,8 +402,12 @@ export default function App() {
                 <strong>{modelStatusText}</strong>
                 <p>
                   API: {health?.api === 'ok' ? 'running' : 'checking'} · Agents:{' '}
-                  {health?.agentCount ?? departments.length} · Ollama:{' '}
-                  {health?.ollama.ollamaUrl ?? 'http://127.0.0.1:11434'}
+                  {health?.agentCount ?? departments.length}
+                  {modelMode === 'claude' ? (
+                    <> · OpenRouter: {health?.ollama.ollamaUrl ?? 'https://openrouter.ai/api'}</>
+                  ) : (
+                    <> · Ollama: {health?.ollama.ollamaUrl ?? 'http://127.0.0.1:11434'}</>
+                  )}
                 </p>
               </div>
             </div>
@@ -355,15 +428,48 @@ export default function App() {
                   ))
                 ) : (
                   <option value="">
-                    {health?.ollama.connected ? 'No models installed' : 'Ollama offline'}
+                    {health?.ollama.connected 
+                      ? 'No models installed' 
+                      : modelMode === 'claude' 
+                        ? 'Claude connection offline' 
+                        : 'Ollama offline'}
                   </option>
                 )}
               </select>
             </label>
 
+            <div className={`training-card ${trained ? 'trained' : ''}`}>
+              <div className="training-icon">
+                <BookOpen size={21} aria-hidden="true" />
+              </div>
+              <div>
+                <span>Blueprint Memory</span>
+                <strong>{trainingStatusText}</strong>
+                <p>
+                  {trainingStatus?.sourceDoc ?? 'C:\\Users\\Bishal\\Downloads\\TezDel_Complete_Startup_Blueprint (1).docx'}
+                </p>
+                {trainingStatus?.lastTrainedAt ? (
+                  <small>Last trained: {new Date(trainingStatus.lastTrainedAt).toLocaleString()}</small>
+                ) : null}
+              </div>
+            </div>
+
             <div className="console-actions">
               <button
                 className="primary-action"
+                type="button"
+                onClick={handleTrainAgents}
+                disabled={trainingLoading}
+              >
+                {trainingLoading ? (
+                  <Loader2 className="spin" size={18} aria-hidden="true" />
+                ) : (
+                  <BookOpen size={18} aria-hidden="true" />
+                )}
+                Train All Agents
+              </button>
+              <button
+                className="secondary-action"
                 type="button"
                 onClick={handleDiagnostics}
                 disabled={diagnosticsLoading}
@@ -375,6 +481,9 @@ export default function App() {
                 )}
                 Check All Agents
               </button>
+            </div>
+
+            <div className="console-actions">
               <button
                 className="secondary-action"
                 type="button"
@@ -480,6 +589,22 @@ export default function App() {
                   ? agentResponse.output
                   : 'Select any department, write a task, and run it. If Ollama is online, this will be a real model response.'}
               </pre>
+              {agentResponse?.memory ? (
+                <div className="memory-summary">
+                  <strong>
+                    {agentResponse.memory.trained
+                      ? `Used ${agentResponse.memory.chunkCount} trained memory chunks`
+                      : 'No trained memory used'}
+                  </strong>
+                  {agentResponse.memory.chunks.length ? (
+                    <span>
+                      {agentResponse.memory.chunks
+                        .map((chunk) => `${chunk.id}: ${chunk.section}`)
+                        .join(' | ')}
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
               {agentResponse?.warning ? <p className="console-warning">{agentResponse.warning}</p> : null}
             </div>
 
@@ -493,6 +618,15 @@ export default function App() {
                   <small>{standupResponse.mode}</small>
                 </div>
                 <pre>{standupResponse.output}</pre>
+                {standupResponse.memory ? (
+                  <div className="memory-summary">
+                    <strong>
+                      {standupResponse.memory.trained
+                        ? `Used ${standupResponse.memory.chunkCount} trained memory chunks`
+                        : 'No trained memory used'}
+                    </strong>
+                  </div>
+                ) : null}
                 {standupResponse.warning ? (
                   <p className="console-warning">{standupResponse.warning}</p>
                 ) : null}
@@ -672,6 +806,9 @@ export default function App() {
           </div>
           <pre>{masterPrompt}</pre>
         </section>
+
+        <AgentLibrary />
+        <SocialTools />
       </main>
     </div>
   );
