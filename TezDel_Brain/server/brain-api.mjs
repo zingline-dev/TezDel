@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, stat, readdir, writeFile } from 'node:fs/promises';
 import { createReadStream, existsSync } from 'node:fs';
 import { extname, join, resolve } from 'node:path';
 import { homedir } from 'node:os';
@@ -369,8 +369,137 @@ const mimeTypes = {
   '.ico': 'image/x-icon',
 };
 
+let specialistAgents = [];
+let specialistDivisions = [];
+
+function getDivisionEmoji(id) {
+  const mapping = {
+    academic: '🎓',
+    design: '🎨',
+    engineering: '💻',
+    finance: '💵',
+    'game-development': '🎮',
+    integrations: '🔌',
+    marketing: '📢',
+    'paid-media': '🎯',
+    product: '📊',
+    'project-management': '📅',
+    sales: '💰',
+    'spatial-computing': '🕶️',
+    specialized: '🚀',
+    support: '🎧',
+    testing: '🧪'
+  };
+  return mapping[id] ?? '🤖';
+}
+
+async function loadSpecialistAgents() {
+  const agentsDir = resolve('agents');
+  const divisions = [];
+  const allParsedAgents = [];
+  
+  if (!existsSync(agentsDir)) {
+    return { allParsedAgents, divisions };
+  }
+
+  try {
+    const files = await readdir(agentsDir, { withFileTypes: true });
+    
+    const dirNames = files
+      .filter(f => f.isDirectory() && f.name !== 'examples')
+      .map(f => f.name)
+      .sort();
+
+    for (const dirName of dirNames) {
+      const dirPath = join(agentsDir, dirName);
+      const agentFiles = await readdir(dirPath);
+      const divisionAgents = [];
+
+      for (const agentFile of agentFiles) {
+        if (!agentFile.endsWith('.md')) continue;
+
+        const filePath = join(dirPath, agentFile);
+        const relativePath = `${dirName}/${agentFile}`;
+        const content = await readFile(filePath, 'utf8');
+        
+        // Parse frontmatter
+        const parts = content.split('---');
+        let meta = {};
+        let body = content;
+        
+        if (parts.length >= 3) {
+          const frontmatter = parts[1];
+          body = parts.slice(2).join('---').trim();
+          
+          const lines = frontmatter.split('\n');
+          for (const line of lines) {
+            const colonIndex = line.indexOf(':');
+            if (colonIndex > 0) {
+              const key = line.slice(0, colonIndex).trim();
+              const val = line.slice(colonIndex + 1).trim();
+              meta[key] = val;
+            }
+          }
+        }
+
+        const id = agentFile.replace('.md', '');
+        const agent = {
+          id,
+          name: meta.name || id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+          description: meta.description || '',
+          tools: meta.tools ? meta.tools.split(',').map(t => t.trim()) : [],
+          color: meta.color || 'blue',
+          emoji: meta.emoji || '🤖',
+          vibe: meta.vibe || '',
+          filePath: relativePath,
+          body,
+        };
+        
+        divisionAgents.push(agent);
+        allParsedAgents.push(agent);
+      }
+
+      if (divisionAgents.length > 0) {
+        const humanName = dirName
+          .split('-')
+          .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+          .join(' ');
+
+        divisions.push({
+          id: dirName,
+          name: humanName,
+          emoji: getDivisionEmoji(dirName),
+          agents: divisionAgents,
+        });
+      }
+    }
+    
+    specialistAgents = allParsedAgents;
+    specialistDivisions = divisions;
+    console.log(`Loaded ${specialistAgents.length} specialist agents across ${specialistDivisions.length} divisions.`);
+  } catch (err) {
+    console.error('Error loading specialist agents:', err);
+  }
+}
+
 function getAgent(agentId) {
-  return agents.find((agent) => agent.id === agentId);
+  const core = agents.find((agent) => agent.id === agentId);
+  if (core) return core;
+  
+  const specialist = specialistAgents.find((agent) => agent.id === agentId || agent.id.replace(/^[a-z]+-/, '') === agentId);
+  if (specialist) {
+    return {
+      id: specialist.id,
+      name: specialist.name,
+      shortName: specialist.name,
+      leaderName: 'Specialist AI Operator',
+      empId: 'EMP Id SPEC-' + specialist.id.slice(0, 4).toUpperCase(),
+      mission: `${specialist.description}\n\nSPECIALIST PLAYBOOK & INSTRUCTIONS:\n${specialist.body}`,
+      personality: specialist.vibe || 'Highly analytical, focused on specialized execution.',
+      kpis: specialist.tools && specialist.tools.length > 0 ? specialist.tools : ['Execution quality', 'Task completion rate'],
+    };
+  }
+  return undefined;
 }
 
 function decodeXml(value) {
@@ -959,7 +1088,11 @@ async function handleApi(req, res) {
   }
 
   if (req.method === 'GET' && url.pathname === '/api/agents') {
-    sendJson(res, 200, { agents });
+    sendJson(res, 200, {
+      departments: agents,
+      specialistDivisions,
+      allSpecialistAgents: specialistAgents
+    });
     return;
   }
 
@@ -1190,7 +1323,8 @@ const server = createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, '127.0.0.1', () => {
+server.listen(PORT, '127.0.0.1', async () => {
+  await loadSpecialistAgents();
   console.log(`TezDel Brain API running at http://127.0.0.1:${PORT}`);
   console.log(`Ollama target: ${OLLAMA_URL}`);
 });

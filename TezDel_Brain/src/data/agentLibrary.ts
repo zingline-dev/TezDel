@@ -9,6 +9,8 @@ export type AgentCard = {
   specialty: string;
   whenToUse: string;
   filePath: string;
+  tools?: string[];
+  vibe?: string;
 };
 
 export type Division = {

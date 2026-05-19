@@ -1494,6 +1494,251 @@ h1 {
   line-height: 1.45;
 }
 
+/* Specialist Deployment Console & Extended Modal Styles */
+
+.agent-modal.wide-layout {
+  max-width: 860px;
+  width: 95vw;
+}
+
+.agent-modal-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
+  padding: 20px;
+}
+
+.agent-modal-left {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.agent-modal-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.console-deployment-box {
+  border: 1px solid rgba(25, 23, 20, 0.12);
+  border-radius: 8px;
+  background: rgba(25, 23, 20, 0.02);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 340px;
+  max-height: 420px;
+}
+
+.console-deployment-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: rgba(25, 23, 20, 0.05);
+  border-bottom: 1px solid rgba(25, 23, 20, 0.08);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.console-deployment-form {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  justify-content: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.form-group select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(25, 23, 20, 0.15);
+  background: #fff;
+  font-size: 0.85rem;
+  color: var(--ink);
+  outline: none;
+  font-weight: 550;
+  transition: border-color 0.15s ease;
+}
+
+.form-group select:focus {
+  border-color: var(--orange);
+}
+
+.form-group textarea {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(25, 23, 20, 0.15);
+  background: #fff;
+  font-size: 0.85rem;
+  color: var(--ink);
+  resize: none;
+  line-height: 1.4;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.form-group textarea:focus {
+  border-color: var(--orange);
+}
+
+.deploy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.console-deployment-loading {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  height: 100%;
+  flex: 1;
+}
+
+.loading-status-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.loading-sub-text {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.console-deployment-output {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+}
+
+.output-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(25, 23, 20, 0.03);
+  border-bottom: 1px solid rgba(25, 23, 20, 0.06);
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.output-action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.copy-btn-icon {
+  background: none;
+  border: none;
+  padding: 4px;
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.copy-btn-icon:hover {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.reset-btn {
+  background: none;
+  border: none;
+  color: var(--orange);
+  font-size: 0.75rem;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.15s ease;
+}
+
+.reset-btn:hover {
+  background: rgba(249, 115, 22, 0.08);
+}
+
+.output-scroll {
+  flex: 1;
+  margin: 0;
+  padding: 16px;
+  overflow-y: auto;
+  background: #1a1715;
+  color: #f5f3ef;
+  font-family: 'Fira Mono', 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  text-align: left;
+}
+
+.tools-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.tool-pill {
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(25, 23, 20, 0.05);
+  border: 1px solid rgba(25, 23, 20, 0.08);
+  font-size: 0.75rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .agent-modal.wide-layout {
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .agent-modal-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px;
+  }
+  .console-deployment-box {
+    max-height: 340px;
+  }
+}
+
 /* ─── Social Tools ──────────────────────────────────────────── */
 
 .social-tools {

@@ -111,3 +111,44 @@ export function runAgent(agentId: string, task: string, model?: string) {
 export function runStandup(task: string, model?: string) {
   return postJson<AgentRunResponse>('/api/standup', { task, model });
 }
+
+export type AgentsRegistryResponse = {
+  departments: Array<{ id: string; name: string }>;
+  specialistDivisions: Array<{
+    id: string;
+    name: string;
+    emoji: string;
+    agents: Array<{
+      id: string;
+      name: string;
+      emoji: string;
+      division: string;
+      specialty: string;
+      whenToUse: string;
+      filePath: string;
+      description?: string;
+      tools?: string[];
+      color?: string;
+      vibe?: string;
+      body?: string;
+    }>;
+  }>;
+  allSpecialistAgents: Array<{
+    id: string;
+    name: string;
+    emoji: string;
+    division: string;
+    specialty: string;
+    whenToUse: string;
+    filePath: string;
+    description?: string;
+    tools?: string[];
+    color?: string;
+    vibe?: string;
+    body?: string;
+  }>;
+};
+
+export function getAgentsRegistry() {
+  return getJson<AgentsRegistryResponse>('/api/agents');
+}
